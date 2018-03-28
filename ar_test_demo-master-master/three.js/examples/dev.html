@@ -137,6 +137,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	
 	var markerRoot = new THREE.Group
+	alert(markerRoot)
 	scene.add(markerRoot)
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		// type: 'barcode',
@@ -146,7 +147,7 @@
 		patternUrl : '../../data/multimarkers/multi-abcdef/patt.tb',
 	})
 
-
+	
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
