@@ -138,12 +138,13 @@
 	
 	var markerRoot = new THREE.Group
 	scene.add(markerRoot)
+	
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		// type: 'barcode',
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : '../../data/multimarkers/multi-abcdef/patt.tb',
+		patternUrl : '../../data/multimarkers/multi-abcdef/patt.AR_1',
 	})
 
 	
