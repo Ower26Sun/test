@@ -308,7 +308,6 @@ document.addEventListener('DOMContentLoaded',function() {
      document.addEventListener('touchmove',function (ev) { //手指移动的时候
       if(ev.targetTouches.length==2){//判断移动的时候是否是两根手指
        c=getC(ev)/downC+oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
-       oBox.style.webkitTransform='scale('+c+')';//通过scale----2D缩放转换
 	      return  c ; 
       }
      },false)
