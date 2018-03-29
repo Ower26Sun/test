@@ -15,23 +15,14 @@
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
-
-
-		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
-
-		<script src="js/Detector.js"></script>
-
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
 	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>AR.js</a> - developement playground
 	<br/>
-	
+	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@jerome_etienne</a>
 </div><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -44,16 +35,12 @@
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
 	document.body.appendChild( renderer.domElement );
-
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
-
 	// init scene and camera
 	var scene	= new THREE.Scene();
-
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
-
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
@@ -61,29 +48,23 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
-
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
-
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
-
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
 		sourceType : 'webcam',
-
 		// // to read from an image
 		// sourceType : 'image',
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/armchair.jpg',		
-
 		// to read from a video
 		// sourceType : 'video',
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
 	})
-
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
@@ -99,11 +80,9 @@
 			arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)	
 		}	
 	}
-
 	////////////////////////////////////////////////////////////////////////////////
 	//          initialize arToolkitContext
 	////////////////////////////////////////////////////////////////////////////////	
-
 	// create atToolkitContext
 	var arToolkitContext = new THREEx.ArToolkitContext({
 		cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
@@ -112,10 +91,8 @@
 		detectionMode: 'mono',
 		// detectionMode: 'color_and_matrix',
 		// matrixCodeType: '3x3',
-
 		canvasWidth: 80*3,
 		canvasHeight: 60*3,
-
 		maxDetectionRate: 30,
 	})
 	// initialize it
@@ -123,19 +100,16 @@
 		// copy projection matrix to camera
 		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
 	})
-
 	// update artoolkit on every frame
 	onRenderFcts.push(function(){
 		if( arToolkitSource.ready === false )	return
-
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
-	
 	
 	////////////////////////////////////////////////////////////////////////////////
 	//          Create a ArMarkerControls
 	////////////////////////////////////////////////////////////////////////////////
-	var urlPatt = '../../data/multimarkers/multi-abcdef/patt.AR_1'
+	
 	var markerRoot = new THREE.Group
 	scene.add(markerRoot)
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
@@ -143,10 +117,8 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : urlPatt,
+		patternUrl : THREEx.ArToolkitContext.baseURL + 'examples/marker-training/examples/pattern-files/pattern-hiro.patt',
 	})
-	
-	
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
@@ -167,12 +139,10 @@
 	// smoothedControls.addEventListener('becameUnVisible', function(){
 	// 	console.log('becameUnVisible event notified')
 	// })
-
 	//////////////////////////////////////////////////////////////////////////////////
 	//		add an object in the scene
 	//////////////////////////////////////////////////////////////////////////////////
-
-/* 	// var arWorldRoot = markerRoot
+	// var arWorldRoot = markerRoot
 	var arWorldRoot = smoothedRoot
 	var mesh = new THREE.AxisHelper()
 	// markerRoot.add(mesh)
@@ -198,65 +168,7 @@
 	
 	onRenderFcts.push(function(delta){
 		mesh.rotation.x += delta * Math.PI
-	}) */
-	
-	/* var mesh = new THREE.AxisHelper(),dae;
-	var loader = new THREE.ColladaLoader();
-	loader.options.convertUpAxis = true;
-	loader.load( './models/dae/monster.dae', function ( collada ) {
-		dae = collada.scene;
-		dae.traverse( function ( child ) {
-			if ( child instanceof THREE.SkinnedMesh ) {
-				var animation = new THREE.Animation( child, child.geometry.animation );
-				animation.play();
-			}
-		} );
-		dae.scale.x = dae.scale.y = dae.scale.z = 0.001;
-		dae.rotation.set( 0,Math.PI/2,Math.PI/2);
-		markerRoot.add( dae );
-		onRenderFcts.push(function(delta){
-			mesh.rotation.x += delta * Math.PI;
-			dae.updateMatrix();
-		})
-		
-	} ); */
-	
-	
-	// model
-
-	var onProgress = function ( xhr ) {
-		if ( xhr.lengthComputable ) {
-			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-		}
-	};
-
-	var onError = function ( xhr ) { };
-
-	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
-
-		materials.preload();
-
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'tree.obj', function ( object ) {
-
-			//object.position.y = 0.2;
-  			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.5;
-			// 旋转
-			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
-
-		}, onProgress, onError );
-
-	});
-
+	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -267,7 +179,6 @@
 		renderer.render( scene, camera );
 		stats.update();
 	})
-
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -282,33 +193,4 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-	
-	document.addEventListener('touchmove', function(event) {
-    event.preventDefault();
-}, false);
-
-function setGesture(el){
-    var obj={}; //定义一个对象
-    var istouch=false;
-    var start=[];
-    el.addEventListener("touchstart",function(e){
-        if(e.touches.length>=2){  //判断是否有两个点在屏幕上
-            istouch=true;
-            start=e.touches;  //得到第一组两个点
-            obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
-        };
-    },false);
-    document.addEventListener("touchmove",function(e){
-        e.preventDefault();
-        if(e.touches.length>=2&&istouch){
-            var now=e.touches;  //得到第二组两个点
-            var scale1=getDistance(now[0],now[1])/getDistance(start[0],start[1]); //得到缩放比例，getDistance是勾股定理的一个方法
-			  };
-			  return scale1;
-    },false);
-function getDistance(p1, p2) {
-    var x = p2.pageX - p1.pageX,
-        y = p2.pageY - p1.pageY;
-    return Math.sqrt((x * x) + (y * y));
-};
 </script></body>
