@@ -249,7 +249,10 @@
   			// 缩放
 			var canvas=document.querySelector("#canvas");
     			var canvasGesture=setGesture(canvas);  //得到一个对象
-			
+			canvasGesture.gesturemove=function(e){  //双指移动
+        		canvas.innerHTML = e.scale+"<br />"+e.rotation;
+        		canvas.style.transform="scale("+e.scale+") rotate("+e.rotation+"deg)";//改变目标元素的大小和角度
+    			};
 			object.scale.x =  object.scale.y =  object.scale.z = 0.5;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
@@ -288,6 +291,7 @@ document.addEventListener('touchmove',function(event){
        event.preventDefault();
 },false);
 function setGesture(el){
+	alert(123);
     var obj={}; //定义一个对象
     var istouch=false;
     var start=[];
