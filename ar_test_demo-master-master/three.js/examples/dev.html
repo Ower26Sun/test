@@ -281,9 +281,7 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-	
-function setGesture(el){
-	
+		
 	alert(进入方法);
     var obj={}; //定义一个对象
     var istouch=false;
@@ -312,16 +310,5 @@ function setGesture(el){
             obj.gestureend&&obj.gestureend.call(el);  //执行gestureend方法
         };
     },false);
-    return obj;
-};
-function getDistance(p1, p2) {
-    var x = p2.pageX - p1.pageX,
-        y = p2.pageY - p1.pageY;
-    return Math.sqrt((x * x) + (y * y));
-};
-function getAngle(p1, p2) {
-    var x = p1.pageX - p2.pageX,
-        y = p1.pageY- p2.pageY;
-    return Math.atan2(y, x) * 180 / Math.PI;
-};
+
 </script></body>
