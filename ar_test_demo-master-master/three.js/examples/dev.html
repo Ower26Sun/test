@@ -135,10 +135,8 @@
 	////////////////////////////////////////////////////////////////////////////////
 	//          Create a ArMarkerControls
 	////////////////////////////////////////////////////////////////////////////////
-	alert(123);
 	var markerRoot = new THREE.Group
 	scene.add(markerRoot)
-	alert(markerRoot);
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		// type: 'barcode',
 		// barcodeValue: 5,
@@ -146,7 +144,7 @@
 		type : 'pattern',
 		patternUrl : '../../data/multimarkers/multi-abcdef/patt.AR_1',
 	})
-
+	
 	
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
@@ -283,4 +281,9 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+	
+	document.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+}, false);
+	
 </script></body>
