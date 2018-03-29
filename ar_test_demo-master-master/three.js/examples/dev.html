@@ -244,12 +244,12 @@
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 		objLoader.load( 'tree.obj', function ( object ) {
-
+	alert(123);
 			//object.position.y = 0.2;
   			// 缩放
-			var sizeA = 1 * scale
+			var sizeA = 1 
 			object.scale.x =  object.scale.y =  object.scale.z = sizeA;
-			alert(sizeA)
+			alert(sizeA);
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
