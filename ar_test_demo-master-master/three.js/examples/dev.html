@@ -250,7 +250,7 @@
 
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.5;
+			object.scale.x =  object.scale.y =  object.scale.z = c ;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
@@ -290,32 +290,32 @@
 }, false);
 	
 	
-function setGesture(el){
-    var obj={}; //定义一个对象
-    var istouch=false;
-    var start=[];
-    el.addEventListener("touchstart",function(e){
-        if(e.touches.length>=2){  //判断是否有两个点在屏幕上
-            istouch=true;
-            start=e.touches;  //得到第一组两个点
-            obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
-        };
-    },false);
-    document.addEventListener("touchmove",function(e){
-        e.preventDefault();
-        if(e.touches.length>=2&&istouch){
-            var now=e.touches;  //得到第二组两个点
-            var scale=getDistance(now[0],now[1])/getDistance(start[0],start[1]); //得到缩放比例，getDistance是勾股定理的一个方法
-    return scale;
-};
-function getDistance(p1, p2) {
-    var x = p2.pageX - p1.pageX,
-        y = p2.pageY - p1.pageY;
-    return Math.sqrt((x * x) + (y * y));
-};
-//function getAngle(p1, p2) {
-   // var x = p1.pageX - p2.pageX,
-   //     y = p1.pageY- p2.pageY;
-  //  return Math.atan2(y, x) * 180 / Math.PI;
-//};
+document.addEventListener('DOMContentLoaded',function() {
+    var c=0.5;//先定义一个初始值
+    var oBox=document.getElementById('canvas');
+    document.addEventListener('touchstart',function (ev) {//手指点下
+     var oldC=c;//把初始值放到oldC里面
+     function getC(ev) {
+      var x1=ev.targetTouches[0].pageX;
+      var y1=ev.targetTouches[0].pageY;//两根手指缩放肯定需要两根手指，【0】第一根手指的Xy的坐标
+ 
+      var x2=ev.targetTouches[1].pageX;//第二根手指的坐标
+      var y2=ev.targetTouches[1].pageY;
+ 
+      var a=x1-x2;//第一根手指的pageX-第二根手指的pageX，这样正好是一个之间三角形 得到两个直角边；
+      var b=y1-y2;//同上
+      return Math.sqrt(a*a+b*b)//已知两个直角边开平方得出 斜角边
+     }
+     if(ev.targetTouches.length==2){//判断是否是两根手指 是的话 把两根手指点上去的时候的 斜脚边的初始值 放到 downC里面
+      var downC=getC(ev);
+     }
+     document.addEventListener('touchmove',function (ev) { //手指移动的时候
+      if(ev.targetTouches.length==2){//判断移动的时候是否是两根手指
+       c=getC(ev)/downC+oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
+       oBox.style.webkitTransform='scale('+c+')';//通过scale----2D缩放转换
+	      return  c ; 
+      }
+     },false)
+    },false)
+   },false)
 </script></body>
