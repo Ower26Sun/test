@@ -300,6 +300,19 @@ function onDocumentMouseDown( event ) {
            pre_mouse.y = mouse.y;
    }
    }
+   function onDocumentMouseMove( event ) {
+       is_move = true;
+       mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+       mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+       if(is_click){
+           if(earth && earth_cloud){
+               earth.rotation.set(earth.rotation.x - (mouse.y - pre_mouse.y), earth.rotation.y + (mouse.x - pre_mouse.x), earth.rotation.z);
+               earth_cloud.rotation.set(earth_cloud.rotation.x - (mouse.y - pre_mouse.y), earth_cloud.rotation.y + (mouse.x - pre_mouse.x), earth_cloud.rotation.z);
+           }
+   }
+       pre_mouse.x = mouse.x;
+       pre_mouse.y = mouse.y;
+}
 function onDocumentTouchMove() {
        is_move = true;
        mouse.x = (event.touches[ 0 ].pageX /  window.innerWidth) * 2 -1;
