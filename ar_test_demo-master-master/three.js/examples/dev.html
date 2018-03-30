@@ -237,6 +237,9 @@
 
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
+	
+	alert("开始方法");
+	lunner:
 	mtlLoader.load( 'bear.mtl', function( materials ) {
 
 		materials.preload();
@@ -293,11 +296,12 @@ var modelSize = 0.1
 function addScale(){
 	modelSize = modelSize + 0.05;
 	alert(modelSize);
-	return(modelSize);
+	continue lunner;
 }
 function reduceScale(){
 	modelSize = modelSize -0.05
 	alert(modelSize)
+	continue lunner;
 };
 /*function onDocumentMouseDown( event ) {
        is_click = true;
