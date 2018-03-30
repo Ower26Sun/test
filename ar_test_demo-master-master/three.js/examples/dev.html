@@ -294,6 +294,10 @@ function addScale(){
 	alert(modelSize);
 	return(modelSize);
 }
+function reduceScale(){
+	modelSize = modelSize -0.05
+	alert(modelSize)
+};
 /*function onDocumentMouseDown( event ) {
        is_click = true;
        is_move = false;
@@ -336,6 +340,6 @@ function onDocumentTouchMove() {
 </script>
 	<div style = "position:fixed;bottom:0">
 		<button id = "addScale" onclick = "addScale()">&nbsp;&nbsp;放&nbsp;&nbsp;大&nbsp;&nbsp;</button>
-		<button id = "reducecale" >&nbsp;&nbsp;缩&nbsp;&nbsp;小&nbsp;&nbsp;</button>
+		<button id = "reducecale" onclick = "reduceScale()">&nbsp;&nbsp;缩&nbsp;&nbsp;小&nbsp;&nbsp;</button>
 	</div>
 </body>
