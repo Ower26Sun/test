@@ -289,16 +289,31 @@ document.addEventListener('touchmove', function(event) {
 function addScale(){
 	var modelSize = 0.05;
 }
-var rotWorldMatrix;
- function rotateAroundWorldAxis(object, axis, radians) {
-                        rotWorldMatrix = new THREE.Matrix4();
-                        rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
-                        rotWorldMatrix.multiply(object.matrix);                // pre-multiply
-                        object.matrix = rotWorldMatrix;
-                        object.rotation.setFromRotationMatrix(object.matrix);
-                        }
+   function onDocumentMouseDown( event ) {
+       is_click = true;
+       is_move = false;
+   //适配手机
+   if(event.touches){
+           mouse.x = (event.touches[ 0 ].pageX /  window.innerWidth) * 2 -1;
+           mouse.y = -(event.touches[ 0 ].pageY / window.innerHeight) *2 +1;
+           pre_mouse.x = mouse.x;
+           pre_mouse.y = mouse.y;
+   }
+   }
+      function onDocumentTouchMove() {
+       is_move = true;
+       mouse.x = (event.touches[ 0 ].pageX /  window.innerWidth) * 2 -1;
+       mouse.y = -(event.touches[ 0 ].pageY / window.innerHeight) *2 +1;
+       if(is_click){
 
-						
+           if(earth && earth_cloud){
+               earth.rotation.set(earth.rotation.x - (mouse.y - pre_mouse.y), earth.rotation.y + (mouse.x - pre_mouse.x), earth.rotation.z);
+               earth_cloud.rotation.set(earth_cloud.rotation.x - (mouse.y - pre_mouse.y), earth_cloud.rotation.y + (mouse.x - pre_mouse.x), earth_cloud.rotation.z);
+           }
+       }
+       pre_mouse.x = mouse.x;
+       pre_mouse.y = mouse.y;
+}
 </script>
 <button style = "float:right">+</button>
 
