@@ -282,14 +282,15 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+var modelSize = 0.05;
 document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 
 function addScale(){
-	var modelSize = 0.05;
+	modelSize = modelSize + 0.1
 }
-function onDocumentMouseDown( event ) {
+/*function onDocumentMouseDown( event ) {
        is_click = true;
        is_move = false;
    //适配手机
@@ -326,7 +327,8 @@ function onDocumentTouchMove() {
        }
        pre_mouse.x = mouse.x;
        pre_mouse.y = mouse.y;
-}
-</script>
+}*/
 
+</script>
+<button style  = "float:right" onclick = "addScale"><tr/>  放大  </button>
 </body>
