@@ -282,14 +282,15 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-var modelSize = 0.05;
+
 document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 
 $(function(){
+	var modelSize = 0.1
 	$("#addScale).on("click",function(){
-	 modelSize = modelSize + 0.5
+	 modelSize = modelSize + 0.05
 	  });
 	});
 /*function onDocumentMouseDown( event ) {
