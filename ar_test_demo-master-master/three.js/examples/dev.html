@@ -287,9 +287,11 @@ document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 
-function addScale(modelSize){
-	modelSize = modelSize + 0.1
-}
+$(function(){
+	$("#addScale).on("click",function(){
+	 modelSize = modelSize + 0.5
+	  });
+	});
 /*function onDocumentMouseDown( event ) {
        is_click = true;
        is_move = false;
@@ -331,6 +333,6 @@ function onDocumentTouchMove() {
 
 </script>
 	<div style = "position:fixed;bottom:0">
-		<input type="button" onclick =  "addScale()" value="&nbsp;&nbsp;放大&nbsp;&nbsp;"/>
+		<button id = "addScale">&nbsp;&nbsp;放大&nbsp;&nbsp;</button>
 	</div>
 </body>
