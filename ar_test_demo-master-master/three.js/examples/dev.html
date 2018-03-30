@@ -287,7 +287,7 @@ document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 
-function addScale(){
+function addScale(modelSize){
 	modelSize = modelSize + 0.1
 }
 /*function onDocumentMouseDown( event ) {
@@ -330,5 +330,5 @@ function onDocumentTouchMove() {
 }*/
 
 </script>
-<button  style = "float : left "  onclick = "addScale">&nbsp;&nbsp;放大&nbsp;&nbsp;</button>
+<button  style = "float : right "  onclick = "addScale">&nbsp;&nbsp;放大&nbsp;&nbsp;</button>
 </body>
