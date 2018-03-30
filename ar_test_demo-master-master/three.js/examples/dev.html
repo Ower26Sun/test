@@ -285,4 +285,23 @@
 document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
-</script></body>
+
+function addScale(){
+	var modelSize = 0.05;
+	
+}
+
+var rotWorldMatrix;
+ function rotateAroundWorldAxis(object, axis, radians) {
+                        rotWorldMatrix = new THREE.Matrix4();
+                        rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
+                        rotWorldMatrix.multiply(object.matrix);                // pre-multiply
+                        object.matrix = rotWorldMatrix;
+                        object.rotation.setFromRotationMatrix(object.matrix);
+                        }
+
+						
+</script>
+<button id = addButton >  +  </button >
+
+</body>
