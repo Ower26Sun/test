@@ -289,7 +289,7 @@ document.addEventListener('touchmove', function(event) {
 function addScale(){
 	var modelSize = 0.05;
 }
-   function onDocumentMouseDown( event ) {
+function onDocumentMouseDown( event ) {
        is_click = true;
        is_move = false;
    //适配手机
@@ -300,7 +300,7 @@ function addScale(){
            pre_mouse.y = mouse.y;
    }
    }
-      function onDocumentTouchMove() {
+function onDocumentTouchMove() {
        is_move = true;
        mouse.x = (event.touches[ 0 ].pageX /  window.innerWidth) * 2 -1;
        mouse.y = -(event.touches[ 0 ].pageY / window.innerHeight) *2 +1;
@@ -315,6 +315,5 @@ function addScale(){
        pre_mouse.y = mouse.y;
 }
 </script>
-<button style = "float:right">+</button>
 
 </body>
