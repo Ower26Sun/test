@@ -33,6 +33,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	
+	var modelSize = 0.1
 	
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -215,7 +216,7 @@
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	
-	alert("开始方法");
+	
 	
 	mtlLoader.load( 'bear.mtl', function( materials ) {
 		materials.preload();
@@ -260,7 +261,7 @@ document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 	
-var modelSize = 0.1
+
 function addScale(){
 	modelSize = modelSize + 0.05;
 	alert(modelSize);
