@@ -33,7 +33,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 		
-	
+	var modelSize = 0.05;
 	
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -226,7 +226,7 @@
 		objLoader.load( 'bear.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.05 ;
+			object.scale.x =  object.scale.y =  object.scale.z = modelSize ;
 			/*alert(object.scale.z);
 			alert("scaler = " + object.scale.z);*/
 			// 旋转
@@ -242,6 +242,7 @@
 	// render the scene
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
+		requestAnimationFrame(render);
 		stats.update();
 	})
 	// run the rendering loop
@@ -262,25 +263,16 @@ document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 	
-
-/*function addScale(){
-	object.scale.z = object.scale.z + 0.05;
-	object.scale.y = object.scale.y + 0.05;
-	object.scale.x = object.scale.z + 0.05;
-	alert(object.scale.z);
+function addScale(){
+	modelSize = modelSize+0.05;
+	alert(modelSize);
 	
 }
 function reduceScale(){
-	object.scale.z = object.scale.z - 0.05;
-	object.scale.y = object.scale.y - 0.05;
-	object.scale.x = object.scale.z - 0.05;
+	modelSize = modelSize-0.05;
 	alert(modelSize)
 	
-};*/
-/*function animate(){
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-}*/
+};
 /*function onDocumentMouseDown( event ) {
        is_click = true;
        is_move = false;
