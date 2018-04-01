@@ -32,9 +32,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	
-	var modelSize = 0.1
-	
+		
 	
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -227,8 +225,9 @@
 		objLoader.load( 'bear.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
-			alert("scaler = " + modelSize);
+			object.scale.x =  object.scale.y =  object.scale.z = 0.05 ;
+			alert(object.scale.z);
+			alert("scaler = " + object.scale.z);
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2);
 			markerRoot.add( object );
@@ -264,12 +263,16 @@ document.addEventListener('touchmove', function(event) {
 	
 
 function addScale(){
-	modelSize = modelSize + 0.05;
-	alert(modelSize);
+	object.scale.z = object.scale.z + 0.05;
+	object.scale.y = object.scale.y + 0.05;
+	object.scale.x = object.scale.z + 0.05;
+	alert(object.scale.z);
 	
 }
 function reduceScale(){
-	modelSize = modelSize -0.05
+	object.scale.z = object.scale.z - 0.05;
+	object.scale.y = object.scale.y - 0.05;
+	object.scale.x = object.scale.z - 0.05;
 	alert(modelSize)
 	
 };
