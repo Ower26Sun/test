@@ -33,7 +33,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 		
-	var modelSize = 0.05;
+	
 	
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -263,15 +263,15 @@ document.addEventListener('touchmove', function(event) {
     event.preventDefault();
 }, false);
 	
+	var modelSize = 0.05;
+	
 function addScale(){
 	modelSize = modelSize+0.05;
-	alert(modelSize);
-	
-}
+	alert(modelSize);	
+};
 function reduceScale(){
 	modelSize = modelSize-0.05;
-	alert(modelSize)
-	
+	alert(modelSize);
 };
 /*function onDocumentMouseDown( event ) {
        is_click = true;
