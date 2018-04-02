@@ -234,6 +234,7 @@
 				scene.add( mesh );
 				alert("add mesh");
 	var onProgress = function ( xhr ) {
+		alert("onprogress")
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
@@ -298,6 +299,7 @@
 			}
 	} );
 		scene.add( object );
+		alert("add object");
 	}, onProgress, onError );
 		renderer = new THREE.WebGLRenderer();
 		renderer.setPixelRatio( window.devicePixelRatio );
