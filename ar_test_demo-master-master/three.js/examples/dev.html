@@ -226,7 +226,7 @@
 		objLoader.load( 'bear.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = modelSize ;
+			object.scale.x =  object.scale.y =  object.scale.z = 0.05 ;
 			/*alert(object.scale.z);
 			alert("scaler = " + object.scale.z);*/
 			// 旋转
@@ -242,7 +242,7 @@
 	// render the scene
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
-		requestAnimationFrame(render);
+		//requestAnimationFrame(render);
 		stats.update();
 	})
 	// run the rendering loop
@@ -267,10 +267,12 @@ document.addEventListener('touchmove', function(event) {
 	
 function addScale(){
 	modelSize = modelSize+0.05;
+	renderer.render( scene, camera );
 	alert(modelSize);	
 };
 function reduceScale(){
 	modelSize = modelSize-0.05;
+	renderer.render( scene, camera );
 	alert(modelSize);
 };
 /*function onDocumentMouseDown( event ) {
