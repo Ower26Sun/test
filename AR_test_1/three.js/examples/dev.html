@@ -284,7 +284,7 @@
 			});
 	});*/
 	var loader = new THREE.FBXLoader( manager );
-	loader.load( 'models/1/LN_CB.FBX', function( object ) {
+	loader.load( 'models/1/rose.fbx', function( object ) {
 		alert(123);
 		object.traverse( function( child ) {
 		if ( child instanceof THREE.Mesh ) {
@@ -294,7 +294,7 @@
 					child.mixer = new THREE.AnimationMixer( child );
 					mixers.push( child.mixer );
 					var action = child.mixer.clipAction( child.geometry.animations[ 0 ] );
-					action.play();
+					//action.play();
 					alert("action");
 				}
 			}
