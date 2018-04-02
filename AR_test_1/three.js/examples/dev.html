@@ -51,7 +51,7 @@
 	var onRenderFcts= [];
 
 	// init scene and camera
-	var scene	= new THREE.Scene();
+	var scene = new THREE.Scene();
 
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
@@ -188,11 +188,11 @@
 			var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
-				markerRoot.add( mesh );
+				scene.add( mesh );
 				var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
 				grid.material.opacity = 0.2;
 				grid.material.transparent = true;
-				markerRoot.add( grid );
+				scene.add( grid );
 				// model
 				var loader = new THREE.FBXLoader();
 				loader.load( 'models/1/LN_CB.FBX', function ( object ) {
@@ -206,7 +206,7 @@
 							child.receiveShadow = true;
 						}
 					} );
-					markerRoot.add( object );
+					scene.add( object );
 				} );
 				
 	//////////////////////////////////////////////////////////////////////////////////
