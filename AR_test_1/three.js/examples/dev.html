@@ -244,7 +244,7 @@
 
 		materials.preload();
 
-		/*var objLoader = new THREE.OBJLoader();
+		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 		objLoader.load( 'bear.obj', function ( object ) {
@@ -259,8 +259,8 @@
 		}, onProgress, onError );
 		
 
-	});*/
-	var objLoader = new THREE.FBXLoader();
+	});
+	/*var objLoader = new THREE.FBXLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 			objLoader.load( 'LN_CB.FBX', function ( object ) {
@@ -280,7 +280,7 @@
 				} );
 				markerRoot.add( object );
 			}, onProgress, onError);
-	});
+	});*/
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
