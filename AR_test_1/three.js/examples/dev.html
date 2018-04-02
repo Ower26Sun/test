@@ -226,14 +226,6 @@
 	
 	
 	// model
-	
-	/*var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-				alert("mesh");
-				mesh.rotation.x = - Math.PI / 2;
-				mesh.receiveShadow = true;
-				scene.add( mesh );
-				alert("add mesh");
-				*/
 	var onProgress = function ( xhr ) {
 		alert("onprogress")
 		if ( xhr.lengthComputable ) {
@@ -268,7 +260,7 @@
 		
 
 	});*/
-	/*var fbxLoader = new THREE.FBXLoader();
+	var fbxLoader = new THREE.FBXLoader();
 			fbxLoader.load( 'models/1/LN_CB.FBX', function ( object ) {	
 				object.mixer = new THREE.AnimationMixer( object );
 				onRenderFcts.push( object.mixer );
@@ -282,8 +274,8 @@
 				} );
 				markerRoot.add( object );
 			});
-	});*/
-	alert("start loader");
+	});
+	/*alert("start loader");
 	var loader = new THREE.FBXLoader( manager );
 	loader.load( 'models/1/rose.fbx', function( object ) {
 		alert(123);
@@ -299,13 +291,13 @@
 					alert("action");
 				}
 			}
-	} );
+	} 
 		markerRoot.add( object );
 		alert("add object");
 	}, onProgress, onError );
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
-		container.appendChild( renderer.domElement ); 
+		container.appendChild( renderer.domElement ); */
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -337,7 +329,7 @@
 				if ( onRenderFcts.length > 0 ) {
 					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
 						onRenderFcts[ i ].update( clock.getDelta() );
-					}
+			 		}
 				}
 				renderer.render( scene, camera );
 				stats.update();
