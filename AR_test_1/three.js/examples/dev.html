@@ -20,6 +20,7 @@
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="js/loaders/FBXLoader.js"></script>
 
 		<script src="js/Detector.js"></script>
 
@@ -241,7 +242,7 @@
 
 		materials.preload();
 
-		var objLoader = new THREE.OBJLoader();
+		/*var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 		objLoader.load( 'bear.obj', function ( object ) {
@@ -253,7 +254,20 @@
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
 
-		}, onProgress, onError );
+		}, onProgress, onError );*/
+		var loader = new THREE.FBXLoader();
+			loader.load( 'models/1/LN_CB.FBX', function ( object ) {
+				object.mixer = new THREE.AnimationMixer( object );
+				mixers.push( object.mixer );
+				var action = object.mixer.clipAction( object.animations[ 0 ] );
+				action.play();
+				object.traverse( function ( child ) {
+					if ( child.isMesh ) {
+						child.castShadow = true;
+						child.receiveShadow = true;
+						}
+					} );
+					markerRoot.add( object );
 
 	});
 
