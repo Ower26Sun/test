@@ -226,7 +226,12 @@
 	
 	
 	// model
-
+	
+	var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
+				mesh.rotation.x = - Math.PI / 2;
+				mesh.receiveShadow = true;
+				scene.add( mesh );
+	
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -260,14 +265,8 @@
 		
 
 	});*/
-	var fbxLoader = new THREE.FBXLoader();
-			fbxLoader.load( 'models/1/LN_CB.FBX', function ( object ) {
-			/*
-			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
-			// 旋转
-			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-				*/
+	/*var fbxLoader = new THREE.FBXLoader();
+			fbxLoader.load( 'models/1/LN_CB.FBX', function ( object ) {	
 				object.mixer = new THREE.AnimationMixer( object );
 				onRenderFcts.push( object.mixer );
 				var action = object.mixer.clipAction( object.animations[ 0 ] );
@@ -280,8 +279,27 @@
 				} );
 				markerRoot.add( object );
 			});
-	});
-	
+	});*/
+	var loader = new THREE.FBXLoader( manager );
+	loader.load( 'models/1/LN_CB.FBX', function( object ) {
+		object.traverse( function( child ) {
+		if ( child instanceof THREE.Mesh ) {
+	}
+			if ( child instanceof THREE.SkinnedMesh ) {
+				if ( child.geometry.animations !== undefined || child.geometry.morphAnimations !== undefined ) {
+					child.mixer = new THREE.AnimationMixer( child );
+					mixers.push( child.mixer );
+					var action = child.mixer.clipAction( child.geometry.animations[ 0 ] );
+					action.play();
+				}
+			}
+	} );
+		scene.add( object );
+	}, onProgress, onError );
+		renderer = new THREE.WebGLRenderer();
+		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		container.appendChild( renderer.domElement ); 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
