@@ -283,6 +283,7 @@
 				markerRoot.add( object );
 			});
 	});*/
+	alert("start loader");
 	var loader = new THREE.FBXLoader( manager );
 	loader.load( 'models/1/rose.fbx', function( object ) {
 		alert(123);
@@ -299,7 +300,7 @@
 				}
 			}
 	} );
-		scene.add( object );
+		markerRoot.add( object );
 		alert("add object");
 	}, onProgress, onError );
 		renderer.setPixelRatio( window.devicePixelRatio );
