@@ -260,8 +260,14 @@
 		
 
 	});*/
-	var loader = new THREE.FBXLoader();
-			loader.load( 'models/1/LN_CB.FBX', function ( object ) {
+	var objLoader = new THREE.FBXLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/1/' );
+			objLoader.load( 'LN_CB.FBX', function ( object ) {
+				// 缩放
+			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
+			// 旋转
+			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 				object.mixer = new THREE.AnimationMixer( object );
 				mixers.push( object.mixer );
 				var action = object.mixer.clipAction( object.animations[ 0 ] );
@@ -301,8 +307,8 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-		
-		/*function animate() {
+		/*animate();
+		function animate() {
 				requestAnimationFrame( animate );
 				if ( onRenderFcts.length > 0 ) {
 					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
