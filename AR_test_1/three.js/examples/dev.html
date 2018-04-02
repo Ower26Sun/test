@@ -242,10 +242,10 @@
 		}
 	};
 
-	/*var onError = function ( xhr ) { };
+	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
+/*
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -302,7 +302,6 @@
 		scene.add( object );
 		alert("add object");
 	}, onProgress, onError );
-		renderer = new THREE.WebGLRenderer();
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		container.appendChild( renderer.domElement ); 
