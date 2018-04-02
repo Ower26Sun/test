@@ -228,10 +228,11 @@
 	// model
 	
 	var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
+				alert("mesh");
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
 				scene.add( mesh );
-	
+				alert("add mesh");
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -282,6 +283,7 @@
 	});*/
 	var loader = new THREE.FBXLoader( manager );
 	loader.load( 'models/1/LN_CB.FBX', function( object ) {
+		alert(123);
 		object.traverse( function( child ) {
 		if ( child instanceof THREE.Mesh ) {
 	}
@@ -291,6 +293,7 @@
 					mixers.push( child.mixer );
 					var action = child.mixer.clipAction( child.geometry.animations[ 0 ] );
 					action.play();
+					alert("action");
 				}
 			}
 	} );
