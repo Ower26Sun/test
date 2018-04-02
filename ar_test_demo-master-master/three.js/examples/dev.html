@@ -267,12 +267,22 @@ document.addEventListener('touchmove', function(event) {
 	
 function addScale(){
 	modelSize = modelSize+0.05;
-	renderer.render( scene, camera );
+	//renderer.render( scene, camera );
+	onRenderFcts.push(function(){
+		renderer.render( scene, camera );
+		//requestAnimationFrame(render);
+		stats.update();
+	})
 	alert(modelSize);	
 };
 function reduceScale(){
 	modelSize = modelSize-0.05;
-	renderer.render( scene, camera );
+	//renderer.render( scene, camera );
+	onRenderFcts.push(function(){
+		renderer.render( scene, camera );
+		//requestAnimationFrame(render);
+		stats.update();
+	})
 	alert(modelSize);
 };
 /*function onDocumentMouseDown( event ) {
