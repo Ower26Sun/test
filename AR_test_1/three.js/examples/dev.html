@@ -16,12 +16,13 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 
- 
+
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
-
+		<script src="js/controls/OrbitControls.js"></script>
+		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
@@ -32,9 +33,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-	//var clock = new THREE.Clock();
-	
-	//animate();  
+
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -76,15 +75,7 @@
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
 		sourceType : 'webcam',
-
-		// // to read from an image
-		// sourceType : 'image',
-		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
-		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/armchair.jpg',		
-
-		// to read from a video
-		// sourceType : 'video',
-		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
+	
 	})
 
 	arToolkitSource.init(function onReady(){
@@ -110,15 +101,9 @@
 	// create atToolkitContext
 	var arToolkitContext = new THREEx.ArToolkitContext({
 		cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
-		// debug: true,
-		// detectionMode: 'mono_and_matrix',
 		detectionMode: 'mono',
-		// detectionMode: 'color_and_matrix',
-		// matrixCodeType: '3x3',
-
 		canvasWidth: 80*3,
 		canvasHeight: 60*3,
-
 		maxDetectionRate: 30,
 	})
 	// initialize it
@@ -130,7 +115,6 @@
 	// update artoolkit on every frame
 	onRenderFcts.push(function(){
 		if( arToolkitSource.ready === false )	return
-
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
 	
@@ -144,7 +128,7 @@
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		// type: 'barcode',
 		// barcodeValue: 5,
-		
+
 		type : 'pattern',
 		patternUrl : '../../data/multimarkers/multi-abcdef/patt.AR_1',
 	})
@@ -164,70 +148,11 @@
 		smoothedControls.update(markerRoot)
 	})	
 	
-	// smoothedControls.addEventListener('becameVisible', function(){
-	// 	console.log('becameVisible event notified')
-	// })
-	// smoothedControls.addEventListener('becameUnVisible', function(){
-	// 	console.log('becameUnVisible event notified')
-	// })
-
-	//////////////////////////////////////////////////////////////////////////////////
-	//		add an object in the scene
-	//////////////////////////////////////////////////////////////////////////////////
-
-/* 	// var arWorldRoot = markerRoot
-	var arWorldRoot = smoothedRoot
-	var mesh = new THREE.AxisHelper()
-	// markerRoot.add(mesh)
-	arWorldRoot.add(mesh)
-	// add a torus knot
-	var geometry	= new THREE.CubeGeometry(1,1,1);
-	var material	= new THREE.MeshNormalMaterial({
-		transparent : true,
-		opacity: 0.5,
-		side: THREE.DoubleSide
-	})
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= geometry.parameters.height/2
-	// markerRoot.add( mesh );
-	arWorldRoot.add(mesh)
-	
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial(); 
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= 0.5
-	// markerRoot.add( mesh );
-	arWorldRoot.add( mesh );
-	
-	onRenderFcts.push(function(delta){
-		mesh.rotation.x += delta * Math.PI
-	}) */
-	
-	/* var mesh = new THREE.AxisHelper(),dae;
-	var loader = new THREE.ColladaLoader();
-	loader.options.convertUpAxis = true;
-	loader.load( './models/dae/monster.dae', function ( collada ) {
-		dae = collada.scene;
-		dae.traverse( function ( child ) {
-			if ( child instanceof THREE.SkinnedMesh ) {
-				var animation = new THREE.Animation( child, child.geometry.animation );
-				animation.play();
-			}
-		} );
-		dae.scale.x = dae.scale.y = dae.scale.z = 0.001;
-		dae.rotation.set( 0,Math.PI/2,Math.PI/2);
-		markerRoot.add( dae );
-		onRenderFcts.push(function(delta){
-			mesh.rotation.x += delta * Math.PI;
-			dae.updateMatrix();
-		})
-		
-	} ); */
 	
 	
 	// model
+/*
 	var onProgress = function ( xhr ) {
-		alert("onprogress")
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
@@ -237,7 +162,7 @@
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-/*
+
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -257,47 +182,33 @@
 			markerRoot.add( object );
 
 		}, onProgress, onError );
-		
 
-	});*/
-	var fbxLoader = new THREE.FBXLoader();
-			fbxLoader.load( 'models/1/LN_CB.FBX', function ( object ) {	
-				object.mixer = new THREE.AnimationMixer( object );
-				onRenderFcts.push( object.mixer );
-				var action = object.mixer.clipAction( object.animations[ 0 ] );
-				action.play();
-				object.traverse( function ( child ) {
-					if ( child.isMesh ) {
-						child.castShadow = true;
-						child.receiveShadow = true;
-					}
-				} );
-				markerRoot.add( object );
-			});
 	});
-	/*alert("start loader");
-	var loader = new THREE.FBXLoader( manager );
-	loader.load( 'models/1/rose.fbx', function( object ) {
-		alert(123);
-		object.traverse( function( child ) {
-		if ( child instanceof THREE.Mesh ) {
-	}
-			if ( child instanceof THREE.SkinnedMesh ) {
-				if ( child.geometry.animations !== undefined || child.geometry.morphAnimations !== undefined ) {
-					child.mixer = new THREE.AnimationMixer( child );
-					mixers.push( child.mixer );
-					var action = child.mixer.clipAction( child.geometry.animations[ 0 ] );
-					//action.play();
-					alert("action");
-				}
-			}
-	} 
-		markerRoot.add( object );
-		alert("add object");
-	}, onProgress, onError );
-		renderer.setPixelRatio( window.devicePixelRatio );
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		container.appendChild( renderer.domElement ); */
+*/
+			var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
+				mesh.rotation.x = - Math.PI / 2;
+				mesh.receiveShadow = true;
+				markerRoot.add( mesh );
+				var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
+				grid.material.opacity = 0.2;
+				grid.material.transparent = true;
+				markerRoot.add( grid );
+				// model
+				var loader = new THREE.FBXLoader();
+				loader.load( 'models/1/LN_CB.FBX', function ( object ) {
+					object.mixer = new THREE.AnimationMixer( object );
+					mixers.push( object.mixer );
+					var action = object.mixer.clipAction( object.animations[ 0 ] );
+					action.play();
+					object.traverse( function ( child ) {
+						if ( child.isMesh ) {
+							child.castShadow = true;
+							child.receiveShadow = true;
+						}
+					} );
+					markerRoot.add( object );
+				} );
+				
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -323,15 +234,4 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-		/*animate();
-		function animate() {
-				requestAnimationFrame( animate );
-				if ( onRenderFcts.length > 0 ) {
-					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
-						onRenderFcts[ i ].update( clock.getDelta() );
-			 		}
-				}
-				renderer.render( scene, camera );
-				stats.update();
-			}*/
 </script></body>
