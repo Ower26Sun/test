@@ -258,7 +258,7 @@
 		var loader = new THREE.FBXLoader();
 			loader.load( 'models/1/LN_CB.FBX', function ( object ) {
 				object.mixer = new THREE.AnimationMixer( object );
-				mixers.push( object.mixer );
+				onRenderFcts.push( object.mixer );
 				var action = object.mixer.clipAction( object.animations[ 0 ] );
 				action.play();
 				object.traverse( function ( child ) {
@@ -296,4 +296,14 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+		function animate() {
+				requestAnimationFrame( animate );
+				if ( onRenderFcts.length > 0 ) {
+					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
+						mixers[ i ].update( clock.getDelta() );
+					}
+				}
+				renderer.render( scene, camera );
+				stats.update();
+			}
 </script></body>
