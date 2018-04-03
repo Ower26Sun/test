@@ -235,16 +235,16 @@
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
-	/*var mtlLoader = new THREE.MTLLoader();
+	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load('LN_CB.mtl', function( materials ) {
+	mtlLoader.load('bear.mtl', function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'LN_CB.obj', function ( object ) {
+		objLoader.load( 'bear.obj', function ( object ) {
 
 			//object.position.y = 0.2;
   			// 缩放
@@ -256,31 +256,7 @@
 		}, onProgress, onError );
 
 	});
-*/
-	var loader = new THREE.OBJMTLLoader();
-loader.load('load',function(event){
 
-    var object = event.content;
-    var wing2 = object.children[5].children[0];
-    var wing1 = object.children[4].children[0];
-
-    wing1.material.alphaTest = 0.5;
-    wing1.material.opacity = 0.6;
-    wing1.material.transparent = true;
-
-    wing2.material.alphaTest = 0.5;
-    wing2.material.opacity = 0.6;
-    wing2.material.transparent = true;
-
-    object.scale.set(140,140,140);
-    object.rotation.x = 0.2;
-    object.rotation.y = -1.3;
-
-    markerRoot.add(object);
-
-}，onProgress，onError);
-
-loader.load('../models/1/tree.obj','../models/1/bear.mtl');
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
