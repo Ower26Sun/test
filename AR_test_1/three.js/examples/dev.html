@@ -33,7 +33,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
+	var container;
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -46,10 +46,13 @@
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
 	document.body.appendChild( renderer.domElement );
-
+	
+	container = document.createElement('body' );
+	document.body.appendChild( container );
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
-
+	var mixers = [];
+	animate();
 	// init scene and camera
 	var scene = new THREE.Scene();
 
@@ -158,7 +161,7 @@
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
 	};
-
+/*
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
@@ -184,18 +187,9 @@
 		}, onProgress, onError );
 
 	});
-/*
-			var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-				mesh.rotation.x = - Math.PI / 2;
-				mesh.receiveShadow = true;
-				scene.add( mesh );
-				var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
-				grid.material.opacity = 0.2;
-				grid.material.transparent = true;
-				scene.add( grid );
-				// model
-				var loader = new THREE.FBXLoader();
-				loader.load( 'models/1/LN_CB.FBX', function ( object ) {
+*/
+			var loader = new THREE.FBXLoader();
+				loader.load( 'models/1/rose.fbx', function ( object ) {
 					object.mixer = new THREE.AnimationMixer( object );
 					mixers.push( object.mixer );
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
@@ -206,20 +200,31 @@
 							child.receiveShadow = true;
 						}
 					} );
-					scene.add( object );
-				} );
-				*/
+					markerRoot.add( object );
+				}, onProgress, onError );
+				
+				
+
+			}
+			// stats
+				var stats = new Stats();
+				document.body.appendChild( stats.dom );
+				onRenderFcts.push(function(){
+				renderer.render( scene, camera );
+				stats.update();
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	var stats = new Stats();
-	document.body.appendChild( stats.dom );
-	// render the scene
-	onRenderFcts.push(function(){
-		renderer.render( scene, camera );
-		stats.update();
-	})
-
+	function animate() {
+				requestAnimationFrame( animate );
+				if ( mixers.length > 0 ) {
+					for ( var i = 0; i < mixers.length; i ++ ) {
+						mixers[ i ].update( clock.getDelta() );
+					}
+				}
+				renderer.render( scene, camera );
+				stats.update();
+			}
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
