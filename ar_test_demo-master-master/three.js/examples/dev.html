@@ -20,6 +20,7 @@
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="js/loaders/ObjectLoader.js"></script>
 
 		<script src="js/Detector.js"></script>
 
@@ -257,10 +258,10 @@
 
 	});*/
 	var loader = new THREE.ObjectLoader();  
-		loader.load('test9.json',function(obj){  
-    		//obj.scale.x = obj.scale.y = obj.scale.z =0.01;  
-   		markerRoot.add(obj);  
-}, onProgress, onError );  
+		loader.load('models/1/test9.json',function(obj){  
+    			//obj.scale.x = obj.scale.y = obj.scale.z =0.01;  
+   			markerRoot.add(obj);  
+		}, onProgress, onError );  
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
