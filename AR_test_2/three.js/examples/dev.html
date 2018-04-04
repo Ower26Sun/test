@@ -31,9 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-document.addEventListener("touchmove",function(event){
-event.preventDefault();
-},false);
+
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -180,7 +178,7 @@ event.preventDefault();
 		}
 	};
 	
-
+	function touchControl(){
 		var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
 		 var oldC = modelSize;
@@ -209,15 +207,16 @@ event.preventDefault();
 		
 		},false)
 		
-
+		}
 	var onError = function ( xhr ) { };
 
-	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-	setModel();
+		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	
+		
 	function setModel(){
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
+		var mtlLoader = new THREE.MTLLoader();
+		mtlLoader.setPath( 'models/1/' );
+		mtlLoader.load( 'bear.mtl', function( materials ) {
 
 		materials.preload();
 		 	
@@ -273,4 +272,7 @@ event.preventDefault();
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+	document.addEventListener("touchmove",function(e){
+e.preventDefault();
+},false);
 </script></body>
