@@ -235,13 +235,13 @@
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
-	var mtlLoader = new THREE.MTLLoader();
+	/*var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	mtlLoader.load('bear.mtl', function( materials ) {
 
 		materials.preload();
 
-		var objLoader = new THREE.OBJLoader();
+		var objLoader = new THREE.JSONLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 		objLoader.load( 'bear.obj', function ( object ) {
@@ -255,7 +255,12 @@
 
 		}, onProgress, onError );
 
-	});
+	});*/
+	var loader = new THREE.ObjectLoader();  
+		loader.load('test9.json',function(obj){  
+    		obj.scale.x = obj.scale.y = obj.scale.z =0.01;  
+   		markerRoot.add(obj);  
+}, onProgress, onError );  
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
