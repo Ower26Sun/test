@@ -61,18 +61,8 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
-	/*var fov = 45,//拍摄距离 视野角值越大，场景中的物体越小
-	near = 1,//相机离视体积最近的距离
-	far = 1000,//相机离视体积最远的距离
-	aspect = window.innerWidth / window.innerHeight; //纵横比
-		*/
-		
-	/*// Create a camera
-	var camera = new THREE.Camera(fov,aspect, near, far);
-	camera.fov = fov;
-	camera.updateProjectionMatrix();
-	renderer.render(scene, camera);
-	*/
+
+	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
 
@@ -82,7 +72,16 @@
 
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
-		sourceType : 'webcam',	
+		sourceType : 'webcam',
+
+		// // to read from an image
+		// sourceType : 'image',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/armchair.jpg',		
+
+		// to read from a video
+		// sourceType : 'video',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
 	})
 
 	arToolkitSource.init(function onReady(){
@@ -162,7 +161,14 @@
 		smoothedControls.update(markerRoot)
 	})	
 	
+	// smoothedControls.addEventListener('becameVisible', function(){
+	// 	console.log('becameVisible event notified')
+	// })
+	// smoothedControls.addEventListener('becameUnVisible', function(){
+	// 	console.log('becameUnVisible event notified')
+	// })
 
+	
 	// model
 
 	var onProgress = function ( xhr ) {
@@ -174,13 +180,13 @@
 	
 		//document.addEventListener('DOMContentLoaded',function() {
 		var modelSize=0.05;//先定义一个初始值
-		//var oBox=document.getElementById('box');
+		var oBox=document.getElementById('box');
 		document.addEventListener('touchstart',function (ev) {//手指点下
-		 var oldC=modelSize;//把初始值放到oldC里面
+		 var oldC = modelSize;//把初始值放到oldC里面
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;//两根手指缩放肯定需要两根手指，【0】第一根手指的Xy的坐标
-	 
+		alert(modelSize)
 		  var x2=ev.targetTouches[1].pageX;//第二根手指的坐标
 		  var y2=ev.targetTouches[1].pageY;
 	 
@@ -195,15 +201,13 @@
 		  if(ev.targetTouches.length==2){//判断移动的时候是否是两根手指
 		   modelSize=getC(ev)/downC+oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
 		   //oBox.style.webkitTransform='scale('+modelSize+')';//通过scale----2D缩放转换
-			onRenderFcts.push(function(){
-				renderer.render( scene, camera );
-			}
+		   alert(modelSize)
 		  }
 		},false) 
 		
 		},false)
 		
-	    //},false)
+	   // },false)
 
 	var onError = function ( xhr ) { };
 
@@ -219,7 +223,7 @@
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 		objLoader.load( 'bear.obj', function ( object ) {
-		
+
 			//object.position.y = 0.2;
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
@@ -237,11 +241,12 @@
 	var stats = new Stats();
 	document.body.appendChild( stats.dom );
 	// render the scene
+	if(modelSize != 0){
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 		stats.update();
 	})
-
+}
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
