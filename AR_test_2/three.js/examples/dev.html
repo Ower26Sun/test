@@ -31,7 +31,9 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
+document.addEventListener("touchmove",function(e){
+        e.preventDefault();
+	 },false);
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -219,7 +221,7 @@
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'bear.obj', function ( object ) {
+		objLoader.load( 'bear.obj', function ( object ，modelSize) {
 
 			//object.position.y = 0.2;
   			// 缩放
@@ -239,12 +241,12 @@
 	var stats = new Stats();
 	document.body.appendChild( stats.dom );
 	// render the scene
-	if(modelSize != 0){
+	//if(modelSize != 0){
 		onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 		stats.update();
 		})
-	}
+	//}
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
