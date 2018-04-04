@@ -201,7 +201,7 @@
 		   modelSize=getC(ev)/downC+oldC;
 	alert("变更后的modelSize="+ modelSize )
 			  alert("开始加载setModel()")
-			  setModel();
+			  
 		  }
 		},false) 
 		
@@ -212,8 +212,8 @@
 
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
-		setModel();
-	function setModel(){
+	
+	
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -238,7 +238,7 @@
 	});
 		
 
-	}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
