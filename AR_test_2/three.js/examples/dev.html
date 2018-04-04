@@ -201,7 +201,7 @@
 		   modelSize=getC(ev)/downC+oldC;
 	alert("变更后的modelSize="+ modelSize )
 			  alert("开始加载setModel()")
-			  setModel()
+			  setModel();
 		  }
 		},false) 
 		
@@ -212,7 +212,7 @@
 
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
-		
+		setModel();
 	function setModel(){
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
@@ -237,13 +237,13 @@
 
 	});
 		var stats = new Stats();
-	document.body.appendChild( stats.dom );
-	// render the scene
-	//if(modelSize != 0){
-		onRenderFcts.push(function(){
-		renderer.render( scene, camera );
-		stats.update();
-		})
+		document.body.appendChild( stats.dom );
+		// render the scene
+		//if(modelSize != 0){
+			onRenderFcts.push(function(){
+			renderer.render( scene, camera );
+			stats.update();
+			})
 	//}
 	}
 	//////////////////////////////////////////////////////////////////////////////////
