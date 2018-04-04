@@ -211,17 +211,18 @@ document.addEventListener("touchmove",function(e){
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
+	setModel();
+	function setModel(){
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	mtlLoader.load( 'bear.mtl', function( materials ) {
 
 		materials.preload();
-
+		 	
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'bear.obj', function ( object ，modelSize) {
+		objLoader.load( 'bear.obj', function ( object ) {
 
 			//object.position.y = 0.2;
   			// 缩放
@@ -234,7 +235,7 @@ document.addEventListener("touchmove",function(e){
 		}, onProgress, onError );
 
 	});
-
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
