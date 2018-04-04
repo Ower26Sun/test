@@ -31,9 +31,9 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-document.addEventListener("touchmove",function(e){
-        e.preventDefault();
-	 },false);
+document.addEventListener("touchmove",function(event){
+event.preventDefault();
+},false);
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -202,6 +202,7 @@ document.addEventListener("touchmove",function(e){
 		  if(ev.targetTouches.length==2){
 		   modelSize=getC(ev)/downC+oldC;
 	alert("变更后的modelSize="+ modelSize )
+			  alert("开始加载setModel()")
 			  setModel()
 		  }
 		},false) 
