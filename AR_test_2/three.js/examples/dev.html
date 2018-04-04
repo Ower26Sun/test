@@ -178,8 +178,22 @@
 		}
 	};
 	
-		document.addEventListener('DOMContentLoaded',function() {
-		var modelSize=0.05;//先定义一个初始值
+		
+	var onError = function ( xhr ) { };
+
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1/' );
+	mtlLoader.load( 'bear.mtl', function( materials ) {
+
+		materials.preload();
+
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/1/' );
+		objLoader.load( 'bear.obj', function ( object ) {
+var modelSize=0.05;//先定义一个初始值
 		var oBox=document.getElementById('canvas');
 		document.addEventListener('touchstart',function (ev) {//手指点下
 		 var oldC=modelSize;//把初始值放到oldC里面
@@ -206,24 +220,6 @@
 		},false) 
 		
 		},false)
-		
-	    },false)
-
-	var onError = function ( xhr ) { };
-
-	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
-
-		materials.preload();
-
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'bear.obj', function ( object ) {
-
 			//object.position.y = 0.2;
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
