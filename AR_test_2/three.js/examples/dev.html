@@ -220,7 +220,7 @@
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'bear.obj', function modelChange( object ) {
+		objLoader.load( 'bear.obj', function ( object ) {
 
 			//object.position.y = 0.2;
   			// 缩放
@@ -250,7 +250,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		requestAnimationFrame( modelChange );
+		//requestAnimationFrame( modelChange );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
