@@ -15,7 +15,10 @@
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
-
+		<script src="js/loaders/Animation.js"></script>
+		<script src="js/loaders/AnimationHandler.js"></script>
+		<script src="js/loaders/KeyFrameAnimation.js"></script>
+		
 
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
@@ -32,7 +35,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	var obj;
+	
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -204,7 +207,7 @@
 		objLoader.load( 'bear.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			obj = object.scene;
+			var obj = object.scene;
 			
 			/*object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			alert("模型大小="+modelSize)
