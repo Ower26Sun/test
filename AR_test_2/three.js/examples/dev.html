@@ -61,9 +61,10 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
-
+	//var fov = 40;
 	// Create a camera
 	var camera = new THREE.Camera();
+	//camera.fov = fov;
 	scene.add(camera);
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -178,8 +179,8 @@
 		}
 	};
 	
-	function touchControl(){
-			var modelSize=0.05;
+	//function touchControl(){
+	/*		var modelSize=0.05;
 			document.addEventListener('touchstart',function (ev) {
 		 	var oldC = modelSize;
 		 	function getC(ev) {
@@ -207,7 +208,8 @@
 			
 		},false)
 		
-		}
+		//}
+		*/
 	var onError = function ( xhr ) { };
 
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
@@ -227,7 +229,7 @@
 
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
 			alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
