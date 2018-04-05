@@ -32,6 +32,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
+	var obj;
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -216,6 +217,7 @@
 			alert("模型大小="+modelSize)
 			// 旋转
 			obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			obj.updateMatrix();
 			markerRoot.add( obj );
 	});
 		
