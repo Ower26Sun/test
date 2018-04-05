@@ -16,7 +16,7 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 
- 
+
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
@@ -31,7 +31,6 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-	
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -44,16 +43,12 @@
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
 	document.body.appendChild( renderer.domElement );
-
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
-
 	// init scene and camera
 	var scene	= new THREE.Scene();
-
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
-
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
@@ -61,30 +56,23 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
-	//var fov = 40;
 	// Create a camera
 	var camera = new THREE.Camera();
-	//camera.fov = fov;
 	scene.add(camera);
-
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
-
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
 		sourceType : 'webcam',
-
 		// // to read from an image
 		// sourceType : 'image',
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/armchair.jpg',		
-
 		// to read from a video
 		// sourceType : 'video',
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
 	})
-
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
@@ -100,11 +88,9 @@
 			arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)	
 		}	
 	}
-
 	////////////////////////////////////////////////////////////////////////////////
 	//          initialize arToolkitContext
 	////////////////////////////////////////////////////////////////////////////////	
-
 	// create atToolkitContext
 	var arToolkitContext = new THREEx.ArToolkitContext({
 		cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
@@ -113,10 +99,8 @@
 		detectionMode: 'mono',
 		// detectionMode: 'color_and_matrix',
 		// matrixCodeType: '3x3',
-
 		canvasWidth: 80*3,
 		canvasHeight: 60*3,
-
 		maxDetectionRate: 30,
 	})
 	// initialize it
@@ -124,11 +108,9 @@
 		// copy projection matrix to camera
 		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
 	})
-
 	// update artoolkit on every frame
 	onRenderFcts.push(function(){
 		if( arToolkitSource.ready === false )	return
-
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
 	
@@ -146,8 +128,6 @@
 		type : 'pattern',
 		patternUrl : '../../data/multimarkers/multi-abcdef/patt.AR_1',
 	})
-
-
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
@@ -168,10 +148,8 @@
 	// smoothedControls.addEventListener('becameUnVisible', function(){
 	// 	console.log('becameUnVisible event notified')
 	// })
-
 	
 	// model
-
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -180,38 +158,36 @@
 	};
 	
 	//function touchControl(){
-	/*		var modelSize=0.05;
-			document.addEventListener('touchstart',function (ev) {
-		 	var oldC = modelSize;
-		 	function getC(ev) {
-		  	var x1=ev.targetTouches[0].pageX;
-		  	var y1=ev.targetTouches[0].pageY;
-		alert("默认modelSize="+modelSize)
-			  var x2=ev.targetTouches[1].pageX;
-			  var y2=ev.targetTouches[1].pageY;
-
-			  var a=x1-x2;
-			  var b=y1-y2;
-			  return Math.sqrt(a*a+b*b)
-			 }
-			 if(ev.targetTouches.length==2){
-				var downC=getC(ev);
-			 }
-			document.addEventListener('touchmove',function (ev) { 
-			  if(ev.targetTouches.length==2){
-			   modeSize=getC(ev)/downC+oldC;
-		alert("变更后的modelSize="+ modelSize )
+		var modelSize=0.05;
+		document.addEventListener('touchstart',function (ev) {
+		 var oldC = modelSize;
+		 function getC(ev) {
+		  var x1=ev.targetTouches[0].pageX;
+		  var y1=ev.targetTouches[0].pageY;
+	alert("默认modelSize="+modelSize)
+		  var x2=ev.targetTouches[1].pageX;
+		  var y2=ev.targetTouches[1].pageY;
+	 
+		  var a=x1-x2;
+		  var b=y1-y2;
+		  return Math.sqrt(a*a+b*b)
+		 }
+		 if(ev.targetTouches.length==2){
+			var downC=getC(ev);
+		 }
+		document.addEventListener('touchmove',function (ev) { 
+		  if(ev.targetTouches.length==2){
+		   modeSize=getC(ev)/downC+oldC;
+	alert("变更后的modelSize="+ modelSize )
 			 // alert("开始加载setModel()")
 			  
 		  }
 		},false) 
-			
+		
 		},false)
 		
 		//}
-		*/
 	var onError = function ( xhr ) { };
-
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	
@@ -219,27 +195,28 @@
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
-
 		materials.preload();
 		 	
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
 		objLoader.load( 'bear.obj', function ( object ) {
-
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
-			alert("模型大小="+modelSize)
+			obj = object.scene;
+			
+			//object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+			//alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
-
+			//markerRoot.add( object );
 		}, onProgress, onError );
-
+			obj.scale.x = obj.scale.y = obj.scale.z = modelSize;
+			obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			alert("模型大小="+modelSize);
+			markerRoot.add( object );
 	});
 		
-
 	 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -267,9 +244,7 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-	/*
-document.addEventListener("touchmove",function(e){
+	document.addEventListener("touchmove",function(e){
 e.preventDefault();
 },false);
-*/
 </script></body>
