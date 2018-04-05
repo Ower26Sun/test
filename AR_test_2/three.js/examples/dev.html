@@ -177,9 +177,9 @@
 		 }
 		document.addEventListener('touchmove',function (ev) { 
 		  if(ev.targetTouches.length==2){
-		   modeSize=getC(ev)/downC+oldC;
+		   modelSize=getC(ev)/downC+oldC;
 	alert("变更后的modelSize="+ modelSize )
-			 // alert("开始加载setModel()")
+			  
 			  
 		  }
 		},false) 
@@ -203,18 +203,12 @@
 		objLoader.load( 'bear.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			obj = object.scene;
-			
-			//object.scale.x =  object.scale.y =  object.scale.z = modelSize;
-			//alert("模型大小="+modelSize)
+			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+			alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			//markerRoot.add( object );
-		}, onProgress, onError );
-			obj.scale.x = obj.scale.y = obj.scale.z = modelSize;
-			obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			alert("模型大小="+modelSize);
 			markerRoot.add( object );
+		}, onProgress, onError );
 	});
 		
 	 
