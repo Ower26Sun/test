@@ -236,7 +236,7 @@ function getAngle(p1, p2) {
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	
-	function modelSetting(){
+	
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -267,7 +267,7 @@ function getAngle(p1, p2) {
 				obj.updateMatrix();
 				*/
 	});
-	}
+	
 	 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
