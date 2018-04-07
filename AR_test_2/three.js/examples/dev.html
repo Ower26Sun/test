@@ -15,9 +15,6 @@
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
-		<script src="js/loaders/Animation.js"></script>
-		<script src="js/loaders/AnimationHandler.js"></script>
-		<script src="js/loaders/KeyFrameAnimation.js"></script>
 		
 
 		<script src="js/loaders/DDSLoader.js"></script>
@@ -199,7 +196,7 @@
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
-		materials.preload();
+			materials.preload();
 		 	
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
@@ -207,16 +204,15 @@
 		objLoader.load( 'bear.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			var obj = object.scene;
 			
-			/*object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
-			*/
+			
 		}, onProgress, onError );
-			obj.scale.x =  obj.scale.y =  obj.scale.z = modelSize;
+			/*obj.scale.x =  obj.scale.y =  obj.scale.z = modelSize;
 			alert("模型大小="+modelSize)
 			// 旋转
 			obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
@@ -225,6 +221,7 @@
 			onRenderFcts.push(function(){
 			renderer.render( scene, camera );
 				obj.updateMatrix();
+				*/
 	});
 		
 	 
@@ -254,7 +251,8 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-	document.addEventListener("touchmove",function(e){
-e.preventDefault();
+	
+document.addEventListener("touchmove",function(e){
+	e.preventDefault();
 },false);
 </script></body>
