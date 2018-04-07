@@ -32,7 +32,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	
+	settingModel();
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -232,12 +232,12 @@ function getAngle(p1, p2) {
     return Math.atan2(y, x) * 180 / Math.PI;
 };
 	*/
-	var modelSize = 0.05;
+	var modelSize =0.05;
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	
-	
+	function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -267,8 +267,8 @@ function getAngle(p1, p2) {
 			renderer.render( scene, camera );
 				obj.updateMatrix();
 				*/
-	});
-	
+		});
+	}
 	 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
