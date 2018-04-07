@@ -53,12 +53,16 @@
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
-	
+	var fov = 40;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
+	camera.fov = fov;
+	camera.position.y = 150;  
+        camera.position.z = 500;  
+        camera.target.position.y = 150;  
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -159,36 +163,35 @@
 	};
 	
 	
-	//function touchControl(){
-		var modelSize=0.05;
+	function touchControl(){
+		//var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
-		 var oldC = modelSize;
+		// var oldC = modelSize;
+		var oldC = fov;
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;
-	alert("默认modelSize="+modelSize)
+	//alert("默认modelSize="+modelSize)
 		  var x2=ev.targetTouches[1].pageX;
 		  var y2=ev.targetTouches[1].pageY;
 	 
 		  var a=x1-x2;
 		  var b=y1-y2;
-		  return Math.sqrt(a*a+b*b)
+		  return Math.sqrt(a*a+b*b);
 		 }
 		 if(ev.targetTouches.length==2){
 			var downC=getC(ev);
 		 }
 		document.addEventListener('touchmove',function (ev) { 
 		  if(ev.targetTouches.length==2){
-		   modelSize=getC(ev)/downC+oldC;
-	alert("变更后的modelSize="+ modelSize )
-			  
-			  
+		   fov = downC * oldC;
+	//alert("变更后的modelSize="+ modelSize )  
 		  }
 		},false) 
-	alert("输出来的alert(modelSize);"+modelSize);
+	//alert("输出来的alert(modelSize);"+modelSize);
 		},false)
-	//}
-	alert(modelSize);
+	}
+	//alert(modelSize);
 	
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
@@ -207,7 +210,7 @@
 			//object.position.y = 0.2;
   			// 缩放
 			
-			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
 			alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
