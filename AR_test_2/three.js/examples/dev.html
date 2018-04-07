@@ -270,7 +270,7 @@ function getAngle(p1, p2) {
 				obj.updateMatrix();
 				*/
 		});
-	}
+	
 	 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -284,6 +284,7 @@ function getAngle(p1, p2) {
 		stats.update();
 		})
 	//}
+	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -298,7 +299,7 @@ function getAngle(p1, p2) {
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-	
+	}
 document.addEventListener("touchmove",function(e){
 	e.preventDefault();
 },false);
