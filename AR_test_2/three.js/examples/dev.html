@@ -53,16 +53,12 @@
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
-	var fov = 40;
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
-	camera.fov = fov;
-	camera.position.y = 150;  
-        camera.position.z = 500;  
-        camera.target.position.y = 150;  
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -164,10 +160,9 @@
 	
 	/*
 	function touchControl(){
-		//var modelSize=0.05;
+		var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
-		// var oldC = modelSize;
-		var oldC = fov;
+		 var oldC = modelSize;
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;
@@ -184,7 +179,7 @@
 		 }
 		document.addEventListener('touchmove',function (ev) { 
 		  if(ev.targetTouches.length==2){
-		   fov = downC * oldC;
+		   modelSize = downC/oldC + oldC;
 	//alert("变更后的modelSize="+ modelSize )  
 		  }
 		},false) 
@@ -193,11 +188,54 @@
 	}
 	//alert(modelSize);
 	*/
+	function setGesture(el){
+	    //var obj={}; //定义一个对象
+	    var istouch=false;
+	    var start=[];
+	    el.addEventListener("touchstart",function(e){
+		if(e.touches.length>=2){  //判断是否有两个点在屏幕上
+		    istouch=true;
+		    start=e.touches;  //得到第一组两个点
+		   // obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
+		};
+	    },false);
+	    document.addEventListener("touchmove",function(e){
+		e.preventDefault();
+		if(e.touches.length>=2&&istouch){
+		    var now=e.touches;  //得到第二组两个点
+		    var scale1=getDistance(now[0],now[1])/getDistance(start[0],start[1]); //得到缩放比例，getDistance是勾股定理的一个方法
+		    var rotation1=getAngle(now[0],now[1])-getAngle(start[0],start[1]);  //得到旋转角度，getAngle是得到夹角的一个方法
+		    e.scale=scale.toFixed(2);
+		    e.rotation=rotation.toFixed(2);
+		   // obj.gesturemove&&obj.gesturemove.call(el,e);  //执行gesturemove方法
+		};
+	    },false);
+	    document.addEventListener("touchend",function(e){
+		if(istouch){
+		    istouch=false;
+			alert(scale1);
+		   // obj.gestureend&&obj.gestureend.call(el);  //执行gestureend方法
+		};
+	    },false);
+	    //return obj;
+		alert(scale1)
+};
+function getDistance(p1, p2) {
+    var x = p2.pageX - p1.pageX,
+        y = p2.pageY - p1.pageY;
+    return Math.sqrt((x * x) + (y * y));
+};
+function getAngle(p1, p2) {
+    var x = p1.pageX - p2.pageX,
+        y = p1.pageY- p2.pageY;
+    return Math.atan2(y, x) * 180 / Math.PI;
+};
+	
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	
-	
+	function modelSetting(){
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -210,7 +248,7 @@
 			//object.position.y = 0.2;
   			// 缩放
 			
-			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
+			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
@@ -228,7 +266,7 @@
 				obj.updateMatrix();
 				*/
 	});
-		
+	}
 	 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
