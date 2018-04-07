@@ -182,6 +182,10 @@
 		   modelSize = downC/oldC + oldC;
 			  alert("开始settingModel");
 			  settingModel();
+			  onRenderFcts.push(function(){
+				renderer.render( scene, camera );
+				  requestAnimationFrame(animation)；
+			  })
 	alert("变更后的modelSize="+ modelSize );
 		  }
 		},false) 
