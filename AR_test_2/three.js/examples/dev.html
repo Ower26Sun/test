@@ -158,7 +158,7 @@
 		}
 	};
 	
-	//function touchControl(){
+	function touchControl(){
 		var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
 		 var oldC = modelSize;
@@ -184,10 +184,9 @@
 			  
 		  }
 		},false) 
-		alert("输出来的alert(modelSize);"+modelSize);
+	alert("输出来的alert(modelSize);"+modelSize);
 		},false)
-		alert("alert(modelSize);"+modelSize);
-		//}
+	}
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
