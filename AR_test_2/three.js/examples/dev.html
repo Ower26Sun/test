@@ -323,6 +323,7 @@ function getAngle(p1, p2) {
 		document.addEventListener('touchmove',function (ev) { 
 		  if(ev.targetTouches.length==2){
 			  fov = downC/getC(ev) + fov;
+			  camera.fov = fov;
 		   //modelSize = downC/oldC + oldC;
 			  //alert("开始settingModel");
 			/*  settingModel();
