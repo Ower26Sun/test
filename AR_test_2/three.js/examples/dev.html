@@ -302,8 +302,42 @@ function getAngle(p1, p2) {
 		// keep looping
 		requestAnimationFrame( animate );
 		// measure time
+		
+		document.addEventListener('touchstart',function (ev) {
+			var oldC = fov;
+		 //var oldC = modelSize;
+		 function getC(ev) {
+		  var x1=ev.targetTouches[0].pageX;
+		  var y1=ev.targetTouches[0].pageY;
+	//alert("默认modelSize="+modelSize);
+		  var x2=ev.targetTouches[1].pageX;
+		  var y2=ev.targetTouches[1].pageY;
+	 
+		  var a=x1-x2;
+		  var b=y1-y2;
+		  return Math.sqrt((a*a)+(b*b));
+		 }
+		 if(ev.targetTouches.length==2){
+			var downC=getC(ev);
+		 }
+		document.addEventListener('touchmove',function (ev) { 
+		  if(ev.targetTouches.length==2){
+			  fov = downC/getC(ev) + fov;
+		   //modelSize = downC/oldC + oldC;
+			  //alert("开始settingModel");
+			/*  settingModel();
+			  onRenderFcts.push(function(){
+				renderer.render( scene, camera );
+				  requestAnimationFrame(animation);
+			  })*/
+			  
+	//alert("变更后的modelSize="+ modelSize );
+		  }
+		},false) 
+	//alert("输出来的alert(modelSize);"+modelSize);
+		},false)
 		camera.fov = fov;
-		camera.lookAt( scene.fov );
+		
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
 		lastTimeMsec	= nowMsec
