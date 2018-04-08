@@ -32,7 +32,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	settingModel();
+	//settingModel();
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -241,7 +241,7 @@ function getAngle(p1, p2) {
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	
-	function settingModel(){
+	//function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -273,7 +273,7 @@ function getAngle(p1, p2) {
 				*/
 		});
 	
-	}
+	//}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
