@@ -158,8 +158,12 @@
 		}
 	};
 	
-	/*
+	
 	//function touchControl(){
+		var istouch=false;
+	    	var touchOne = [];
+	    	var touchTwo = [];
+	
 		var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
 		 var oldC = modelSize;
@@ -181,11 +185,12 @@
 		  if(ev.targetTouches.length==2){
 		   modelSize = downC/oldC + oldC;
 			  alert("开始settingModel");
-			  settingModel();
+			/*  settingModel();
 			  onRenderFcts.push(function(){
 				renderer.render( scene, camera );
 				  requestAnimationFrame(animation);
-			  })
+			  })*/
+			  
 	alert("变更后的modelSize="+ modelSize );
 		  }
 		},false) 
@@ -193,7 +198,8 @@
 		},false)
 	//}
 	//alert(modelSize);
-	*/
+	
+	/*
 	var istouch=false;
 	    var touchOne = [];
 	    var touchTwo = [];
@@ -236,7 +242,7 @@ function getAngle(p1, p2) {
         y = p1.pageY- p2.pageY;
     return Math.atan2(y, x) * 180 / Math.PI;
 };
-	
+	*/
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
