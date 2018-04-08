@@ -158,7 +158,7 @@
 		}
 	};
 	
-	
+	/*
 	//function touchControl(){
 		var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
@@ -193,39 +193,38 @@
 		},false)
 	//}
 	//alert(modelSize);
-	
-	/*
-	//function setGesture(el){
-	    //var obj={}; //定义一个对象
-	    var istouch=false;
-	    var startOne=[];
+	*/
+	var istouch=false;
+	    var touchOne = [];
+	    var touchTwo = [];
+	    
 	    document.addEventListener("touchstart",function(e){
-		if(e.touches.length>=2){  //判断是否有两个点在屏幕上
-		    istouch=true;
-		    startOne=e.touches;  //得到第一组两个点
-		   // obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
-		};
-	    },false);
+			if(e.touches.length >= 2){  //判断是否有两个点在屏幕上
+			    istouch = true;
+			    touchOne = e.touches;  //得到第一组两个点
+			   // obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
+			};
+		},false);
 	    document.addEventListener("touchmove",function(e){
 		e.preventDefault();
-		if(e.touches.length>=2&&istouch){
-		    var now=e.touches;  //得到第二组两个点
-		    var scale1=getDistance(now[0],now[1])/getDistance(startOne[0],startOne[1]); //得到缩放比例，getDistance是勾股定理的一个方法
-		    var rotation1=getAngle(now[0],now[1])-getAngle(startOne[0],startOne[1]);  //得到旋转角度，getAngle是得到夹角的一个方法
-		   // e.scale=scale.toFixed(2);
-		   // e.rotation=rotation.toFixed(2);
-		   // obj.gesturemove&&obj.gesturemove.call(el,e);  //执行gesturemove方法
-		};
+			if(e.touches.length >= 2 && istouch){
+				touchTwo = e.touches;  //得到第二组两个点
+			    var changeScale = getDistance(touchTwo[0],touchTwo[1]) / getDistance(touchOne[0],touchOne[1]); //得到缩放比例，getDistance是勾股定理的一个方法
+			    var rotationAngle = getAngle(touchTwo[0],touchTwo[1]) - getAngle(touchOne[0],touchOne[1]);  //得到旋转角度，getAngle是得到夹角的一个方法
+			   // e.scale=scale.toFixed(2);
+			   // e.rotation=rotation.toFixed(2);
+			   // obj.gesturemove&&obj.gesturemove.call(el,e);  //执行gesturemove方法
+			};
 	    },false);
 	    document.addEventListener("touchend",function(e){
 		if(istouch){
 		    istouch=false;
-			alert(scale1);
+			alert(changeScale);
 		   // obj.gestureend&&obj.gestureend.call(el);  //执行gestureend方法
 		};
 	    },false);
 	    //return obj;
-		alert(scale1)
+		alert(changeScale)
 //};
 function getDistance(p1, p2) {
     var x = p2.pageX - p1.pageX,
@@ -237,7 +236,6 @@ function getAngle(p1, p2) {
         y = p1.pageY- p2.pageY;
     return Math.atan2(y, x) * 180 / Math.PI;
 };
-	*/
 	
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
