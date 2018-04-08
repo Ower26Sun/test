@@ -160,15 +160,15 @@
 	};
 	
 	
-	function touchControl(){
+	//function touchControl(){
 		//var istouch=false;
 	    	//var touchOne = [];
 	    	//var touchTwo = [];
 	
-		//var modelSize=0.05;
+		var modelSize=0.05;
 	
 		document.addEventListener('touchstart',function (ev) {
-			var oldC = fov;
+			var oldC = modelSize;
 		 //var oldC = modelSize;
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
@@ -197,11 +197,11 @@
 			  
 	//alert("变更后的modelSize="+ modelSize );
 		  }
-			return fov;
+			
 		},false) 
 	//alert("输出来的alert(modelSize);"+modelSize);
 		},false)
-	}
+	//}
 	//alert(modelSize);
 	
 	/*
@@ -304,10 +304,6 @@ function getAngle(p1, p2) {
 		// keep looping
 		requestAnimationFrame( animate );
 		// measure time
-
-		camera.fov = fov;
-		camera.updateProjectionMatrix();
-		
 		
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
