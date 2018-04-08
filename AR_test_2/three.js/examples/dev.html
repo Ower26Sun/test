@@ -198,14 +198,14 @@
 	    var touchOne = [];
 	    var touchTwo = [];
 	    
-	    document.addEventListener("touchstart",function(e){
+	    document.addEventListener('touchstart',function(e){
 			if(e.touches.length >= 2){  //判断是否有两个点在屏幕上
 			    istouch = true;
 			    touchOne = e.touches;  //得到第一组两个点
 			   // obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
 			};
 		},false);
-	    document.addEventListener("touchmove",function(e){
+	    document.addEventListener('touchmove',function(e){
 		e.preventDefault();
 			if(e.touches.length >= 2 && istouch){
 				touchTwo = e.touches;  //得到第二组两个点
@@ -216,7 +216,7 @@
 			   // obj.gesturemove&&obj.gesturemove.call(el,e);  //执行gesturemove方法
 			};
 	    },false);
-	    document.addEventListener("touchend",function(e){
+	    document.addEventListener('touchend',function(e){
 		if(istouch){
 		    istouch=false;
 			alert(changeScale);
