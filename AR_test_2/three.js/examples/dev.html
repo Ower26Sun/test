@@ -187,7 +187,7 @@
 		document.addEventListener('touchmove',function (ev) { 
 		  if(ev.targetTouches.length==2){
 			  //fov = downC/getC(ev) + fov;
-		   modelSize = downC/oldC * oldC;
+		   modelSize = downC/getC(ev) + oldC;
 		   
 			  //alert("开始settingModel");
 			  //settingModel();
