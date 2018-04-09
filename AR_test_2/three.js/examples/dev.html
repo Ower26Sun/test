@@ -285,7 +285,11 @@ function getAngle(p1, p2) {
 				obj.updateMatrix();
 				*/
 		});
-	
+		/*
+		var mesh=new THREE.Mesh(objLoader,mtlLoader);
+			mesh.scale.set();
+			scene.add(mesh)
+			*/
 	//}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -311,7 +315,7 @@ function getAngle(p1, p2) {
 		camera.position.z = Math.sin( timer ) * 200;
 		camera.lookAt( scene.position );
 		//scene.scale.set()
-		camera.fov = timer * 100
+		camera.fov = timer * 100;
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
 		lastTimeMsec	= nowMsec
