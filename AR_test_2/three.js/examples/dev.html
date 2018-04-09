@@ -159,7 +159,7 @@
 		}
 	};
 	
-	
+	/*
 	//function touchControl(){
 		//var istouch=false;
 	    	//var touchOne = [];
@@ -193,7 +193,7 @@
 			  onRenderFcts.push(function(){
 				renderer.render( scene, camera );
 				  requestAnimationFrame(animation);
-			  })*/
+			  })
 			  
 	//alert("变更后的modelSize="+ modelSize );
 		  }
@@ -203,25 +203,27 @@
 		},false)
 	//}
 	//alert(modelSize);
+	*/
 	
-	/*
-	var istouch=false;
+		var istouch=false;
 	    var touchOne = [];
 	    var touchTwo = [];
 	    
-	    document.addEventListener('touchstart',function(e){
+	    document.addEventListener("touchstart",function(e){
 			if(e.touches.length >= 2){  //判断是否有两个点在屏幕上
 			    istouch = true;
 			    touchOne = e.touches;  //得到第一组两个点
+				alert(touchOne.length);
 			   // obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
 			};
 		},false);
-	    document.addEventListener('touchmove',function(e){
+	    document.addEventListener("touchmove",function(e){
 		e.preventDefault();
 			if(e.touches.length >= 2 && istouch){
 				touchTwo = e.touches;  //得到第二组两个点
 			    var changeScale = getDistance(touchTwo[0],touchTwo[1]) / getDistance(touchOne[0],touchOne[1]); //得到缩放比例，getDistance是勾股定理的一个方法
 			    var rotationAngle = getAngle(touchTwo[0],touchTwo[1]) - getAngle(touchOne[0],touchOne[1]);  //得到旋转角度，getAngle是得到夹角的一个方法
+			   alert(changeScale);
 			   // e.scale=scale.toFixed(2);
 			   // e.rotation=rotation.toFixed(2);
 			   // obj.gesturemove&&obj.gesturemove.call(el,e);  //执行gesturemove方法
