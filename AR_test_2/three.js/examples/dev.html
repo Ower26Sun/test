@@ -53,7 +53,7 @@
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
-	var fov = 40;
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
@@ -78,13 +78,7 @@
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
 		sourceType : 'webcam',
-		// // to read from an image
-		// sourceType : 'image',
-		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
-		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/armchair.jpg',		
-		// to read from a video
-		// sourceType : 'video',
-		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
+		
 	})
 	arToolkitSource.init(function onReady(){
 		onResize()
@@ -154,14 +148,7 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	
-	// smoothedControls.addEventListener('becameVisible', function(){
-	// 	console.log('becameVisible event notified')
-	// })
-	// smoothedControls.addEventListener('becameUnVisible', function(){
-	// 	console.log('becameUnVisible event notified')
-	// })
-	
+		
 	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -179,7 +166,7 @@
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;
-	alert("oldC" + oldC)
+			 
 		  var x2=ev.targetTouches[1].pageX;
 		  var y2=ev.targetTouches[1].pageY;
 	 
