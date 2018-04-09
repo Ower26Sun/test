@@ -59,10 +59,18 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
+	/*
+	var fov = 45,//拍摄距离  视野角值越大，场景中的物体越小
+    	near = 1,//相机离视体积最近的距离
+    	far = 1000,//相机离视体积最远的距离
+    	aspect =  window.innerWidth / window.innerHeight; //纵横比
+	
+	var camera = new THREE.Camera(fov,aspect, near, far);
 	camera.fov = fov;
 	camera.position.y = 150;  
         camera.position.z = 500;  
         camera.target.position.y = 150;  
+	*/
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -187,6 +195,11 @@
 		   modelSize = downC / getC(ev) + oldC;
 			  renderer.render( scene, camera );
 			  requestAnimationFrame( animate );
+			 	/*	
+				camera.fov = fov;
+				camera.updateProjectionMatrix();
+				renderer.render(scene, camera);
+				*/
 	alert("变更后的modelSize="+ modelSize );
 		  }
 		},false) 
