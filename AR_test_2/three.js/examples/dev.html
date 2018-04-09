@@ -267,7 +267,7 @@ function getAngle(p1, p2) {
 			//object.position.y = 0.2;
   			// 缩放
 			
-			object.scale.x =  object.scale.y =  object.scale.z = 1;
+			//object.scale.x =  object.scale.y =  object.scale.z = 1;
 			//alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
@@ -285,11 +285,11 @@ function getAngle(p1, p2) {
 				obj.updateMatrix();
 				*/
 		});
-		/*
+		
 		var mesh=new THREE.Mesh(objLoader,mtlLoader);
-			mesh.scale.set();
+			mesh.scale.set(0.05,0.05,0.05);
 			scene.add(mesh)
-			*/
+			
 	//}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -310,12 +310,14 @@ function getAngle(p1, p2) {
 		// keep looping
 		requestAnimationFrame( animate );
 		// measure time
+		/*
 		var timer = Date.now() * 0.0005;
 		camera.position.x = Math.cos( timer ) * 200;
 		camera.position.z = Math.sin( timer ) * 200;
 		camera.lookAt( scene.position );
-		//scene.scale.set()
 		camera.fov = timer * 200;
+		*/
+		//scene.scale.set()
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
 		lastTimeMsec	= nowMsec
