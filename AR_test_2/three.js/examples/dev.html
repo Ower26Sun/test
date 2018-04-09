@@ -232,11 +232,11 @@
 			objLoader.setMaterials( materials );  
 			objLoader.setPath( 'models/1/' );  
 			objLoader.load( 'bear.obj', function ( object ) { 
-						object.traverse(function(child) {
-                        if (child instanceof THREE.Mesh) {
-                            child.material.side = THREE.DoubleSide;
-				scene.add( object );  
-		  }
+			object.traverse(function(child) {
+				if (child instanceof THREE.Mesh) {
+				    child.material.side = THREE.DoubleSide;
+					scene.add( object );  
+		 	}
 				});  
 				
 			mesh = object;//储存到全局变量中
