@@ -251,12 +251,10 @@
 	var stats = new Stats();
 	document.body.appendChild( stats.dom );
 	// render the scene
-	//if(modelSize != 0){
 		onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 		stats.update();
 		})
-	//}
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
