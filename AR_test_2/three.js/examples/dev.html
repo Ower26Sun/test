@@ -157,7 +157,7 @@
 		}
 	};
 	
-	
+	/*
 	//function touchControl(){
 		var modelSize = 0.05;
 		document.addEventListener('touchstart',function (ev) {
@@ -186,7 +186,7 @@
 				camera.fov = fov;
 				camera.updateProjectionMatrix();
 				renderer.render(scene, camera);
-				*/
+				
 	alert("变更后的modelSize="+ modelSize );
 		  }
 		},false) 
@@ -194,12 +194,12 @@
 		},false)
 	//}
 	alert(modelSize);
-	
+	*/
 	var onError = function ( xhr ) { };
 		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	
-	/*
+	
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -222,7 +222,8 @@
 		}, onProgress, onError );
 			
 	});
-		*/
+		
+	/*
 	var mtlLoader = new THREE.MTLLoader();   
 			mtlLoader.setPath( 'models/1/' );  
 			mtlLoader.load( 'bear.mtl', function( materials ) {  
@@ -243,7 +244,7 @@
                  	scene.add(object);//将导入的模型添加到场景中
 					
 			}, onProgress, onError );  
-	 
+	 mesh.scale.set();*/
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
