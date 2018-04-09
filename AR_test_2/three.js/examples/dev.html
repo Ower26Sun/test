@@ -159,7 +159,7 @@
 		}
 	};
 	
-	/*
+	
 	//function touchControl(){
 		//var istouch=false;
 	    	//var touchOne = [];
@@ -188,14 +188,14 @@
 		  if(ev.targetTouches.length==2){
 			  fov = downC/getC(ev) + fov;
 		   //modelSize = downC/oldC + oldC;
-			  //alert("开始settingModel");
-			/*  settingModel();
+			  alert("开始settingModel");
+			  settingModel();
 			  onRenderFcts.push(function(){
 				renderer.render( scene, camera );
 				  requestAnimationFrame(animation);
 			  })
 			  
-	//alert("变更后的modelSize="+ modelSize );
+	alert("变更后的modelSize="+ modelSize );
 		  }
 			
 		},false) 
@@ -203,8 +203,8 @@
 		},false)
 	//}
 	//alert(modelSize);
-	*/
 	
+	/*
 		var istouch=false;
 	    var touchOne = [];
 	    var touchTwo = [];
@@ -215,7 +215,7 @@
 			    touchOne = e.touches;  //得到第一组两个点
 				alert(touchOne.length);
 			   // obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
-			};
+			}
 		},false);
 	    document.addEventListener("touchmove",function(e){
 		e.preventDefault();
@@ -227,14 +227,14 @@
 			   // e.scale=scale.toFixed(2);
 			   // e.rotation=rotation.toFixed(2);
 			   // obj.gesturemove&&obj.gesturemove.call(el,e);  //执行gesturemove方法
-			};
+			}
 	    },false);
 	    document.addEventListener('touchend',function(e){
 		if(istouch){
 		    istouch=false;
 			alert(changeScale);
 		   // obj.gestureend&&obj.gestureend.call(el);  //执行gestureend方法
-		};
+		}
 	    },false);
 	    //return obj;
 		alert(changeScale)
