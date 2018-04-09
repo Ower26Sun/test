@@ -32,7 +32,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	var mesh = null;
+	var mesh;
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -217,8 +217,9 @@
 			alert("模型大小="+modelSize+"已变更！！")
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
-			
+			//markerRoot.add( object );
+			mesh = object;
+			scene.add(mesh);
 		}, onProgress, onError );
 			
 	});
