@@ -158,10 +158,10 @@
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/' );
-		objLoader.load( 'tree.obj', function ( object ) {
+		objLoader.load( 'tree.obj');
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 2.25;
+			//object.scale.x =  object.scale.y =  object.scale.z = 2.25;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
@@ -177,7 +177,10 @@
 		renderer.render( scene, camera );
 
 	})
-
+	var mesh=new THREE.Mesh(objLoader,mtlLoader);
+			mesh.scale.set(0.05,0.05,0.05);
+			scene.add(mesh);
+	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -193,12 +196,4 @@
 		})
 	})
 	
-	new AlloyTouch({
-        touch: document,    //触摸整个文档
-        vertical: false,            //监听横向触摸
-        target: mesh.rotation,  //运动 mesh.rotation
-        property: "y",              //被运动的属性 y
-        factor: 0.08,               //运动期间的摩擦力
-        moveFactor: 0.2     //拖拽期间的摩擦力
-	})
 </script></body>
