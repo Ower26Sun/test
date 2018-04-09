@@ -164,7 +164,7 @@
 		//var istouch=false;
 	    	//var touchOne = [];
 	    	//var touchTwo = [];
-	/*
+	
 		var modelSize=0.05;
 	
 		document.addEventListener('touchstart',function (ev) {
@@ -188,22 +188,23 @@
 		  if(ev.targetTouches.length==2){
 			  //fov = downC/getC(ev) + fov;
 		   modelSize = downC/oldC * oldC;
-			  alert("开始settingModel");
+		   
+			  //alert("开始settingModel");
 			  //settingModel();
-			  onRenderFcts.push(function(){
-				renderer.render( scene, camera );
-				  requestAnimationFrame(animation);
+			 // onRenderFcts.push(function(){
+				//renderer.render( scene, camera );
+				  //requestAnimationFrame(animation);
 			  })
 			  
 	alert("变更后的modelSize="+ modelSize );
 		  }
 			
 		},false) 
-	//alert("输出来的alert(modelSize);"+modelSize);
+	alert("输出来的alert(modelSize);"+modelSize);
 		},false)
 	//}
 	//alert(modelSize);
-	*/
+	
 	/*
 		var istouch=false;
 	    var touchOne = [];
@@ -267,29 +268,20 @@ function getAngle(p1, p2) {
 			//object.position.y = 0.2;
   			// 缩放
 			
-			//object.scale.x =  object.scale.y =  object.scale.z = 1;
+			object.scale.x =  object.scale.y =  object.scale.z = 1;
 			//alert("模型大小="+modelSize)
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
 			
 		}, onProgress, onError );
-			/*obj.scale.x =  obj.scale.y =  obj.scale.z = modelSize;
-			alert("模型大小="+modelSize)
-			// 旋转
-			obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			obj.updateMatrix();
-			markerRoot.add( obj );
-			onRenderFcts.push(function(){
-			renderer.render( scene, camera );
-				obj.updateMatrix();
-				*/
+			
 		});
-		
+		/*
 		var mesh=new THREE.Mesh(objLoader,mtlLoader);
 			mesh.scale.set(0.05,0.05,0.05);
 			scene.add(mesh);
-			 
+			 */
 	//}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
