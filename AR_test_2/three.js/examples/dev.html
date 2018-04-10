@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-	settingModel();
+	//settingModel();
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -294,7 +294,7 @@
 	      if(event.targetTouches.length==2){//判断移动的时候是否是两根手指
 	       modelSize = (getC(event)/downC)  * oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
 		      alert("移动后的值="+modelSize);
-	       		settingModel();
+	       		//settingModel();
 		      animate(nowMsec);
 	      }
 
@@ -306,7 +306,7 @@
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
-	function settingModel(){
+	//function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -329,7 +329,7 @@
 			}, onProgress, onError );
 
 		});
-	}
+	//}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
