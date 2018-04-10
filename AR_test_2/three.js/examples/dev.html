@@ -275,7 +275,7 @@
 	   
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
-	alert("默认的值是="+modelSize);
+	//alert("默认的值是="+modelSize);
 		if(event.touches.length = 1){
 		   var touch = event.targetTouches[0];
 		   var startPos = {x:touch.screenX,y:touch.screenY};
@@ -284,8 +284,8 @@
 				var touch = event.targetTouches[0];
 				var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
 
-				camera.position.x = Math.cos( endPos.x ) * 20;
-				camera.position.y = Math.sin( endPos.y ) * 20;
+				camera.position.x = Math.cos( endPos.x ) * 5;
+				camera.position.y = Math.sin( endPos.y ) * 5;
 				camera.lookAt( scene.position );
 				animate(nowMsec);
 			},false);
@@ -307,7 +307,7 @@
 	     document.addEventListener('touchmove',function (event) { 
 	      if(event.targetTouches.length==2){
 	       modelSize = (getC(event)/downC)  * oldC;
-		      alert("移动后的值="+modelSize);
+		      //alert("移动后的值="+modelSize);
 	       		//settingModel();
 		     // animate(nowMsec);
 	      renderer.render(scene, camera);
@@ -337,7 +337,7 @@
 				//object.position.y = 0.2;
 				// 缩放
 				object.scale.x =  object.scale.y =  object.scale.z = modelSize;
-			alert("模型大小modelSize=" + modelSize);
+			//alert("模型大小modelSize=" + modelSize);
 				// 旋转
 				object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 				markerRoot.add( object );
