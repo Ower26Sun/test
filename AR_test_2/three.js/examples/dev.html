@@ -277,7 +277,7 @@
 		renderer.render( scene, camera );
 		stats.update();
 	})
-
+function renderLoop(){
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -292,4 +292,5 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+}
 </script></body>
