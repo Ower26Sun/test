@@ -156,7 +156,7 @@
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
 	};
-	var modelSize = 0.05;
+	//var modelSize = 0.05;
 	/*
 	//function touchControl(){
 		var modelSize = 0.05;
@@ -234,12 +234,12 @@
         }else if(event.type == "touchend" || event.type == "touchcancel"){
         
                 //获取最后的坐标位置
-            endx = Math.floor(event.changedTouches[0].pageX);
-            endy = Math.floor(event.changedTouches[0].pageY);
+		endx = Math.floor(event.changedTouches[0].pageX);
+		endy = Math.floor(event.changedTouches[0].pageY);
+
+		var endLine = Math.sqrt((endx * endx)+(endy * endy));
 			
-			var endLine = Math.sqrt((endx * endx)+(endy * endy));
-			
-             console.log('结束');
+             	console.log('结束');
              
              //获取开始位置和离开位置的距离
             nx = endx-startx;
@@ -270,6 +270,7 @@
                 return false;
             }
         }
+	    console.log(scalePro);
     }
     
     //添加触摸事件的监听，并直行自定义触摸函数
