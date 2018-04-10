@@ -284,8 +284,8 @@
 				var touch = event.targetTouches[0];
 				var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
 
-				camera.position.x = Math.cos( endPos.x );
-				camera.position.y = Math.sin( endPos.y );
+				camera.position.x = Math.cos( endPos.x )*10;
+				camera.position.y = Math.sin( endPos.y )*10;
 				camera.lookAt( scene.position );
 				animate(nowMsec);
 			},false);
