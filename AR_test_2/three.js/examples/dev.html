@@ -276,7 +276,7 @@
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
 	//alert("默认的值是="+modelSize);
-		if(event.touches.length == 1){
+		if(event.targetTouches.length == 1){
 		   var touch = event.targetTouches[0];
 		   var startPos = {x:touch.screenX,y:touch.screenY};
 			
