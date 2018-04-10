@@ -275,6 +275,7 @@
 	   
 	    document.addEventListener('touchstart',function (event) {//手指点下
 	     var oldC = modelSize;//把初始值放到oldC里面
+		    alert("默认的值是="+modelSize);
 	     function getC(event) {
 	      var x1=event.targetTouches[0].pageX;
 	      var y1=event.targetTouches[0].pageY;//两根手指缩放肯定需要两根手指，【0】第一根手指的Xy的坐标
@@ -291,8 +292,9 @@
 	     }
 	     document.addEventListener('touchmove',function (event) { //手指移动的时候
 	      if(event.targetTouches.length==2){//判断移动的时候是否是两根手指
-	       modelSize = getC(event)/downC+oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
-	       settingModel();
+	       modelSize = (getC(event)/downC)  * oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
+		      alert("移动后的值="+modelSize);
+	       		settingModel();
 		      animate(nowMsec);
 	      }
 
