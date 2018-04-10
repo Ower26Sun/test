@@ -157,9 +157,9 @@
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
 	};
-	
+	var scalePro = 1;
 	var startx,starty,movex,movey,endx,endy,nx,ny,angle,starLine,endLined;
-    	var scalePro = 1;
+    	
 	    //开始触摸函数，event为触摸对象
 	    function touchs(event){
 	
@@ -172,7 +172,7 @@
 		//通过if语句判断event.type执行了哪个触摸事件
 		if(event.type=="touchstart"){
 
-		     console.log('开始');
+		     alert("开始");
 
 		     //获取开始的位置数组的第一个触摸位置
 		    var touch = event.touches[0];
@@ -186,8 +186,8 @@
 		 starLine = Math.sqrt((startx * startx)+(starty * starty));
 		    //触摸中的坐标获取
 		}else if(event.type=="touchmove"){
-
-		     console.log('滑动中');
+			
+		    alert("滑动中");
 		    var touch = event.touches[0];
 		    movex = Math.floor(touch.screenX);
 		    movey = Math.floor(touch.screenY);
@@ -201,7 +201,7 @@
 
 		endLine = Math.sqrt((endx * endx)+(endy * endy));
 
-		     console.log('结束');
+			alert("结束");
 
 		     //获取开始位置和离开位置的距离
 		    nx = endx-startx;
@@ -258,6 +258,7 @@
 			//object.position.y = 0.2;
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
+		alert(object.scale.x);
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
