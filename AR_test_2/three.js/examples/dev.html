@@ -253,7 +253,7 @@
 		if(event.touches.length>=2 && isTwoTouch){
 			touchTwo = event.touches;
 			scalePro = getDistance(touchTwo[0],touchTwo[1])/getDistance(touchOne[0],touchOne[1]) * scalePro ;
-			animate();
+			animate(nowMsec);
 			alert(scalePro);
 		}
 	},false);
@@ -300,7 +300,7 @@
 		renderer.render( scene, camera );
 		stats.update();
 	})
-function renderLoop(){
+	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -315,5 +315,5 @@ function renderLoop(){
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-}
+
 </script></body>
