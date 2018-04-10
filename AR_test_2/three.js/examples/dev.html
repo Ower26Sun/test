@@ -289,7 +289,7 @@
 	     if(event.targetTouches.length==2){//判断是否是两根手指 是的话 把两根手指点上去的时候的 斜脚边的初始值 放到 downC里面
 	      var downC = getC(event);
 	     }
-	     document.addEventListener('touchmove',function (ev) { //手指移动的时候
+	     document.addEventListener('touchmove',function (event) { //手指移动的时候
 	      if(event.targetTouches.length==2){//判断移动的时候是否是两根手指
 	       modelSize = getC(event)/downC+oldC;//这个时候的getC(ev)是move时候的，用移动后的斜脚边的值除没移动的值加上他的初始值，
 	       settingModel();
