@@ -157,6 +157,7 @@
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
 	};
+	/*
 	var scalePro = 1;
 	var startx,starty,movex,movey,endx,endy,nx,ny,angle,starLine,endLined;
     	
@@ -165,10 +166,7 @@
 	
 		    //阻止浏览器默认滚动事件
 		event.preventDefault();
-		/*
-		//获取DOM标签
-		var box = document.getElementById('box');
-		*/
+		
 		//通过if语句判断event.type执行了哪个触摸事件
 		if(event.type=="touchstart"){
 
@@ -239,7 +237,32 @@
 	    document.addEventListener('touchstart',touchs,false);
 	    document.addEventListener('touchmove',touchs,false);
 	    document.addEventListener('touchend',touchs,false);
-	
+	*/
+	var isTwoTouch = false;
+	var scalePro = 1 ;
+	var touchOne = [];
+	var touchTwo = [];
+	document.addEventListener("touchstart",function(event){
+		if(event.touches.length>=2){
+			isTwoTouch = true;
+			touchOne = event.touches;
+		}
+	},false);
+	doucument.addEventListener("touchmove",function(event){
+		event.preventDefault();
+		if(event.touches.length>=2 && isTwoTouch){
+			touchTwo = event.touches;
+			scalePro = getDistance(touchTwo[0],touchTwo[1])/getDistance(touchOne[0],touchOne[1]) * scalePro ;
+			animate();
+			alert(scalePro);
+		}
+	},false);
+			
+	function getDistance(p1, p2) {
+   	 var x = p2.pageX - p1.pageX,
+        y = p2.pageY - p1.pageY;
+    	return Math.sqrt((x * x) + (y * y));
+	};
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
