@@ -237,59 +237,14 @@
 	    document.addEventListener('touchstart',touchs,false);
 	    document.addEventListener('touchmove',touchs,false);
 	    document.addEventListener('touchend',touchs,false);
-	*/
-	/*
-	var isTwoTouch = false;
-	var scalePro = 1 ;
-	var modelSize = 0.05;
-	var touchOne = [];
-	var touchTwo = [];
-	document.addEventListener("touchstart",function(event){
-		if(event.touches.length>=2){
-			isTwoTouch = true;
-			touchOne = event.touches;
-		}
-	},false);
-	doucument.addEventListener("touchmove",function(event){
-		event.preventDefault();
-		if(event.touches.length>=2 && isTwoTouch){
-			touchTwo = event.touches;
-			scalePro = getDistance(touchTwo[0],touchTwo[1])/getDistance(touchOne[0],touchOne[1]);
-			modelSize = modelSize * scalePro;
-			settingModel();
-			animate(nowMsec);
-			alert(scalePro);
-		}
-	},false);
-			
-	function getDistance(p1, p2) {
-   	 var x = p2.pageX - p1.pageX,
-        y = p2.pageY - p1.pageY;
-    	return Math.sqrt((x * x) + (y * y));
-	};
-	*/
-	
-	  
+	*/  
 		   
 	    var modelSize = 0.05;
 	   
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
 	//alert("默认的值是="+modelSize);
-		if(event.targetTouches.length == 1){
-		   var touch = event.targetTouches[0];
-		   var startPos = {x:touch.screenX,y:touch.screenY};
-			
-			document.addEventListener('touchmove',function(event){
-				var touch = event.targetTouches[0];
-				var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-
-				camera.position.x = Math.cos( endPos.x )*50;
-				camera.position.y = Math.sin( endPos.y )*50;
-				camera.lookAt( scene.position );
-				animate(nowMsec);
-			},false);
-		}
+		
 	     function getC(event) {
 	      var x1=event.targetTouches[0].pageX;
 	      var y1=event.targetTouches[0].pageY;
@@ -305,14 +260,28 @@
 	      var downC = getC(event);
 	     }
 	     document.addEventListener('touchmove',function (event) { 
-	      if(event.targetTouches.length==2){
-	       modelSize = (getC(event)/downC)  * oldC;
-		      //alert("移动后的值="+modelSize);
-	       		//settingModel();
-		      animate(nowMsec);
-	      renderer.render(scene, camera);
-		      requestAnimationFrame( animate );
-	      }
+		 if(event.targetTouches.length==2){
+			modelSize = (getC(event)/downC)  * oldC;
+			//alert("移动后的值="+modelSize);
+			//settingModel();
+			animate(nowMsec);
+			renderer.render(scene, camera);
+			requestAnimationFrame( animate ); 
+		 }
+		     //TODO 旋转
+if(event.targetTouches.length == 1){
+	var touch = event.targetTouches[0];
+	var startPos = {x:touch.screenX,y:touch.screenY};
+			
+		var touch = event.targetTouches[0];
+		var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+
+		camera.position.x = Math.cos( endPos.x );
+		camera.position.y = Math.sin( endPos.y );
+		camera.lookAt( scene.position );
+		animate(nowMsec);
+
+		}
 
 	     },false)
 
