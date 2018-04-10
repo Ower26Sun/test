@@ -216,10 +216,10 @@
             var touch = event.touches[0];
             
              //获取第一个坐标的X轴
-            startx = Math.floor(touch.clientX);
+            startx = Math.floor(touch.screenX);
             
             //获取第一个坐标的X轴
-            starty = Math.floor(touch.clientY);
+            starty = Math.floor(touch.screenY);
             
 	 starLine = Math.sqrt((startx * startx)+(starty * starty));
             //触摸中的坐标获取
@@ -227,15 +227,15 @@
         
              console.log('滑动中');
             var touch = event.touches[0];
-            movex = Math.floor(touch.clientX);
-            movey = Math.floor(touch.clientY);
+            movex = Math.floor(touch.screenX);
+            movey = Math.floor(touch.screenY);
             
             //当手指离开屏幕或系统取消触摸事件的时候
         }else if(event.type == "touchend" || event.type == "touchcancel"){
         
                 //获取最后的坐标位置
-            endx = Math.floor(event.changedTouches[0].clientX);
-            endy = Math.floor(event.changedTouches[0].clientY);
+            endx = Math.floor(event.changedTouches[0].screenX);
+            endy = Math.floor(event.changedTouches[0].screenY);
 			
 	endLine = Math.sqrt((endx * endx)+(endy * endy));
 			
