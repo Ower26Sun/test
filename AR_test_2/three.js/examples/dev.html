@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
+	settingModel();
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -238,9 +238,10 @@
 	    document.addEventListener('touchmove',touchs,false);
 	    document.addEventListener('touchend',touchs,false);
 	*/
-	/*
+	
 	var isTwoTouch = false;
 	var scalePro = 1 ;
+	var modelSize = 0.05;
 	var touchOne = [];
 	var touchTwo = [];
 	document.addEventListener("touchstart",function(event){
@@ -253,7 +254,9 @@
 		event.preventDefault();
 		if(event.touches.length>=2 && isTwoTouch){
 			touchTwo = event.touches;
-			scalePro = getDistance(touchTwo[0],touchTwo[1])/getDistance(touchOne[0],touchOne[1]) * scalePro ;
+			scalePro = getDistance(touchTwo[0],touchTwo[1])/getDistance(touchOne[0],touchOne[1]);
+			modelSize = modelSize * scalePro;
+			settingModel();
 			animate(nowMsec);
 			alert(scalePro);
 		}
@@ -264,34 +267,35 @@
         y = p2.pageY - p1.pageY;
     	return Math.sqrt((x * x) + (y * y));
 	};
-	*/
+	
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	
+	function settingModel(){
+		var mtlLoader = new THREE.MTLLoader();
+		mtlLoader.setPath( 'models/1/' );
+		mtlLoader.load( 'bear.mtl', function( materials ) {
 
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
+			materials.preload();
 
-		materials.preload();
+			var objLoader = new THREE.OBJLoader();
+			objLoader.setMaterials( materials );
+			objLoader.setPath( 'models/1/' );
+			objLoader.load( 'bear.obj', function ( object ) {
 
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'bear.obj', function ( object ) {
+				//object.position.y = 0.2;
+				// 缩放
+				object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+			alert("模型大小modelSize=" + modelSize);
+				// 旋转
+				object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+				markerRoot.add( object );
 
-			//object.position.y = 0.2;
-  			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.05;
-		alert(object.scale.x);
-			// 旋转
-			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
+			}, onProgress, onError );
 
-		}, onProgress, onError );
-
-	});
-
+		});
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
