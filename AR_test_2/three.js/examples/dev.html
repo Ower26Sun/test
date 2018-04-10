@@ -196,7 +196,7 @@
 	alert(modelSize);
 	*/
 	
-	var startx,starty,movex,movey,endx,endy,nx,ny,angle,scalePro;
+	var startx,starty,movex,movey,endx,endy,nx,ny,angle,scalePro,starLine,endLined;
     
     //开始触摸函数，event为触摸对象
     function touchs(event){
@@ -216,39 +216,39 @@
             var touch = event.touches[0];
             
              //获取第一个坐标的X轴
-            startx = Math.floor(touch.pageX);
+            startx = Math.floor(touch.clientX);
             
             //获取第一个坐标的X轴
-            starty = Math.floor(touch.pageY);
+            starty = Math.floor(touch.clientY);
             
-			var starLine = Math.sqrt((startx * startx)+(starty * starty));
+	 starLine = Math.sqrt((startx * startx)+(starty * starty));
             //触摸中的坐标获取
         }else if(event.type=="touchmove"){
         
              console.log('滑动中');
             var touch = event.touches[0];
-            movex = Math.floor(touch.pageX);
-            movey = Math.floor(touch.pageY);
+            movex = Math.floor(touch.clientX);
+            movey = Math.floor(touch.clientY);
             
             //当手指离开屏幕或系统取消触摸事件的时候
         }else if(event.type == "touchend" || event.type == "touchcancel"){
         
                 //获取最后的坐标位置
-		endx = Math.floor(event.changedTouches[0].pageX);
-		endy = Math.floor(event.changedTouches[0].pageY);
-
-		var endLine = Math.sqrt((endx * endx)+(endy * endy));
+            endx = Math.floor(event.changedTouches[0].clientX);
+            endy = Math.floor(event.changedTouches[0].clientY);
 			
-             	console.log('结束');
+	endLine = Math.sqrt((endx * endx)+(endy * endy));
+			
+             console.log('结束');
              
              //获取开始位置和离开位置的距离
             nx = endx-startx;
             ny = endy-starty;
             
             //通过坐标计算角度公式 Math.atan2(y,x)*180/Math.PI
-            	angle = Math.atan2(ny, nx) * 180 / Math.PI;
+            angle = Math.atan2(ny, nx) * 180 / Math.PI;
             
-		scalePro =  endLine / starLine;
+			scalePro =  endLine / starLine;
 			
             if(Math.abs(nx)<=1 ||Math.abs(ny)<=1){
                 return false;
@@ -270,7 +270,7 @@
                 return false;
             }
         }
-	    console.log(scalePro);
+		 console.log(scalePro);
     }
     
     //添加触摸事件的监听，并直行自定义触摸函数
