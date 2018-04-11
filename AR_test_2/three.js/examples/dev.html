@@ -265,12 +265,13 @@
 	     document.addEventListener('touchmove',function (event) { 
 		 if(event.targetTouches.length == 2){
 			modelSize = (getC(event)/downC)  * oldC;
-			//alert("移动后的值="+modelSize);
+			alert("移动后的值="+modelSize);
 			//settingModel();
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
 		 }
+		     /*
 		     //TODO 旋转
 		if(event.targetTouches.length == 1){
 			var touch = event.targetTouches[0];
@@ -283,6 +284,7 @@
 			camera.position.y = Math.sin( endPos.y );
 			camera.lookAt( scene.position );
 			animate(nowMsec);
+			*/
 		}
 
 	     },false)
