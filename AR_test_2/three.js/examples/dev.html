@@ -290,20 +290,20 @@
 	    },false)
 	   
 	var onError = function ( xhr ) { };
-/*
+
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	//function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
-		mtlLoader.setPath( 'models/1/' );
-		mtlLoader.load( 'bear.mtl', function( materials ) {
+		mtlLoader.setPath( 'models/1/CB_obj' );
+		mtlLoader.load( 'CB_LN.mtl', function( materials ) {
 
 			materials.preload();
 
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials( materials );
-			objLoader.setPath( 'models/1/' );
-			objLoader.load( 'bear.obj', function ( object ) {
+			objLoader.setPath( 'models/1/CB_obj' );
+			objLoader.load( 'CB_LN.obj', function ( object ) {
 
 				//object.position.y = 0.2;
 				// 缩放
@@ -317,7 +317,8 @@
 
 		});
 	//}
-	*/
+	
+	/*
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/1/CB_obj/test4.json", function ( obj ) {
 		//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.3;
@@ -325,7 +326,7 @@
 		obj.rotation.set(Math.PI/7.5,Math.PI/10.5,Math.PI*2) ;
 		markerRoot.add( obj );
 				} );
-	
+	*/
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
