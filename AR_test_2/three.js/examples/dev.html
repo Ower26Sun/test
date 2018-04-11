@@ -260,7 +260,7 @@
 	      var downC = getC(event);
 	     }
 	     document.addEventListener('touchmove',function (event) { 
-		 if(event.targetTouches.length==2){
+		 if(event.targetTouches.length == 2){
 			modelSize = (getC(event)/downC)  * oldC;
 			//alert("移动后的值="+modelSize);
 			//settingModel();
@@ -269,18 +269,17 @@
 			requestAnimationFrame( animate ); 
 		 }
 		     //TODO 旋转
-if(event.targetTouches.length == 1){
-	var touch = event.targetTouches[0];
-	var startPos = {x:touch.screenX,y:touch.screenY};
-			
-		var touch = event.targetTouches[0];
-		var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+		if(event.targetTouches.length == 1){
+			var touch = event.targetTouches[0];
+			var startPos = {x:touch.screenX,y:touch.screenY};
 
-		camera.position.x = Math.cos( endPos.x );
-		camera.position.y = Math.sin( endPos.y );
-		camera.lookAt( scene.position );
-		animate(nowMsec);
+			var touch = event.targetTouches[0];
+			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
 
+			camera.position.x = Math.cos( endPos.x );
+			camera.position.y = Math.sin( endPos.y );
+			camera.lookAt( scene.position );
+			animate(nowMsec);
 		}
 
 	     },false)
