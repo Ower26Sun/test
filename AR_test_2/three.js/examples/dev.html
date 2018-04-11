@@ -242,7 +242,7 @@
 	    document.addEventListener('touchend',touchs,false);
 	*/  
 		   
-	    var modelSize = 0.005;
+	    var modelSize = 0.05;
 	   
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
@@ -295,16 +295,20 @@
 	
 	//function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
-		mtlLoader.setPath( 'models/1/CB_obj/' );
-		mtlLoader.load( 'CB_LN.mtl', function( materials ) {
+		//mtlLoader.setPath( 'models/1/CB_obj/' );
+		//mtlLoader.load( 'CB_LN.mtl', function( materials ) {
+			
+		mtlLoader.setPath( 'models/1/' );
+		mtlLoader.load( 'bear.mtl', function( materials ) {
 
 			materials.preload();
 
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials( materials );
-			//objLoader.setPath( 'models/1/' );
-			objLoader.setPath( 'models/1/CB_obj/' );
-			objLoader.load( 'CB_LN.obj', function ( object ) {
+			objLoader.setPath( 'models/1/' );
+			//objLoader.setPath( 'models/1/CB_obj/' );
+			objLoader.load( 'bear.obj', function ( object ) {
+			//objLoader.load( 'CB_LN.obj', function ( object ) {
 
 				//object.position.y = 0.2;
 				// 缩放
