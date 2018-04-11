@@ -242,7 +242,7 @@
 	    document.addEventListener('touchend',touchs,false);
 	*/  
 		   
-	    var modelSize = 0.05;
+	    var modelSize = 0.01;
 	   
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
@@ -302,6 +302,7 @@
 
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials( materials );
+			//objLoader.setPath( 'models/1/' );
 			objLoader.setPath( 'models/1/CB_obj/' );
 			objLoader.load( 'CB_LN.obj', function ( object ) {
 
