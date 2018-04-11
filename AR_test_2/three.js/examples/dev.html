@@ -13,6 +13,8 @@
 <script src='../src/threex/threex-arbasecontrols.js'></script>
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
+<script src='../src/loaders/ObjectLoader.js'></script>
+<script src='../src/loaders/JSONLoader.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
  
 
@@ -287,7 +289,7 @@
 	    },false)
 	   
 	var onError = function ( xhr ) { };
-
+/*
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
 	//function settingModel(){
@@ -314,6 +316,15 @@
 
 		});
 	//}
+	*/
+	var objectLoader = new THREE.ObjectLoader();
+	objectLoader.load("models/1/CB_obj/test4.json", function ( obj ) {
+		//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.3;
+		obj.scale.set(5,5,5);
+		obj.rotation.set(Math.PI/7.5,Math.PI/10.5,Math.PI*2) ;
+		markerRoot.add( obj );
+				} );
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
