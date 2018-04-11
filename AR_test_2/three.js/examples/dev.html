@@ -267,6 +267,7 @@
 			modelSize = (getC(event)/downC)  * oldC;
 			alert("移动后的值="+modelSize);
 			//settingModel();
+			 camera.position.z = Math.cos( modelSize.x );
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
@@ -313,7 +314,7 @@
 
 				//object.position.y = 0.2;
 				// 缩放
-				object.scale.x =  object.scale.y =  object.scale.z = modelSize;
+				object.scale.x =  object.scale.y =  object.scale.z = 0.05;
 			//alert("模型大小modelSize=" + modelSize);
 				// 旋转
 				object.rotation.set(Math.PI/10,Math.PI/10,Math.PI/10) ;
