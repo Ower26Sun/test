@@ -246,21 +246,10 @@
 	   /*
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
-		    if(event.targetTouches.length == 1){
-			var touch = event.touches[0];
-			var startx = Math.floor(touch.screenX);
-	      		var starty = Math.floor(touch.screenY);
-			
-			return Math.atan2(ny, nx) * 180 / Math.PI
 	//alert("默认的值是="+modelSize);
 		
 	     function getC(event) {
-		     if(event.targetTouches.length == 1){
-			var x3=event.targetTouches[0].pageX;
-	      		var y3=event.targetTouches[0].pageY;
-			     
-			
-		     }
+		   
 	      var x1=event.targetTouches[0].pageX;
 	      var y1=event.targetTouches[0].pageY;
 
@@ -333,7 +322,7 @@ function changeModelSize(){
 		var b1 = startY1 - startY2;
 		//勾股定理求两坐标间的距离
 		var startLine =  Math.sqrt((a1*a1)+(b1*b1));
-		
+		alert("startLine = " + startLine);
 		document.addEventListener('touchmove',function(event){
 			event.preventDefault();
 			var moveEndX1  = event.targetTouches[0].screenX;
@@ -346,14 +335,16 @@ function changeModelSize(){
 			var b2 = moveEndY1 - moveEndY2;
 			//勾股定理求两坐标间的距离
 			var moveLine = Math.sqrt((a2*a2)+(b2*b2));
-			
+			alert("moveLine = " + moveLine);
 			var modelSizePro = moveLine / startLine;
+			alert("modelSizePro = " + modelSizePro);
 			modelSize = modelSize * modelSizePro;
 			alert(modelSize);
 			settingModel();
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
+	
 		},false);
 		
 	},false);
@@ -453,7 +444,4 @@ function changeModelRotation(){
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-function changeModelSize(){
-		
-}
 </script></body>
