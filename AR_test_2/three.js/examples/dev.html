@@ -243,12 +243,24 @@
 	*/  
 		   
 	    var modelSize = 0.05;
-	   
+	   /*
 	    document.addEventListener('touchstart',function (event) {
 	     var oldC = modelSize;
+		    if(event.targetTouches.length == 1){
+			var touch = event.touches[0];
+			var startx = Math.floor(touch.screenX);
+	      		var starty = Math.floor(touch.screenY);
+			
+			return Math.atan2(ny, nx) * 180 / Math.PI
 	//alert("默认的值是="+modelSize);
 		
 	     function getC(event) {
+		     if(event.targetTouches.length == 1){
+			var x3=event.targetTouches[0].pageX;
+	      		var y3=event.targetTouches[0].pageY;
+			     
+			
+		     }
 	      var x1=event.targetTouches[0].pageX;
 	      var y1=event.targetTouches[0].pageY;
 
@@ -265,7 +277,7 @@
 	     document.addEventListener('touchmove',function (event) { 
 		 if(event.targetTouches.length == 2){
 			modelSize = (getC(event)/downC)  * oldC;
-			camera.position.z = Math.sin( endPos.y );
+			camera.position.z = Math.tan( endPos.y );
 			alert("移动后的值="+modelSize);
 			 
 			settingModel();
@@ -288,11 +300,88 @@
 			camera.lookAt( scene.position );
 			animate(nowMsec);
 		}
-*/
+
 	     },false)
 
 	    },false)
-	   
+	   */
+	//监听"touchstart"事件
+document.addEventListener('touchstart',function (event) {
+	//当触摸点只有一个时，调用旋转方法
+	if(event.targetTouches.length == 1){
+		changeModelRotation();
+		
+		}
+	//当触摸点有两个时，调用缩放的方法
+	if(event.targetTouches.length == 2){
+		changeModelSize();
+	}
+},false);
+	
+//缩放模型
+function changeModelSize(){
+	document.addEventListener('touchstart',function (event) {
+		//第一个点的坐标
+		var startX1 = event.targetTouches[0].screenX;
+		var startY1 = event.targetTouches[0].screenY;
+		//第二个点的坐标
+		var startX2 = event.targetTouches[1].screenX;
+		var startY2 = event.targetTouches[1].screenY;
+		//两个点X轴坐标的差值
+		var a1 = startX1 - startX2;
+		//两个点Y轴坐标的差值
+		var b1 = startY1 - startY2;
+		//勾股定理求两坐标间的距离
+		var startLine =  Math.sqrt((a1*a1)+(b1*b1));
+		
+		document.addEventListener('touchmove',function(event){
+			
+			var moveEndX1  = event.targetTouches[0].screenX;
+			var moveEndY1  = event.targetTouches[0].screenY;
+			
+			var moveEndX2  = event.targetTouches[1].screenX;
+			var moveEndY2  = event.targetTouches[1].screenY;
+			
+			var a2 = moveEndX1 - moveEndX2;
+			var b2 = moveEndY1 - moveEndY2;
+			//勾股定理求两坐标间的距离
+			var moveLine = Math.sqrt((a2*a2)+(b2*b2));
+			
+			var modelSizePro = moveLine / startLine;
+			settingModel();
+			modelSize = modelSize * modelSizePro;
+			animate(nowMsec);
+			renderer.render(scene, camera);
+			requestAnimationFrame( animate ); 
+		},false);
+		
+	},false);
+	
+};
+
+//旋转模型
+function changeModelRotation(){
+	alert("旋转模型方法");
+	document.addEventListener('touchstart',function (event) {
+		//第一个点的坐标
+		var startX1 = event.targetTouches[0].screenX;
+		var startY1 = event.targetTouches[0].screenY;
+		
+		document.addEventListener('touchmove',function(event){
+			//手指触碰移动时的坐标
+			var moveEndX1  = event.targetTouches[0].screenX;
+			var moveEndY1  = event.targetTouches[0].screenY;
+			
+			var nx = moveEndX1 - startX1;
+			var ny = moveEndY1 - startY1;
+			
+			var angle = Math.atan2(ny, nx) * 180 / Math.PI
+			
+		},false);
+		
+	},false);
+	
+};
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
@@ -362,5 +451,7 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-
+function changeModelSize(){
+		
+}
 </script></body>
