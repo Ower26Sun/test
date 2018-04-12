@@ -265,7 +265,10 @@
 	     document.addEventListener('touchmove',function (event) { 
 		 if(event.targetTouches.length == 2){
 			modelSize = (getC(event)/downC)  * oldC;
+			camera.position.z = Math.sin( endPos.y );
 			alert("移动后的值="+modelSize);
+			 scene.remove(object);
+			 
 			settingModel();
 		// camera.position.z = Math.cos( modelSize.x );
 			animate(nowMsec);
