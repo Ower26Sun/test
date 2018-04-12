@@ -266,8 +266,8 @@
 		 if(event.targetTouches.length == 2){
 			modelSize = (getC(event)/downC)  * oldC;
 			alert("移动后的值="+modelSize);
-			//settingModel();
-			 camera.position.z = Math.cos( modelSize.x );
+			settingModel();
+		// camera.position.z = Math.cos( modelSize.x );
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
@@ -295,7 +295,7 @@
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
-	//function settingModel(){
+	function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
 		//mtlLoader.setPath( 'models/1/CB_obj/' );
 		//mtlLoader.load( 'CB_LN.mtl', function( materials ) {
@@ -323,7 +323,7 @@
 			}, onProgress, onError );
 
 		});
-	//}
+	}
 	
 	/*
 	var objectLoader = new THREE.ObjectLoader();
