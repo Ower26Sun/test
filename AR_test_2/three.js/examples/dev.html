@@ -335,7 +335,7 @@ function changeModelSize(){
 		var startLine =  Math.sqrt((a1*a1)+(b1*b1));
 		
 		document.addEventListener('touchmove',function(event){
-			
+			event.preventDefault();
 			var moveEndX1  = event.targetTouches[0].screenX;
 			var moveEndY1  = event.targetTouches[0].screenY;
 			
@@ -368,6 +368,7 @@ function changeModelRotation(){
 		var startY1 = event.targetTouches[0].screenY;
 		
 		document.addEventListener('touchmove',function(event){
+			event.preventDefault();
 			//手指触碰移动时的坐标
 			var moveEndX1  = event.targetTouches[0].screenX;
 			var moveEndY1  = event.targetTouches[0].screenY;
