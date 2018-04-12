@@ -348,8 +348,9 @@ function changeModelSize(){
 			var moveLine = Math.sqrt((a2*a2)+(b2*b2));
 			
 			var modelSizePro = moveLine / startLine;
-			settingModel();
 			modelSize = modelSize * modelSizePro;
+			alert(modelSize);
+			settingModel();
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
