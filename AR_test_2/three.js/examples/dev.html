@@ -214,9 +214,9 @@ function changeModelSize(){
 			var b2 = moveEndY1 - moveEndY2;
 			//勾股定理求两坐标间的距离
 			var moveLine = Math.sqrt((a2*a2)+(b2*b2));
-			alert("moveLine = " + moveLine);
+			//alert("moveLine = " + moveLine);
 			var modelSizePro = moveLine / startLine;
-			alert("modelSizePro = " + modelSizePro);
+			//alert("modelSizePro = " + modelSizePro);
 			fov = fov * modelSizePro;
 			/*alert(modelSize);
 			settingModel();
@@ -238,8 +238,9 @@ function changeModelSize(){
 
 //旋转模型
 function changeModelRotation(){
-	alert("旋转模型方法");
+	//alert("旋转模型方法");
 	document.addEventListener('touchstart',function (event) {
+		
 		//第一个点的坐标
 		var startX1 = event.targetTouches[0].screenX;
 		var startY1 = event.targetTouches[0].screenY;
@@ -253,13 +254,19 @@ function changeModelRotation(){
 			var nx = moveEndX1 - startX1;
 			var ny = moveEndY1 - startY1;
 			
-			var angle = Math.atan2(ny, nx) * 180 / Math.PI
+			//var angle = Math.atan2(ny, nx) * 180 / Math.PI
+			
+			camera.position.x = Math.sin( nx ) * 2;
+			camera.position.y = Math.sin( ny ) * 2;
+			camera.lookAt( scene.position );
+
 			
 		},false);
 		
 	},false);
 	
 };
+
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
