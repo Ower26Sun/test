@@ -216,7 +216,7 @@ function changeModelSize(){
 			//勾股定理求两坐标间的距离
 			var moveLine = Math.sqrt((a2*a2)+(b2*b2));
 			//alert("moveLine = " + moveLine);
-			var modelSizePro = moveLine / startLine;
+			var modelSizePro = (moveLine / startLine)/10;
 			//alert("modelSizePro = " + modelSizePro);
 			//fov = far - (fov * modelSizePro);
 				fov = fov * modelSizePro;
