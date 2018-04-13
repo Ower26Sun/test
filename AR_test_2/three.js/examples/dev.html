@@ -182,7 +182,7 @@ document.addEventListener('touchstart',function (event) {
 	//当触摸点有两个时，调用缩放的方法
 	if(event.targetTouches.length == 2){
 		changeModelSize();
-		
+		alert(fov);
 	}
 },false);
 	
@@ -233,7 +233,6 @@ function changeModelSize(){
 	},false);
 	
 };
-	alert(fov);
 /*
 //旋转模型
 function changeModelRotation(){
