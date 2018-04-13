@@ -296,8 +296,8 @@ function changeModelRotation(){
 			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
-				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
-				document.getElementById("result").innerHTML = text;
+				//var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
+				//document.getElementById("result").innerHTML = text;
 				camera.position.x = Math.sin( a ) * 5;
 				camera.position.y = Math.sin( b ) * 5;
 				camera.lookAt( scene.position );
@@ -311,8 +311,8 @@ function changeModelRotation(){
 			b=y2-y3;
 			distanceend=Math.sqrt((a*a)+(b*b));
 			var modelSize = distancestart/distanceend * 12;
-            var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + '）';
-			document.getElementById("result").innerHTML = text;
+           // var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + '）';
+			//document.getElementById("result").innerHTML = text;
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
 			}
