@@ -33,7 +33,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-	settingModel();
+	
 	
 	var fov = 45,//拍摄距离 视野角值越大，场景中的物体越小
  	near = 1,//相机离视体积最近的距离
@@ -176,7 +176,7 @@
 document.addEventListener('touchstart',function (event) {
 	//当触摸点只有一个时，调用旋转方法
 	if(event.targetTouches.length == 1){
-		changeModelRotation();
+		//changeModelRotation();
 		
 		}
 	//当触摸点有两个时，调用缩放的方法
@@ -233,7 +233,7 @@ function changeModelSize(){
 	},false);
 	
 };
-
+/*
 //旋转模型
 function changeModelRotation(){
 	//alert("旋转模型方法");
@@ -264,6 +264,7 @@ function changeModelRotation(){
 	},false);
 	
 };
+*/
 /*
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -332,10 +333,8 @@ function changeModelRotation(){
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
-	function settingModel(){
+	//function settingModel(){
 		var mtlLoader = new THREE.MTLLoader();
-		//mtlLoader.setPath( 'models/1/CB_obj/' );
-		//mtlLoader.load( 'CB_LN.mtl', function( materials ) {
 			
 		mtlLoader.setPath( 'models/1/' );
 		mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -345,15 +344,13 @@ function changeModelRotation(){
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials( materials );
 			objLoader.setPath( 'models/1/' );
-			//objLoader.setPath( 'models/1/CB_obj/' );
 			objLoader.load( 'bear.obj', function ( object ) {
-			//objLoader.load( 'CB_LN.obj', function ( object ) {
 
 				//object.position.y = 0.2;
 				// 缩放
 				object.scale.x =  object.scale.y =  object.scale.z = 0.05;
 				//object.scale.x =  object.scale.y =  object.scale.z = modelSize;
-			//alert("模型大小modelSize=" + modelSize);
+				
 				// 旋转
 				object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 				markerRoot.add( object );
@@ -361,7 +358,7 @@ function changeModelRotation(){
 			}, onProgress, onError );
 
 		});
-	}
+	//}
 	
 	/*
 	var objectLoader = new THREE.ObjectLoader();
