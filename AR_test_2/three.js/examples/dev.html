@@ -255,7 +255,7 @@ function changeModelRotation(){
 			
 			//var angle = Math.atan2(ny, nx) * 180 / Math.PI
 			
-			camera.position.x = Math.sin( nx ) * 2;
+			camera.position.x = Math.cos( nx ) * 2;
 			camera.position.y = Math.sin( ny ) * 2;
 			camera.lookAt( scene.position );
 
