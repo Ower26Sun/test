@@ -221,12 +221,12 @@ function changeModelSize(){
 			//fov = far - (fov * modelSizePro);
 				fov = fov * modelSizePro;
 			//alert(modelSize);
-				
 			camera.fov = fov;
 			camera.updateProjectionMatrix();
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
+				alert(fov);
 			}
 		},false);
 		
