@@ -207,13 +207,13 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/AR_CB.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.75;
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.25;
 	//obj.scale.set(1,1,1);
 		/*
 	obj.position.y = -15;
 	obj.position.z = -15;
 	*/
-	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
+	obj.rotation.set(Math.PI/7.5,Math.PI/10.5,Math.PI*2) ;
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
