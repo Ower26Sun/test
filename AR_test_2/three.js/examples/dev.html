@@ -200,7 +200,7 @@ function changeModelSize(){
 		//两个点Y轴坐标的差值
 		var b1 = startY1 - startY2;
 		//勾股定理求两坐标间的距离
-		var startLine =  Math.sqrt((a1*a1)+(b1*b1));
+		var startLine =  parseFloat(Math.sqrt((a1*a1)+(b1*b1)));
 		//alert("startLine = " + startLine);
 		document.addEventListener('touchmove',function(event){
 			event.preventDefault();
@@ -214,9 +214,11 @@ function changeModelSize(){
 			var a2 = moveEndX1 - moveEndX2;
 			var b2 = moveEndY1 - moveEndY2;
 			//勾股定理求两坐标间的距离
-			var moveLine = Math.sqrt((a2*a2)+(b2*b2));
+			var moveLine = parseFloat(Math.sqrt((a2*a2)+(b2*b2)));
 			//alert("moveLine = " + moveLine);
-			var modelSizePro = moveLine / startLine;
+			var modelSizePro = parseFloat(moveLine / startLine);
+				modelSizePro.toFixed(2);
+				alert(modelSizePro);
 			//alert("modelSizePro = " + modelSizePro);
 			//fov = far - (fov * modelSizePro);
 			
