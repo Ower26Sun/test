@@ -171,6 +171,7 @@
 			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
+				
 				var angle = 360*Math.atan(b/a)/(2*Math.PI);
 							alert(angle);
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
@@ -178,6 +179,8 @@
 				camera.position.x = Math.cos( angle );
 				camera.position.y = Math.sin( angle );
 				camera.lookAt( scene.position );
+				
+			
 			}
 			//双指触摸时
 			if(event.targetTouches.length == 2){
