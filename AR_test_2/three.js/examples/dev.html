@@ -35,8 +35,8 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	
-	var fov = 50;//拍摄距离 视野角值越大，场景中的物体越小
- 	var near = 50;//相机离视体积最近的距离
+	var fov = 100;//拍摄距离 视野角值越大，场景中的物体越小
+ 	var near = 100;//相机离视体积最近的距离
  	var far = 1000;//相机离视体积最远的距离
  	var aspect = window.innerWidth / window.innerHeight; //纵横比
 	
@@ -219,7 +219,8 @@ function changeModelSize(){
 			var modelSizePro = moveLine / startLine;
 			//alert("modelSizePro = " + modelSizePro);
 			//fov = far - (fov * modelSizePro);
-				fov = fov * modelSizePro;
+			
+			fov = fov * modelSizePro;
 			//alert(modelSize);
 			camera.fov = fov;
 			camera.updateProjectionMatrix();
