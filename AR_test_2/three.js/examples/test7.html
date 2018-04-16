@@ -171,8 +171,8 @@ var renderer	= new THREE.WebGLRenderer({
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
 			//单指触摸时
 			if(event.targetTouches.length == 1){
-/*				
-a=x2-x;
+			/*				
+				a=x2-x;
 				b=y2-y;
 				
 				var angle = 360*Math.atan(b/a)/(2*Math.PI);
@@ -182,19 +182,19 @@ a=x2-x;
 				camera.position.x = Math.cos( angle );
 				camera.position.y = Math.sin( angle );
 				camera.lookAt( scene.position );
-		*/
-		
-			
-			
-if(x2-x<0)｛
-camera.position.x=camera.position.x+Math.cos(i)*200;  camera.position.z=camera.position.z+Math.sin(i)*200;
-camera.lookAt(scene.position);
-｝
-if(x2-x>0)｛
-camera.position.x=camera.position.x-Math.cos(i)*200;
-camera.position.z=camera.position.x-Math.sin(i)*200;
-camera.lookAt(scene.position);
-｝｝
+				
+			*/		
+			if(x2-x<0){
+				camera.position.x=camera.position.x+Math.cos(i)*200;  
+				camera.position.z=camera.position.z+Math.sin(i)*200;
+				camera.lookAt( scene.position );
+			}
+			if(x2-x>0){
+				camera.position.x=camera.position.x-Math.cos(i)*200;
+				camera.position.z=camera.position.x-Math.sin(i)*200;
+				camera.lookAt( scene.position );
+			}
+			}
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
