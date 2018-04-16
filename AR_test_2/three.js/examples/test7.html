@@ -136,7 +136,7 @@ var renderer	= new THREE.WebGLRenderer({
 	})	
 	
 	var controls = new THREE.OrbitControls( camera );
-		controls.target.set( 0, 100, 0 );
+		controls.target.set( 0, 0, 0 );
 		controls.update();
 	/*
 	//全局变量，触摸开始位置
@@ -232,12 +232,8 @@ var renderer	= new THREE.WebGLRenderer({
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/AR_CB.json", function ( obj ) {
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.05;
-		//obj.scale.set(2,2,2);
-	//obj.scale.set(1,1,1);
-		/*
-	obj.position.y = -15;
-	obj.position.z = -15;
-	*/
+		obj.scale.set(2,2,2);
+	
 	obj.rotation.set(Math.PI/8.5,Math.PI/5.5,Math.PI*4.5) ;
 	markerRoot.add( obj );
 	} );
