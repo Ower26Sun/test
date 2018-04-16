@@ -32,6 +32,7 @@
 	// init renderer
 
 //var i = 0.0005;	
+	var controls;
 var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -134,11 +135,11 @@ var renderer	= new THREE.WebGLRenderer({
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	/*
-	var controls = new THREE.OrbitControls( camera );
+	
+	controls = new THREE.OrbitControls( camera );
 		controls.target.set( 0, 0, 0 );
 		controls.update();
-		*/
+		
 	/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -233,7 +234,6 @@ var renderer	= new THREE.WebGLRenderer({
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/AR_CB.json", function ( obj ) {
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.05;
-		obj.scale.set(2,2,2);
 	
 	obj.rotation.set(Math.PI/8.5,Math.PI/5.5,Math.PI*4.5) ;
 	markerRoot.add( obj );
