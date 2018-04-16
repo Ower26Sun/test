@@ -29,7 +29,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 
-var i =0.0005;	
+var i = 0.0005;	
 var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -188,14 +188,14 @@ var renderer	= new THREE.WebGLRenderer({
 				i+=0.0005;
 				document.getElementById("result").innerHTML = i;
 				camera.position.x = Math.cos(i)*200;  
-				camera.position.y = Math.sin(i)*200;
+				camera.position.z = Math.sin(i)*200;
 				camera.lookAt( scene.position );
 			}
 			if(x2-x>0){
 				i-=0.0005;
 				document.getElementById("result").innerHTML = i;
 				camera.position.x = Math.cos(i)*200;
-				camera.position.y = Math.sin(i)*200;
+				camera.position.z = Math.sin(i)*200;
 				camera.lookAt( scene.position );
 			}
 			}
@@ -230,7 +230,8 @@ var renderer	= new THREE.WebGLRenderer({
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/AR_CB.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.05;
+	//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.05;
+		obj.scale.set(4,4,4);
 	//obj.scale.set(1,1,1);
 		/*
 	obj.position.y = -15;
