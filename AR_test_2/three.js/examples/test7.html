@@ -20,7 +20,7 @@
 		<script src="js/loaders/JSONLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
 		<script src="js/controls/OrbitControls.js"></script>
-		<script src="js/controls/ObjectLoader.js"></script>
+		
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 <div id="result" style="border:2px solid red; color:red;">22未触发事件！</div>
@@ -145,7 +145,7 @@ var renderer	= new THREE.WebGLRenderer({
 		smoothedControls.update(markerRoot)
 	})	
 	
-	
+	/*
 		var controls;
 		 function initControls() {
 
@@ -168,7 +168,10 @@ var renderer	= new THREE.WebGLRenderer({
 		  //是否开启右键拖拽
 		  controls.enablePan = true;
 		 }
-	
+	*/
+	var controls = new THREE.OrbitControls( camera );
+				controls.target.set( 0, 100, 0 );
+				controls.update();
 	/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
