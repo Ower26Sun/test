@@ -185,11 +185,15 @@ var renderer	= new THREE.WebGLRenderer({
 				
 			*/		
 			if(x2-x<0){
+				i+=0.0005;
+				document.getElementById("result").innerHTML = i;
 				camera.position.x=camera.position.x+Math.cos(i)*200;  
 				camera.position.z=camera.position.z+Math.sin(i)*200;
 				camera.lookAt( scene.position );
 			}
 			if(x2-x>0){
+				i-=0.0005;
+				document.getElementById("result").innerHTML = i;
 				camera.position.x=camera.position.x-Math.cos(i)*200;
 				camera.position.z=camera.position.z-Math.sin(i)*200;
 				camera.lookAt( scene.position );
