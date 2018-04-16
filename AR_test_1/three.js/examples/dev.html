@@ -21,7 +21,7 @@
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
-		<script src="js/OrbitControls.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
 		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/Detector.js"></script>
 
@@ -96,7 +96,9 @@
 			arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)	
 		}	
 	}
-
+	var controls = new THREE.OrbitControls( camera );
+		controls.target.set( 0, 100, 0 );
+		controls.update();
 	////////////////////////////////////////////////////////////////////////////////
 	//          initialize arToolkitContext
 	////////////////////////////////////////////////////////////////////////////////	
