@@ -169,9 +169,11 @@ var renderer	= new THREE.WebGLRenderer({
             var touch2 = event.targetTouches[0]; //获取第一个触点
             var x2 = Number(touch2.screenX); //页面触点X2坐标
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
+	    
+	    /*
 			//单指触摸时
 			if(event.targetTouches.length == 1){
-			/*				
+							
 				a=x2-x;
 				b=y2-y;
 				
@@ -182,8 +184,8 @@ var renderer	= new THREE.WebGLRenderer({
 				camera.position.x = Math.cos( angle );
 				camera.position.y = Math.sin( angle );
 				camera.lookAt( scene.position );
-				
-			*/		
+/*
+				/*
 			if(x2-x<0){
 				i=i+0.0005;
 				document.getElementById("result").innerHTML = i;
@@ -198,6 +200,7 @@ var renderer	= new THREE.WebGLRenderer({
 				camera.position.z = Math.sin(i)*200;
 				camera.lookAt( scene.position );
 			}
+			*/
 			}
 			//双指触摸时
 			if(event.targetTouches.length == 2){
@@ -254,6 +257,12 @@ var renderer	= new THREE.WebGLRenderer({
 		// keep looping
 		requestAnimationFrame( animate );
 		//camera.position.x = -2;
+		
+		var timer = Date.now() * 0.0005;
+		camera.position.x = Math.cos( timer ) * 200;
+		camera.position.z = Math.sin( timer ) * 200;
+		camera.lookAt( scene.position );
+		
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
