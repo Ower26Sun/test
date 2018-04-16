@@ -21,7 +21,7 @@
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
-		<script src="js/controls/OrbitControls.js"></script>
+		<script src="js/OrbitControls.js"></script>
 		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/Detector.js"></script>
 
@@ -165,7 +165,7 @@
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-/*
+
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	mtlLoader.load( 'bear.mtl', function( materials ) {
@@ -187,25 +187,6 @@
 		}, onProgress, onError );
 
 	});
-*/
-			var loader = new THREE.FBXLoader();
-				loader.load( 'models/1/Samba Dancing.fbx', function ( object ) {
-					object.mixer = new THREE.AnimationMixer( object );
-					mixers.push( object.mixer );
-					var action = object.mixer.clipAction( object.animations[ 0 ] );
-					action.play();
-					object.traverse( function ( child ) {
-						if ( child.isMesh ) {
-							child.castShadow = true;
-							child.receiveShadow = true;
-						}
-					} );
-					markerRoot.add( object );
-				}, onProgress, onError );
-				
-				
-
-			}
 			// stats
 				var stats = new Stats();
 				document.body.appendChild( stats.dom );
