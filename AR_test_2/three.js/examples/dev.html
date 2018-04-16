@@ -35,12 +35,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	
-	
-	var fov = 100;//拍摄距离 视野角值越大，场景中的物体越小
- 	var near = 100;//相机离视体积最近的距离
- 	var far = 500;//相机离视体积最远的距离
- 	var aspect = window.innerWidth / window.innerHeight; //纵横比
-	
+	var controls;
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -72,8 +67,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// Create a camera
-	var camera = new THREE.PerspectiveCamera(fov,aspect, near, far);
-	
+	var camera = new THREE.Camera();
 	scene.add(camera);
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -169,110 +163,12 @@
 		}
 	};
 	
-	
-	
-	   /*
-	//监听"touchstart"事件
-document.addEventListener('touchstart',function (event) {
-	//当触摸点只有一个时，调用旋转方法
-	if(event.targetTouches.length == 1){
-		//changeModelRotation();
-		
-		}
-	//当触摸点有两个时，调用缩放的方法
-	if(event.targetTouches.length == 2){
-		changeModelSize();
-		alert(fov);
-	}
-},false);
-	
-//缩放模型
-function changeModelSize(){
-	document.addEventListener('touchstart',function (event) {
-		//第一个点的坐标
-		var startX1 = event.targetTouches[0].screenX;
-		var startY1 = event.targetTouches[0].screenY;
-		//第二个点的坐标
-		var startX2 = event.targetTouches[1].screenX;
-		var startY2 = event.targetTouches[1].screenY;
-		//两个点X轴坐标的差值
-		var a1 = startX1 - startX2;
-		//两个点Y轴坐标的差值
-		var b1 = startY1 - startY2;
-		//勾股定理求两坐标间的距离
-		var startLine =  parseFloat(Math.sqrt((a1*a1)+(b1*b1)));
-		startLine.toFixed(2);
-		alert("startLine = " + startLine);
-		document.addEventListener('touchmove',function(event){
-			event.preventDefault();
-			if(event.targetTouches.length == 2){
-			var moveEndX1  = event.targetTouches[0].screenX;
-			var moveEndY1  = event.targetTouches[0].screenY;
-			
-			var moveEndX2  = event.targetTouches[1].screenX;
-			var moveEndY2  = event.targetTouches[1].screenY;
-			
-			var a2 = moveEndX1 - moveEndX2;
-			var b2 = moveEndY1 - moveEndY2;
-			//勾股定理求两坐标间的距离
-			var moveLine = parseFloat(Math.sqrt((a2*a2)+(b2*b2)));
-				moveLine.toFixed(2);
-			alert("moveLine = " + moveLine);
-			var modelSizePro = parseFloat(moveLine / startLine);
-				modelSizePro.toFixed(2);
-			alert("modelSizePro=" + modelSizePro);
-			//fov = far - (fov * modelSizePro);
-			
-			fov = fov * modelSizePro;
-			alert("fov="+fov);
-			camera.fov = fov;
-			camera.updateProjectionMatrix();
-			animate(nowMsec);
-			renderer.render(scene, camera);
-			requestAnimationFrame( animate ); 
-			}
-		},false);
-		
-	},false);
-	
-};
-/*
-//旋转模型
-function changeModelRotation(){
-	//alert("旋转模型方法");
-	document.addEventListener('touchstart',function (event) {
-		
-		//第一个点的坐标
-		var startX1 = event.targetTouches[0].screenX;
-		var startY1 = event.targetTouches[0].screenY;
-		
-		document.addEventListener('touchmove',function(event){
-			event.preventDefault();
-			//手指触碰移动时的坐标
-			var moveEndX1  = event.targetTouches[0].screenX;
-			var moveEndY1  = event.targetTouches[0].screenY;
-			
-			var nx = moveEndX1 - startX1;
-			var ny = moveEndY1 - startY1;
-			
-			//var angle = Math.atan2(ny, nx) * 180 / Math.PI
-			
-			camera.position.x = Math.cos( nx ) * 2;
-			camera.position.y = Math.sin( ny ) * 2;
-			camera.lookAt( scene.position );
 
-			
-		},false);
-		
-	},false);
-	
-};
-*/
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	
-	//function settingModel(){
+	
 		var mtlLoader = new THREE.MTLLoader();
 			
 		mtlLoader.setPath( 'models/1/' );
@@ -295,7 +191,9 @@ function changeModelRotation(){
 			}, onProgress, onError );
 
 		});
-	//}
+		controls = new THREE.OrbitControls( camera );
+			controls.target.set( 0, 1, 0 );
+			controls.update();
 	
 	/*
 	var objectLoader = new THREE.ObjectLoader();
@@ -322,12 +220,7 @@ function changeModelRotation(){
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		/*
-		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 200;
-		camera.position.z = Math.sin( timer ) * 200;
-		camera.lookAt( scene.position );
-		*/
+		
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
