@@ -185,14 +185,14 @@ var renderer	= new THREE.WebGLRenderer({
 				
 			*/		
 			if(x2-x<0){
-				i+=0.0005;
+				i=i+0.0005;
 				document.getElementById("result").innerHTML = i;
 				camera.position.x = Math.cos(i)*200;  
 				camera.position.z = Math.sin(i)*200;
 				camera.lookAt( scene.position );
 			}
 			if(x2-x>0){
-				i-=0.0005;
+				i=i-0.0005;
 				document.getElementById("result").innerHTML = i;
 				camera.position.x = Math.cos(i)*200;
 				camera.position.z = Math.sin(i)*200;
@@ -231,7 +231,7 @@ var renderer	= new THREE.WebGLRenderer({
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/AR_CB.json", function ( obj ) {
 	//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.05;
-		obj.scale.set(4,4,4);
+		obj.scale.set(2,2,2);
 	//obj.scale.set(1,1,1);
 		/*
 	obj.position.y = -15;
