@@ -37,7 +37,7 @@
 	
 	var fov = 100;//拍摄距离 视野角值越大，场景中的物体越小
  	var near = 100;//相机离视体积最近的距离
- 	var far = 1000;//相机离视体积最远的距离
+ 	var far = 500;//相机离视体积最远的距离
  	var aspect = window.innerWidth / window.innerHeight; //纵横比
 	
 	// init renderer
@@ -224,7 +224,7 @@ function changeModelSize(){
 			//fov = far - (fov * modelSizePro);
 			
 			fov = fov * modelSizePro;
-			//alert(modelSize);
+			alert("fov="+fov);
 			camera.fov = fov;
 			camera.updateProjectionMatrix();
 			animate(nowMsec);
@@ -302,7 +302,7 @@ function changeModelRotation(){
 				//document.getElementById("result").innerHTML = text;
 				camera.position.x = Math.sin( a ) * 5;
 				camera.position.y = Math.sin( b ) * 5;
-				camera.lookAt( scene.position );*/
+				camera.lookAt( scene.position );
 	var i =0.0005;
 if(x2-x<0)｛
 camera.position.x=camera.position.x+Math.cos(i)*200;  camera.position.z=camera.position.z+Math.sin(i)*200;
