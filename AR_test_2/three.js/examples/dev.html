@@ -216,10 +216,10 @@ function changeModelSize(){
 			//勾股定理求两坐标间的距离
 			var moveLine = parseFloat(Math.sqrt((a2*a2)+(b2*b2)));
 				moveLine.toFixed(2);
-			//alert("moveLine = " + moveLine);
+			alert("moveLine = " + moveLine);
 			var modelSizePro = parseFloat(moveLine / startLine);
 				modelSizePro.toFixed(2);
-				alert("modelSizePro=" + modelSizePro);
+			alert("modelSizePro=" + modelSizePro);
 			//fov = far - (fov * modelSizePro);
 			
 			fov = fov * modelSizePro;
