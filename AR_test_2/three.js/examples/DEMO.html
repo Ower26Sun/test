@@ -167,24 +167,14 @@
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
 			//单指触摸时
 			if(event.targetTouches.length == 1){
-				/**a=x2-x;
-				//b=y2-y;
-				//var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
-			//document.getElementById("result").innerHTML = text;
-				//camera.position.x = Math.sin( a ) * 5;
-				//camera.position.y = Math.sin( b ) * 5;
-				//camera.lookAt( scene.position );
-*/
-				var i =0.0005;
-if(x2-x<0)｛
-camera.position.x=camera.position.x+Math.cos(i)*200;  camera.position.z=camera.position.z+Math.sin(i)*200;
-camera.lookAt(scene.position);
-｝
-if(x2-x>0)｛
-camera.position.x=camera.position.x-Math.cos(i)*200;
-camera.position.z=camera.position.z-Math.sin(i)*200;
-camera.lookAt(scene.position);
-｝
+				a=x2-x;
+				b=y2-y;
+				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
+			document.getElementById("result").innerHTML = text;
+				camera.position.x = Math.sin( a ) * 5;
+				camera.position.y = Math.sin( b ) * 5;
+				camera.lookAt( scene.position );
+
 			}
 			//双指触摸时
 			if(event.targetTouches.length == 2){
