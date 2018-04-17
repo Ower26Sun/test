@@ -23,14 +23,14 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">6</div>
+<div id="result" style="border:2px solid red; color:red;">7</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	alert(6);
+	alert(7);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -215,7 +215,7 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = 2;
-	obj.rotation.set(Math.PI,(Math.PI/9)*8,Math.PI) ;
+	obj.rotation.set(Math.PI,(Math.PI/9)*11,Math.PI) ;
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
@@ -231,13 +231,13 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+		
 		//旋转
-		/*
 		var timer = Date.now() * 0.0005;
 		camera.position.x = Math.cos( timer ) * modelSize;
 		camera.position.z = Math.sin( timer ) * modelSize;
 		camera.lookAt( scene.position );
-		*/
+
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
