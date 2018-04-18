@@ -23,14 +23,14 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">27</div>
+<div id="result" style="border:2px solid red; color:red;">28</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	alert(27);
+	alert(28);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -215,7 +215,7 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = 2;
-	//obj.rotation.set(Math.PI,(Math.PI/3)*4,Math.PI/2) ;
+	obj.rotation.set(Math.PI,Math.PI,Math.PI*1.4) ;
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
