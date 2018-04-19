@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(37);
+	alert(38);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -233,7 +233,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		mesh.rotation.y += 0.01;
+		mesh.rotation.x += 0.01;
 		if(mesh.rotation.y > Math.PI * 2){
 			mesh.rotation.y -= Math.PI * 2;
 		}
