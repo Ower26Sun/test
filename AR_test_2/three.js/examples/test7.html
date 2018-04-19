@@ -23,14 +23,15 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">36</div>
+<div id="result" style="border:2px solid red; color:red;">37</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	alert(36);
+	var mesh = new THREE.Mesh();
+	alert(37);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -215,10 +216,9 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = 2;
-	//obj.rotation.set(Math.PI,Math.PI*0.75,Math.PI*0.75) ;
-		obj.rotation.x += 0.1;
-		obj.rotation.y += 0.1;
-	markerRoot.add( obj );
+	obj.rotation.set(Math.PI,Math.PI*0.75,Math.PI*0.75) ;
+		mesh = obj;
+	markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -227,19 +227,23 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-	 
+	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		
+		mesh.rotation.y += 0.01;
+		if(mesh.rotation.y > Math.PI * 2){
+			mesh.rotation.y -= Math.PI * 2;
+		}
 		//旋转
+		/*
 		var timer = Date.now() * 0.0005;
 		camera.position.x = Math.cos( timer ) * modelSize;
 		camera.position.z = Math.sin( timer ) * modelSize;
 		camera.lookAt( scene.position );
-
+*/
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
