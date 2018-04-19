@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">69</div>
+<div id="result" style="border:2px solid red; color:red;">70</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(69);
+	alert(70);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -217,6 +217,9 @@
 	//obj.scale.set(1,1,1);
 	//obj.position.x = 2;
 	//obj.rotation.set(Math.PI,Math.PI*0.9,Math.PI*0.9) ;
+		obj.children[0].geometry.computeBoundingBox();  
+		obj.rotation.x = THREE.Math.degToRad( 90 );  
+		obj.children[0].geometry.center()
 		mesh = obj;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.2;
 		//mesh.rotation.set(Math.PI*2,Math.PI,Math.PI*0.81) ;
@@ -240,7 +243,7 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		mesh.rotation.x += (Math.PI * 0.005);
+		//mesh.rotation.x += (Math.PI * 0.005);
 		mesh.rotation.y += (Math.PI * 0.001);
 		/*
 		if(mesh.rotation.x > Math.PI * 2){
