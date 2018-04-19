@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">39</div>
+<div id="result" style="border:2px solid red; color:red;">40</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(39);
+	alert(40);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -216,7 +216,7 @@
 	//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = 2;
-	obj.rotation.set(Math.PI,Math.PI*0.9,Math.PI) ;
+	obj.rotation.set(Math.PI,Math.PI*0.9,Math.PI*0.9) ;
 		mesh = obj;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
 	markerRoot.add( mesh );
@@ -234,9 +234,9 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		mesh.rotation.x += 0.01;
-		if(mesh.rotation.y > Math.PI * 2){
-			mesh.rotation.y -= Math.PI * 2;
+		mesh.rotation.z += 0.01;
+		if(mesh.rotation.z > Math.PI * 2){
+			mesh.rotation.z -= Math.PI * 2;
 		}
 		//旋转
 		/*
