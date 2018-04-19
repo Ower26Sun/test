@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">81</div>
+<div id="result" style="border:2px solid red; color:red;">82</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(81);
+	alert(82);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -227,10 +227,10 @@
 		*/
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.2;
 		//mesh.rotation.set(Math.PI*2,Math.PI,Math.PI*0.81) ;
-		mesh.rotation.x = Math.PI;
-		mesh.rotation.y = Math.PI*2;
+		//mesh.rotation.x = Math.PI;
+		//mesh.rotation.y = Math.PI*2;
 		//mesh.rotation.z = Math.PI*0.81;
-		mesh.rotation.z = Math.PI*1.23;
+		//mesh.rotation.z = Math.PI*1.23;
 	markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
