@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">92</div>
+<div id="result" style="border:2px solid red; color:red;">93</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(92);
+	alert(93);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -191,7 +191,7 @@
 			var changex = distancestart/distanceend;
 			var changey = changex*changex*changex;
 			//var modelSize = distancestart/distanceend * 12;
-			modelSize = changey;
+			modelSize = changey * 6;
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
 			animate(modelSize);
