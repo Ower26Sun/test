@@ -192,7 +192,7 @@
 			var changey = changex*changex*changex;
 			//var modelSize = distancestart/distanceend * 12;
 			modelSize = changey * 3;
-			camera.position.z = -modelSize;
+			camera.position.z = modelSize;
 			camera.lookAt( scene.position );
 			animate(modelSize);
 			}
