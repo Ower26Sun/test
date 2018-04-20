@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">83</div>
+<div id="result" style="border:2px solid red; color:red;">84</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(83);
+	alert(84);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -192,7 +192,7 @@
 			var changey = changex*changex*changex;
 			//var modelSize = distancestart/distanceend * 12;
 			modelSize = changey * 3;
-			camera.position.z = modelSize;
+			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
 			animate(modelSize);
 			}
@@ -251,9 +251,9 @@
 		//mesh.rotation.x += (Math.PI * 0.001);
 		//mesh.rotation.y += (Math.PI * 0.001);
 		//mesh.rotation.z += (Math.PI * 0.001);
-		
+		mesh.rotation.y += 0.01;
 		/*
-		if(mesh.rotation.x > Math.PI * 2){
+		if(mesh.rotation.x > Math.PI * 2){0
 			mesh.rotation.x -= Math.PI * 2;
 		}
 		if(mesh.rotation.y > Math.PI * 2){
