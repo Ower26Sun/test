@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">109</div>
+<div id="result" style="border:2px solid red; color:red;">110</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,12 +31,12 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var fov = 450,//拍摄距离 视野角值越大，场景中的物体越小
- 	near = 1,//相机离视体积最近的距离
+ 	near = 450,//相机离视体积最近的距离
  	far = 1000,//相机离视体积最远的距离
  	aspect = window.innerWidth / window.innerHeight; //纵横比
 	
 	var mesh = new THREE.Mesh();
-	alert(109);
+	alert(110);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
