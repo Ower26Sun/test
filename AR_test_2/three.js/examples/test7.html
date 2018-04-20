@@ -219,19 +219,19 @@
 	//obj.position.x = 2;
 	//obj.rotation.set(Math.PI,Math.PI*0.9,Math.PI*0.9) ;
 	
-		mesh = obj;
-		/*
-		mesh.children[0].geometry.computeBoundingBox();  
-		mesh.rotation.x = THREE.Math.degToRad( -50 );  
-		mesh.children[0].geometry.center();
-		*/
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.2;
-		//mesh.rotation.set(Math.PI*2,Math.PI,Math.PI*0.81) ;
-		mesh.rotation.x = Math.PI;
-		mesh.rotation.y = Math.PI*2;
-		//mesh.rotation.z = Math.PI*0.81;
-		mesh.rotation.z = Math.PI*1.23;
-	markerRoot.add( mesh );
+			mesh = obj;
+			/*
+			mesh.children[0].geometry.computeBoundingBox();  
+			mesh.rotation.x = THREE.Math.degToRad( -50 );  
+			mesh.children[0].geometry.center();
+			*/
+			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.02;
+			//mesh.rotation.set(Math.PI*2,Math.PI,Math.PI*0.81) ;
+			mesh.rotation.x = Math.PI;
+			mesh.rotation.y = Math.PI*2;
+			//mesh.rotation.z = Math.PI*0.81;
+			mesh.rotation.z = Math.PI*1.23;
+		markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
