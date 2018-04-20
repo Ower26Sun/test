@@ -232,8 +232,8 @@
 		 if(event.targetTouches.length == 2){
 			modelSize = (getC(event)/downC)  * oldC;
 			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = modelSize；
-			 animate(modelSize);
-			 renderer.render(scene, camera);
+			
+			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
 		 }
 	     },false);
