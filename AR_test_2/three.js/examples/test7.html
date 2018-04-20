@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">108</div>
+<div id="result" style="border:2px solid red; color:red;">109</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(108);
+	alert(109);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -225,6 +225,7 @@
 
 				var startLine = Math.sqrt((a*a)+(b*b));
 				startLine.toFixed(2);
+				alert(startLine);
 			}
 			
 		document.addEventListener('touchmove',function(event){
@@ -242,8 +243,11 @@
 
 					var moveLine = Math.sqrt((a1*a1)+(b1*b1));
 					moveLine.toFixed(2);
+					alert(moveLine);
 				}
 			var changeModelSizePro  = moveLine / startLine ; 
+			alert(changeModelSizePro);
+			
 			mesh.scale.x = mesh.scale.x * changeModelSizePro;
 			mesh.scale.y = mesh.scale.y * changeModelSizePro;
 			mesh.scale.z = mesh.scale.z * changeModelSizePro;
