@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">97</div>
+<div id="result" style="border:2px solid red; color:red;">98</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(97);
+	alert(98);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -224,10 +224,14 @@
 			mesh.rotation.y = Math.PI*2;
 			mesh.rotation.z = Math.PI*1.23;
 		*/
-		
+		/*
 		mesh.rotation.x = Math.PI*2;
 		mesh.rotation.y = Math.PI*3.3;
 		mesh.rotation.z = Math.PI*2.23;
+		*/
+		mesh.rotation.x = Math.PI;
+		mesh.rotation.y = Math.PI;
+		mesh.rotation.z = Math.PI;
 		
 		markerRoot.add( mesh );
 	} );
@@ -244,10 +248,10 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		
+		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
-		
+		*/
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
