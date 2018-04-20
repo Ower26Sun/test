@@ -248,9 +248,9 @@
 			var changeModelSizePro  = moveLine / startLine ; 
 			alert(changeModelSizePro);
 			
-			mesh.scale.x = mesh.scale.x * changeModelSizePro;
-			mesh.scale.y = mesh.scale.y * changeModelSizePro;
-			mesh.scale.z = mesh.scale.z * changeModelSizePro;
+			mesh.scale.x = changeModelSizePro;
+			mesh.scale.y = changeModelSizePro;
+			mesh.scale.z = changeModelSizePro;
 			
 			animate(nowMsec);
 			renderer.render(scene, camera);
