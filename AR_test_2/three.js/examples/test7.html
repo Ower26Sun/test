@@ -144,7 +144,7 @@
 		smoothedControls.update(markerRoot)
 	})	
 
-
+/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -179,7 +179,7 @@
 				camera.position.x = Math.sin( a ) * 1.1;
 				camera.position.y = Math.cos( b ) * 1.1;
 				camera.lookAt( scene.position );
-			}*/
+			}
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -205,10 +205,39 @@
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var text = 'TouchEnd事件触发';
             document.getElementById("result").innerHTML = text;
-    },false)*/
+    },false)
 	},false)
 	},false)
-	 
+	*/
+	var modelSize = 0.06;
+	   
+	    document.addEventListener('touchstart',function (event) {
+	     var oldC = modelSize;
+	//alert("默认的值是="+modelSize);
+		
+	     function getC(event) {
+	      var x1=event.targetTouches[0].pageX;
+	      var y1=event.targetTouches[0].pageY;
+		     
+	      var x2=event.targetTouches[1].pageX;
+	      var y2=event.targetTouches[1].pageY;
+	      var a=x1-x2;
+	      var b=y1-y2;
+	      return Math.sqrt((a*a)+(b*b))
+	     }
+	     if(event.targetTouches.length==2){
+	      var downC = getC(event);
+	     }
+	     document.addEventListener('touchmove',function (event) { 
+		 if(event.targetTouches.length == 2){
+			modelSize = (getC(event)/downC)  * oldC;
+			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = modelSize；
+			 animate(modelSize);
+			 renderer.render(scene, camera);
+			requestAnimationFrame( animate ); 
+		 }
+	     },false);
+		  },false);  
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
