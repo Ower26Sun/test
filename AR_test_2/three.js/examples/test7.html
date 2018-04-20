@@ -23,7 +23,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">89</div>
+<div id="result" style="border:2px solid red; color:red;">90</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(89);
+	alert(90);
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -251,7 +251,7 @@
 		changeAngle += Math.PI * 0.001 ;
 		*/
 		var axis = new THREE.Vector3(0,1,0);//向量axis
-    		mesh.rotateOnAxis(axis,Math.PI * 0.005);//绕axis轴旋转π/8
+    		mesh.rotateOnAxis(axis,Math.PI * 0.001);//绕axis轴旋转π/8
 		
 		
 		//mesh.rotateY(Math.PI/4);
