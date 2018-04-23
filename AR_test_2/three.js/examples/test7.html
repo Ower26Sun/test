@@ -300,7 +300,7 @@
 		requestAnimationFrame( animate );
 		
 		var axis = new THREE.Vector3(0,1,0);//向量axis
-    		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
+    		mesh.rotateOnAxis(axis,Math.PI * 0.002);
 		
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
