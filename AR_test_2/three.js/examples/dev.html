@@ -19,7 +19,6 @@
 
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
-		<script src="js/controls/OrbitControls.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
@@ -145,10 +144,7 @@ alert(123);
 		patternUrl : '../../data/multimarkers/multi-abcdef/patt.tb',
 	})
 	
-	var controls = new THREE.OrbitControls( camera );
-	controls.target.set( 0, 0, 0 );
-	controls.update();
-	/*
+	
 //全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -197,7 +193,7 @@ alert(123);
 
 	},false)
 	},false)
-	*/
+	
 	
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
