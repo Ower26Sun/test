@@ -30,7 +30,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
+alert(45);
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -225,18 +225,7 @@
 var objectLoader = new THREE.FBXLoader();
 	
 	objectLoader.load("models/rose.fbx", function ( obj ) {
-			objectLoader.object.traverse( function( child ) {
-				if ( child instanceof THREE.Mesh ) {
-				}
-				if ( child instanceof THREE.SkinnedMesh ) {
-					if ( child.geometry.animations !== undefined || child.geometry.morphAnimations !== undefined ) {
-							child.mixer = new THREE.AnimationMixer( child );
-							mixers.push( child.mixer );
-					var action = child.mixer.clipAction( child.geometry.animations[ 0 ] );
-						action.play();
-					}
-					}
-				} );
+			
 			mesh = obj;
 		
 			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.6;
