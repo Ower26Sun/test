@@ -17,7 +17,7 @@
       
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/Detector.js"></script>
-		<script src="js/loaders/FBXLoader.js"></script>
+		<script src="js/loaders/JSONLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
 		<script src="js/OrbitControls.js"></script>
 		 
@@ -261,13 +261,13 @@
 	},false);
 	*/
 	// model
-	var objectLoader = new THREE.FBXLoader();
+	var objectLoader = new THREE.ObjectLoader();
 	//objectLoader.load("models/test11/test11.json", function ( obj ) {
-	objectLoader.load("models/rose.fbx", function ( obj ) {
+	objectLoader.load("models/CB_obj/test11.json", function ( obj ) {
 
 			mesh = obj;
 		
-			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 1;
+			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
 			//mesh.rotation.set(Math.PI*2,Math.PI,Math.PI*0.81) ;
 		/*
 			mesh.rotation.x = Math.PI;
@@ -298,10 +298,10 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		/*
+		
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);
-		*/
+		
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
