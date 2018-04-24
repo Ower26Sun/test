@@ -144,7 +144,11 @@
 		type : 'pattern',
 		patternUrl : '../../data/multimarkers/multi-abcdef/patt.tb',
 	})
-
+	
+	controls = new THREE.OrbitControls( camera );
+	controls.target.set( 0, 1, 0 );
+	controls.update();
+	/*
 //全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -193,6 +197,7 @@
 
 	},false)
 	},false)
+	*/
 	
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
@@ -335,10 +340,10 @@ var objectLoader = new THREE.ObjectLoader();
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		
+		/*
 			var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
-		
+		*/
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
