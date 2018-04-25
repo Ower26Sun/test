@@ -19,6 +19,7 @@
 
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
+		<script src="js/loaders/FBXLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
@@ -305,7 +306,7 @@ alert(123);
 
 	});
 */
-
+/*
 var objectLoader = new THREE.ObjectLoader();
 	
 	objectLoader.load("models/test_HJ.json", function ( obj ) {
@@ -320,6 +321,11 @@ var objectLoader = new THREE.ObjectLoader();
 		
 		markerRoot.add( mesh );
 	} , onProgress, onError);
+	*/
+	var fbxLoader = new THREE.FBXLoader();
+	    fbxloader.load("model/rose.fbx",function(fbx){
+	    	markerRoot.add(fbx);
+	    });
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
