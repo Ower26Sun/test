@@ -16,7 +16,7 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 
-
+		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
@@ -30,7 +30,8 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-alert(123);
+alert(123123);
+	var mixers = [];
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -306,6 +307,20 @@ alert(123);
 
 	});
 */
+	var loader = new THREE.FBXLoader();
+				loader.load( 'models/Samba Dancing.fbx', function ( object ) {
+					object.mixer = new THREE.AnimationMixer( object );
+					mixers.push( object.mixer );
+					var action = object.mixer.clipAction( object.animations[ 0 ] );
+					action.play();
+					object.traverse( function ( child ) {
+						if ( child.isMesh ) {
+							child.castShadow = true;
+							child.receiveShadow = true;
+						}
+					} );
+					markerRoot.add( object );
+				} );
 /*
 var objectLoader = new THREE.ObjectLoader();
 	
