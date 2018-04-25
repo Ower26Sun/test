@@ -30,7 +30,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert("标准格式模型");
+	alert("标准格式模型huayin");
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -199,15 +199,16 @@
 			markerRoot.add( mesh );
 	} );
 	*/
+	/*
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/' );
+	mtlLoader.setPath( 'models/1' );
 	mtlLoader.load( 'huayin.mtl', function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/' );
+		objLoader.setPath( 'models/1' );
 		objLoader.load( 'huayin.obj', function ( obj ) {
 			
 			mesh = obj;
@@ -219,6 +220,28 @@
 			mesh.rotation.z = (Math.PI/9)*7.32;
 			
 			markerRoot.add( mesh );
+
+		}, onProgress, onError );
+
+	});
+	*/
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1/' );
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
+
+		materials.preload();
+
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/1/' );
+		objLoader.load( 'huayinA.obj', function ( object ) {
+
+			//object.position.y = 0.2;
+  			// 缩放
+			object.scale.x =  object.scale.y =  object.scale.z = 0.03;
+			// 旋转
+			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			markerRoot.add( object );
 
 		}, onProgress, onError );
 
@@ -236,10 +259,10 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		
+		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);
-		
+		*/
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
