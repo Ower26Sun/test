@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- 防止屏幕进行伸缩 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'> -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-<!-- three.js library --> 
+<meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
+<!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
+<script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
-<!-- include threex.artoolkit -->  
+<!-- include threex.artoolkit -->
 <script src='../src/threex/threex-artoolkitsource.js'></script>
 <script src='../src/threex/threex-artoolkitcontext.js'></script>
 <script src='../src/threex/threex-artoolkitprofile.js'></script>
@@ -14,42 +14,47 @@
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
-       
+
+
+
 		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/Detector.js"></script>
-		<script src="js/loaders/JSONLoader.js"></script>
-		<script src="js/loaders/ObjectLoader.js"></script>
-		<script src="js/OrbitControls.js"></script>
-		 <script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<script> 
+		<script src="js/Detector.js"></script>
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
+	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>AR.js</a> - developement playground
+	<br/>
+	
+</div><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
+	alert("标准huayin模型");
+	var mesh = THREE.Mesh();
 	// init renderer
-	var mesh = new THREE.Mesh();
-	alert("标准格式模型huayin");
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
 	});
-    var container = document.getElementById( 'container' );
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
-	container.appendChild(renderer.domElement);
-	//document.body.appendChild( renderer.domElement );
+	document.body.appendChild( renderer.domElement );
+
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
+
 	// init scene and camera
 	var scene	= new THREE.Scene();
+
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
+
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
@@ -57,16 +62,29 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
+
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
+
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
+
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
 		sourceType : 'webcam',
+
+		// // to read from an image
+		// sourceType : 'image',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/armchair.jpg',		
+
+		// to read from a video
+		// sourceType : 'video',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
 	})
+
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
@@ -82,9 +100,11 @@
 			arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)	
 		}	
 	}
+	
 	////////////////////////////////////////////////////////////////////////////////
 	//          initialize arToolkitContext
 	////////////////////////////////////////////////////////////////////////////////	
+
 	// create atToolkitContext
 	var arToolkitContext = new THREEx.ArToolkitContext({
 		cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
@@ -93,8 +113,10 @@
 		detectionMode: 'mono',
 		// detectionMode: 'color_and_matrix',
 		// matrixCodeType: '3x3',
+
 		canvasWidth: 80*3,
 		canvasHeight: 60*3,
+
 		maxDetectionRate: 30,
 	})
 	// initialize it
@@ -102,9 +124,11 @@
 		// copy projection matrix to camera
 		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
 	})
+
 	// update artoolkit on every frame
 	onRenderFcts.push(function(){
 		if( arToolkitSource.ready === false )	return
+
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
 	
@@ -120,8 +144,10 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : '../../data/multimarkers/multi-abcdef/patt.logo', 
+		patternUrl : '../../data/multimarkers/multi-abcdef/patt.logo',
 	})
+
+
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
@@ -135,7 +161,7 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	//全局变量，触摸开始位置
+	
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
 	var modelSize=15;
@@ -181,79 +207,76 @@
 			//animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
-
 	},false)
 	},false)
-	/*
+	
 	// model
-	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/biaozhun_OBJ_huayin.json", function ( obj ) {
-			mesh = obj;
-		
-			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
-	
-			mesh.rotation.x = Math.PI*1.5;
-			mesh.rotation.y = Math.PI/2;
-			mesh.rotation.z = (Math.PI/9)*7.32;
-			
-			markerRoot.add( mesh );
-	} );
-	*/
-	/*
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1' );
-	mtlLoader.load( 'huayin.mtl', function( materials ) {
 
-		materials.preload();
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
 
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/1' );
-		objLoader.load( 'huayin.obj', function ( obj ) {
-			
-			mesh = obj;
-		
-			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
-	
-			mesh.rotation.x = Math.PI*1.5;
-			mesh.rotation.y = Math.PI/2;
-			mesh.rotation.z = (Math.PI/9)*7.32;
-			
-			markerRoot.add( mesh );
+	var onError = function ( xhr ) { };
 
-		}, onProgress, onError );
-
-	});
-	*/
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+/*
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'huayin.mtl', function( materials ) {
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'huayin.obj', function ( object ) {
+		objLoader.load( 'huayinA.obj', function ( object ) {
 
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.03;
+			object.scale.x =  object.scale.y =  object.scale.z = 0.06;
 			// 旋转
-			object.rotation.set(Math.PI,Math.PI,Math.PI) ;
+			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
 
 		}, onProgress, onError );
 
 	});
+*/
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1' );
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/1' );
+		objLoader.load( 'huayinA.obj', function ( obj ) {
+			
+			mesh = obj;
+		
+			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+	
+			mesh.rotation.x = Math.PI*1.5;
+			mesh.rotation.y = Math.PI/2;
+			mesh.rotation.z = (Math.PI/9)*7.32;
+			
+			markerRoot.add( mesh );
+		}, onProgress, onError );
+	});
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
+	var stats = new Stats();
+	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
+		stats.update();
 	})
-	
+
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -263,13 +286,13 @@
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);
 		*/
-		//measure time
+		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
 		lastTimeMsec	= nowMsec
 		// call each update function
 		onRenderFcts.forEach(function(onRenderFct){
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
-		})	
+		})
 	})
 </script></body>
