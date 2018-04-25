@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- ·ÀÖ¹ÆÁÄ»½øĞĞÉìËõ <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'> -->
+<!-- é˜²æ­¢å±å¹•è¿›è¡Œä¼¸ç¼© <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <!-- three.js library --> 
 <script src='vendor/three.js/build/three.js'></script>
@@ -20,7 +20,8 @@
 		<script src="js/loaders/JSONLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
 		<script src="js/OrbitControls.js"></script>
-		 
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 <div id="result" style="border:2px solid red; color:red;">109</div>
@@ -31,7 +32,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	alert(109);
+	alert("ç²¾ç®€æ¨¡å‹");
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -136,38 +137,38 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	//È«¾Ö±äÁ¿£¬´¥Ãş¿ªÊ¼Î»ÖÃ
+	//å…¨å±€å˜é‡ï¼Œè§¦æ‘¸å¼€å§‹ä½ç½®
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
 	var modelSize=15;
-    //touchstartÊÂ¼ş
+    //touchstartäº‹ä»¶
 	document.addEventListener('touchstart',function (event) {
-            event.preventDefault(); //×èÖ¹´¥ÃşÊ±ä¯ÀÀÆ÷µÄËõ·Å¡¢¹ö¶¯Ìõ¹ö¶¯µÈ
-            var touch = event.touches[0]; //»ñÈ¡µÚÒ»¸ö´¥µã
-			var x = Number(touch.screenX); //Ò³Ãæ´¥µãX×ø±ê
-            var y = Number(touch.screenY); //Ò³Ãæ´¥µãY×ø±ê
+            event.preventDefault(); //é˜»æ­¢è§¦æ‘¸æ—¶æµè§ˆå™¨çš„ç¼©æ”¾ã€æ»šåŠ¨æ¡æ»šåŠ¨ç­‰
+            var touch = event.touches[0]; //è·å–ç¬¬ä¸€ä¸ªè§¦ç‚¹
+			var x = Number(touch.screenX); //é¡µé¢è§¦ç‚¹Xåæ ‡
+            var y = Number(touch.screenY); //é¡µé¢è§¦ç‚¹Yåæ ‡
 			if(event.targetTouches.length == 2){
-			var touch1 = event.targetTouches[1];//»ñÈ¡µÚ¶ş¸ö´¥µã
-			var x1 = Number(touch1.screenX); //Ò³Ãæ´¥µãX1×ø±ê
-            var y1 = Number(touch1.screenY); //Ò³Ãæ´¥µãY1×ø±ê
-            //¼ÇÂ¼´¥µã³õÊ¼Î»ÖÃ
+			var touch1 = event.targetTouches[1];//è·å–ç¬¬äºŒä¸ªè§¦ç‚¹
+			var x1 = Number(touch1.screenX); //é¡µé¢è§¦ç‚¹X1åæ ‡
+            var y1 = Number(touch1.screenY); //é¡µé¢è§¦ç‚¹Y1åæ ‡
+            //è®°å½•è§¦ç‚¹åˆå§‹ä½ç½®
 			a=x-x1;
 			b=y-y1;
 			distancestart=Math.sqrt((a*a)+(b*b));
 			}
-    //touchmoveÊÂ¼ş
+    //touchmoveäº‹ä»¶
     document.addEventListener('touchmove',function(event){
-            event.preventDefault(); //×èÖ¹´¥ÃşÊ±ä¯ÀÀÆ÷µÄËõ·Å¡¢¹ö¶¯Ìõ¹ö¶¯µÈ
-            var touch2 = event.targetTouches[0]; //»ñÈ¡µÚÒ»¸ö´¥µã
-            var x2 = Number(touch2.screenX); //Ò³Ãæ´¥µãX2×ø±ê
-            var y2 = Number(touch2.screenY); //Ò³Ãæ´¥µãY2×ø±ê
+            event.preventDefault(); //é˜»æ­¢è§¦æ‘¸æ—¶æµè§ˆå™¨çš„ç¼©æ”¾ã€æ»šåŠ¨æ¡æ»šåŠ¨ç­‰
+            var touch2 = event.targetTouches[0]; //è·å–ç¬¬ä¸€ä¸ªè§¦ç‚¹
+            var x2 = Number(touch2.screenX); //é¡µé¢è§¦ç‚¹X2åæ ‡
+            var y2 = Number(touch2.screenY); //é¡µé¢è§¦ç‚¹Y2åæ ‡
 			
 	    
-			//Ë«Ö¸´¥ÃşÊ±
+			//åŒæŒ‡è§¦æ‘¸æ—¶
 			if(event.targetTouches.length == 2){
-			var touch3 = event.targetTouches[1];//»ñÈ¡µÚ¶ş¸ö´¥µã
-			var x3 = Number(touch3.screenX); //Ò³Ãæ´¥µãX3×ø±ê
-            var y3 = Number(touch3.screenY); //Ò³Ãæ´¥µãY3×ø±ê
+			var touch3 = event.targetTouches[1];//è·å–ç¬¬äºŒä¸ªè§¦ç‚¹
+			var x3 = Number(touch3.screenX); //é¡µé¢è§¦ç‚¹X3åæ ‡
+            var y3 = Number(touch3.screenY); //é¡µé¢è§¦ç‚¹Y3åæ ‡
 			a=x2-x3;
 			b=y2-y3;
 			distanceend=Math.sqrt((a*a)+(b*b));
@@ -185,7 +186,7 @@
 
 	},false)
 	},false)
-	
+	/*
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/huayinA.json", function ( obj ) {
@@ -198,7 +199,27 @@
 			mesh.rotation.z = (Math.PI/9)*7.32;
 			
 			markerRoot.add( mesh );
-	} );
+	} );*/
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/' );
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
+
+		materials.preload();
+
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/' );
+		objLoader.load( 'huayinA.obj', function ( obj ) {
+			mesh = obj;
+		
+			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+	
+			mesh.rotation.x = Math.PI*1.5;
+			mesh.rotation.y = Math.PI/2;
+			mesh.rotation.z = (Math.PI/9)*7.32;
+			
+			markerRoot.add( mesh );
+	} );*/
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -213,7 +234,7 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		var axis = new THREE.Vector3(0,1,0);//ÏòÁ¿axis
+		var axis = new THREE.Vector3(0,1,0);//å‘é‡axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);
 		
 		//measure time
