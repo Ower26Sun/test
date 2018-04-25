@@ -32,6 +32,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	alert("精简huayin模型");
+	var mesh = THREE.Mesh();
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -221,7 +222,7 @@
 	var onError = function ( xhr ) { };
 
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
+/*
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
 	mtlLoader.load( 'huayinA.mtl', function( materials ) {
@@ -243,7 +244,28 @@
 		}, onProgress, onError );
 
 	});
-
+*/
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1' );
+	mtlLoader.load( 'huayin.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/1' );
+		objLoader.load( 'huayin.obj', function ( obj ) {
+			
+			mesh = obj;
+		
+			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+	
+			mesh.rotation.x = Math.PI*1.5;
+			mesh.rotation.y = Math.PI/2;
+			mesh.rotation.z = (Math.PI/9)*7.32;
+			
+			markerRoot.add( mesh );
+		}, onProgress, onError );
+	});
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
