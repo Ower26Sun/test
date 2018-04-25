@@ -226,15 +226,13 @@ var objectLoader = new THREE.FBXLoader();
 	
 	objectLoader.load("models/rose.fbx", function ( obj ) {
 			
-			mesh = obj;
-		
-			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.6;
+			obj.scale.x =  obj.scale.y =  obj.scale.z = 0.6;
 			
-			mesh.rotation.x = Math.PI*1.5;
-			mesh.rotation.y = Math.PI/2;
-			mesh.rotation.z = (Math.PI/9)*7.32;
+			obj.rotation.x = Math.PI*1.5;
+			obj.rotation.y = Math.PI/2;
+			obj.rotation.z = (Math.PI/9)*7.32;
 		
-		markerRoot.add( mesh );
+		markerRoot.add( obj );
 	} , onProgress, onError);
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
