@@ -224,17 +224,17 @@
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1' );
+	mtlLoader.setPath( 'models/huayinA' );
 	mtlLoader.load( 'huayinA.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/1' );
+		objLoader.setPath( 'models/huayinA' );
 		objLoader.load( 'huayinA.obj', function ( obj ) {
 			
 			//mesh = obj;
 		
-			obj.scale.x =  obj.scale.y =  obj.scale.z = 0.006;
+			obj.scale.x =  obj.scale.y =  obj.scale.z = 0.06;
 	/*
 			obj.rotation.x = Math.PI*1.5;
 			obj.rotation.y = Math.PI/2;
