@@ -234,11 +234,20 @@
 		mesh.rotation.y = Math.PI*3.3;
 		mesh.rotation.z = Math.PI*2.23;
 		*/
+		var axisX = new THREE.Vector3(1,0,0);//向量axis
+    		mesh.rotateOnAxis(axisX,Math.PI);//绕axis轴旋转π/8
+		
+		var axiY = new THREE.Vector3(0,1,0);//向量axis
+    		mesh.rotateOnAxis(axiY,Math.PI);//绕axis轴旋转π/8
+		
+		var axisZ = new THREE.Vector3(0,0,1);//向量axis
+    		mesh.rotateOnAxis(axisZ,Math.PI);//绕axis轴旋转π/8
+		
+		/*
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
-		//mesh.rotation.z = (Math.PI/9)*7.32;
-		mesh.rotation.z = Math.PI;
-		
+		mesh.rotation.z = (Math.PI/9)*7.32;
+		*/
 		markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
