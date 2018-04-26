@@ -372,12 +372,12 @@ function changeModelSize(){
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
 		
 		//measure time
-		lastTimeMsec	= lastTimeMsec || nowMsec-1000/100
+		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
 		lastTimeMsec	= nowMsec
 		// call each update function
 		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(deltaMsec/1000, nowMsec/1000)
+			onRenderFct(deltaMsec/1000, nowMsec/10000)
 		})	
 	})
 </script></body>
