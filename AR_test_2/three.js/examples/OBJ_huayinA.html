@@ -247,22 +247,22 @@
 */
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1' );
-	mtlLoader.load( 'huayin.mtl', function( materials ) {
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1' );
-		objLoader.load( 'huayin.obj', function ( obj ) {
+		objLoader.load( 'huayinA.obj', function ( obj ) {
 			
-			mesh = obj;
+			//mesh = obj;
 		
-			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+			obj.scale.x =  obj.scale.y =  obj.scale.z = 0.06;
 	
-			mesh.rotation.x = Math.PI*1.5;
-			mesh.rotation.y = Math.PI/2;
-			mesh.rotation.z = (Math.PI/9)*7.32;
+			obj.rotation.x = Math.PI*1.5;
+			obj.rotation.y = Math.PI/2;
+			obj.rotation.z = (Math.PI/9)*7.32;
 			
-			markerRoot.add( mesh );
+			markerRoot.add( obj );
 		}, onProgress, onError );
 	});
 	
