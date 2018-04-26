@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
+	alert("huayinA");
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -143,7 +143,7 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : '../../data/multimarkers/multi-abcdef/patt.td',
+		patternUrl : '../../data/multimarkers/multi-abcdef/patt.logo',
 	})
 
 
@@ -237,14 +237,14 @@
 
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/1/' );
-		objLoader.load( 'bear.obj', function ( object ) {
+		objLoader.load( 'huayinA.obj', function ( object ) {
 
 			//object.position.y = 0.2;
   			// 缩放
