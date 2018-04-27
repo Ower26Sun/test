@@ -30,7 +30,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">028未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">001   rose_an.FBX</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +237,7 @@
 
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/ARproject/fbx/rose_an.fbx', function ( object ) {				
+	loader.load( 'models/ARproject/fbx/rose_an.FBX', function ( object ) {				
 	object.mixer = new THREE.AnimationMixer( object );
 					mixers.push( object.mixer );
 
