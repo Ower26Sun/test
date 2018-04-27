@@ -30,7 +30,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">005   LN_CB.FBX</div>
+<div id="result" style="border:2px solid red; color:red;">006   LN_CB.FBX</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var clock = new THREE.Clock();
-
+	//var mesh = THREE.Mesh();
 	var mixers = [];
 	// init renderer
 	//var mesh = new THREE.Mesh();
@@ -238,14 +238,14 @@
 	// model
 	var loader = new THREE.FBXLoader();
 	loader.load( 'models/ARproject/fbx/LN_CB.FBX', function ( object ) {	
-		mesh = object;
+		//mesh = object;
 	mesh.mixer = new THREE.AnimationMixer( object );
 					mixers.push( object.mixer );
 
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
 
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 10000;
+		object.scale.x =  object.scale.y =  object.scale.z = 10000;
 		markerRoot.add( mesh );
 	} );
 
