@@ -28,7 +28,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">037  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">038  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -243,7 +243,10 @@
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
 		
-		//object.scale.x =  object.scale.y =  object.scale.z = 0.003;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.003;
+		object.rotation.x = Math.PI ;
+		object.rotation.y = Math.PI ;
+		object.rotation.z = Math.PI ;
 		markerRoot.add( object );
 	} );
 
