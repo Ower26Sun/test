@@ -23,7 +23,7 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">21</div>
+<div id="result" style="border:2px solid red; color:red;">22</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -144,7 +144,7 @@
 	})	
 	
 		var controls;
-	 function initControls() {
+	// function initControls() {
 
 	  controls = new THREE.OrbitControls( camera, renderer.domElement );
 
@@ -163,7 +163,7 @@
 	  //controls.maxDistance = 600;
 	  //是否开启右键拖拽
 	  controls.enablePan = true;
-	 }
+	// }
 	
 	/*
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
@@ -294,7 +294,7 @@
 		requestAnimationFrame( animate );
 		
 		controls.update();
-		initControls();
+		//initControls();
 		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
