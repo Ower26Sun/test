@@ -28,13 +28,13 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">032  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">033  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-	
+	var mesh = THREE.Mesh();
 	var clock = new THREE.Clock();
 
 	var mixers = [];
@@ -243,7 +243,7 @@
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
 		
-		object.scale.x =  object.scale.y =  object.scale.z = 0.0003;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.003;
 		markerRoot.add( object );
 	} );
 
