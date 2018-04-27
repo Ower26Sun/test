@@ -31,7 +31,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-
+	alert(1);
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -236,15 +236,15 @@
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/DJ_A/' );
-	mtlLoader.load( 'DJ2.mtl', function( materials ) {
+	mtlLoader.setPath( 'models/DJ_obj_R/' );
+	mtlLoader.load( 'DJ.mtl', function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/DJ_A/' );
-		objLoader.load( 'DJ2.obj', function ( object ) {
+		objLoader.setPath( 'models/DJ_obj_R/' );
+		objLoader.load( 'DJ.obj', function ( object ) {
 
 			//object.position.y = 0.2;
   			// 缩放
