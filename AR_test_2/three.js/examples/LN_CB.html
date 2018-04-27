@@ -36,7 +36,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
-	
+	var mesh = THREE.Mesh();
 	var clock = new THREE.Clock();
 
 	var mixers = [];
@@ -237,15 +237,16 @@
 
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/ARproject/fbx/LN_CB.FBX', function ( object ) {				
-	object.mixer = new THREE.AnimationMixer( object );
-					mixers.push( object.mixer );
+	loader.load( 'models/ARproject/fbx/LN_CB.FBX', function ( object ) {	
+		mesh = object;
+	mesh.mixer = new THREE.AnimationMixer( mesh );
+					mixers.push( mesh.mixer );
 
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
 
-		//object.scale.x =  object.scale.y =  object.scale.z = 0.01;
-		markerRoot.add( object );
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 1;
+		markerRoot.add( mesh );
 	} );
 
 
