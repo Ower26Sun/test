@@ -23,7 +23,7 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">22</div>
+<div id="result" style="border:2px solid red; color:red;">23</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -143,26 +143,15 @@
 		smoothedControls.update(markerRoot)
 	})	
 	
-		// controls
-				controls = new THREE.OrbitControls( camera, renderer.domElement );
-				//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-				controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-				controls.dampingFactor = 0.25;
-				controls.screenSpacePanning = false;
-				controls.minDistance = 5;
-				controls.maxDistance = 500
-				controls.maxPolarAngle = Math.PI / 2;
-	
-	/*
-	controls = new THREE.OrbitControls( camera, renderer.domElement );
-				
-		controls.enableDamping = true; 
-		controls.dampingFactor = 0.25;
-		controls.screenSpacePanning = false;
-		controls.minDistance = 0.5;
-		controls.maxPolarAngle = Math.PI / 2;
-		
-	*/
+
+			controls = new THREE.OrbitControls( camera, renderer.domElement );
+			//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+			controls.dampingFactor = 0.25;
+			controls.screenSpacePanning = false;
+			controls.minDistance = 5;
+			controls.maxDistance = 500
+			controls.maxPolarAngle = Math.PI / 2;
 /*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
