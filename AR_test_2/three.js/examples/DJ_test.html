@@ -23,14 +23,14 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">19</div>
+<div id="result" style="border:2px solid red; color:red;">21</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	//var controls;
+	
 	var mesh = new THREE.Mesh();
 	//alert(2);
 	var renderer	= new THREE.WebGLRenderer({
@@ -142,20 +142,29 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	/*
-	 controls = new THREE.OrbitControls( camera, renderer.domElement );
 	
-		controls.enableDamping = true;
-		controls.dampingFactor = 0.25;
+		var controls;
+	 function initControls() {
+
+	  controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+	  
+	  // 使动画循环使用时阻尼或自转 意思是否有惯性
+	  controls.enableDamping = true;
+	  //动态阻尼系数 就是鼠标拖拽旋转灵敏度
+	  //controls.dampingFactor = 0.25;
+	  //是否可以缩放
+	  controls.enableZoom = true;
+	  //是否自动旋转
+	  controls.autoRotate = true;
+	  //设置相机距离原点的最远距离
+	  //controls.minDistance = 200;
+	  //设置相机距离原点的最远距离
+	  //controls.maxDistance = 600;
+	  //是否开启右键拖拽
+	  controls.enablePan = true;
+	 }
 	
-		controls.screenSpacePanning = false;
-	
-		controls.enableZoom = true;
-	
-		controls.minDistance = 0.5;
-	
-		controls.maxDistance = 50;
-	*/
 	/*
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
 				
@@ -166,7 +175,7 @@
 		controls.maxPolarAngle = Math.PI / 2;
 		
 	*/
-
+/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -203,7 +212,7 @@
 					camera.position.x = camera.position.x - Math.PI * 0.1;
 				}
 				camera.lookAt( scene.position );
-			}*/
+			}
 				a=x2-x;
 				b=y2-y;
 				if (Math.abs(a)>Math.abs(b)) {  
@@ -212,9 +221,6 @@
                 			camera.position.y=camera.position.y+b*0.05;  
            			}
 			}
-			
-			
-			
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -238,7 +244,7 @@
  
 	},false)
 	},false)
-	
+	*/
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
@@ -287,9 +293,8 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		//controls.update();
-		//renderer.render( scene, camera );
-		
+		controls.update();
+		initControls();
 		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
