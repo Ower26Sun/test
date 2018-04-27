@@ -24,7 +24,7 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">12</div>
+<div id="result" style="border:2px solid red; color:red;">13</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -143,22 +143,22 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	/*
+	
 	 controls = new THREE.OrbitControls( camera, renderer.domElement );
 		controls.enableDamping = true;
 		controls.dampingFactor = 0.25;
 		controls.screenSpacePanning = false;
 		controls.enableZoom = true;
-	*/
 	
+	/*
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
-	
-		//controls.minDistance = 1;
-		//controls.maxDistance = 45;		
-		controls.enableDamping = true; 
-		controls.dampingFactor = 0.25;
-		controls.screenSpacePanning = false;
-		//controls.maxPolarAngle = Math.PI / 2;
+				
+				controls.enableDamping = true; 
+				controls.dampingFactor = 0.25;
+				controls.screenSpacePanning = false;
+				controls.minDistance = 0.5;
+				controls.maxPolarAngle = Math.PI / 2;
+				*/
 /*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -244,7 +244,7 @@
 		renderer.render( scene, camera );
 	})
 	
-	window.addEventListener( 'resize', onWindowResize, false );
+	document.addEventListener( 'resize', onWindowResize, false );
 
 	
 	function onWindowResize() {
@@ -262,7 +262,8 @@
 		requestAnimationFrame( animate );
 		
 		controls.update();
-	
+		renderer.render( scene, camera );
+		
 		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
