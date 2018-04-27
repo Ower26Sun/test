@@ -23,7 +23,7 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">17</div>
+<div id="result" style="border:2px solid red; color:red;">18</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -204,16 +204,15 @@
 				}
 				camera.lookAt( scene.position );
 			}*/
-			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
 				if (Math.abs(a)>Math.abs(b)) {  
-               				camera.position.x=camera.position.x-x*0.05;  
+               				camera.position.x=camera.position.x-a*0.05;  
             			} else {  
-                			camera.position.y=camera.position.y+y*0.05;  
+                			camera.position.y=camera.position.y+b*0.05;  
            			}
 			}
-			}
+			
 			
 			
 			//双指触摸时
