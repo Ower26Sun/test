@@ -140,7 +140,7 @@
 	})	
 
 
-/*	//全局变量，触摸开始位置
+	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
 	var modelSize=20;
@@ -187,8 +187,15 @@
 	},false)
 	},false)
 
-
-
+var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+/*
 	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -216,7 +223,7 @@
 
 		}, onProgress, onError );
 	});
-
+*/
 
 
 	// model
@@ -243,12 +250,12 @@
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
 		
-		object.scale.x =  object.scale.y =  object.scale.z = 0.003;
-		object.rotation.x = Math.PI ;
-		object.rotation.y = Math.PI ;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.0003;
+		object.rotation.x = Math.PI*1.5 ;
+		object.rotation.y = Math.PI 1.5;
 		object.rotation.z = Math.PI ;
 		markerRoot.add( object );
-	} );
+	} ,onProgress, onError);
 
 
 
