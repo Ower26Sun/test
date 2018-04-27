@@ -159,10 +159,11 @@
 	*/
 	
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
-		controls.enableDamping = true;
+				
+		controls.enableDamping = true; 
 		controls.dampingFactor = 0.25;
 		controls.screenSpacePanning = false;
-		controls.enableZoom = true;
+		//controls.maxPolarAngle = Math.PI / 2;
 /*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
