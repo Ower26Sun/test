@@ -23,14 +23,14 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">15</div>
+<div id="result" style="border:2px solid red; color:red;">16</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	var controls;
+	//var controls;
 	var mesh = new THREE.Mesh();
 	//alert(2);
 	var renderer	= new THREE.WebGLRenderer({
@@ -142,7 +142,7 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	
+	/*
 	 controls = new THREE.OrbitControls( camera, renderer.domElement );
 	
 		controls.enableDamping = true;
@@ -155,7 +155,7 @@
 		controls.minDistance = 0.5;
 	
 		controls.maxDistance = 50;
-	
+	*/
 	/*
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
 				
@@ -192,7 +192,17 @@
             var touch2 = event.targetTouches[0]; //获取第一个触点
             var x2 = Number(touch2.screenX); //页面触点X2坐标
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
-
+			//单指触摸时		
+			if(event.targetTouches.length == 1){
+				a = x2 - x ;
+				if(x2<x){
+					camera.position.x = camera.position.x + Math.PI * 0.1;
+				}
+				if(x2>x){
+					camera.position.x = camera.position.x - Math.PI * 0.1;
+				}
+				camera.lookAt( scene.position );
+			}
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -258,7 +268,7 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		controls.update();
+		//controls.update();
 		//renderer.render( scene, camera );
 		
 		/*
