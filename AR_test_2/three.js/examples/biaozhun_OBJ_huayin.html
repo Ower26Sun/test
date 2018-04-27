@@ -159,68 +159,7 @@
 	})
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
-	})	
-	
-	// smoothedControls.addEventListener('becameVisible', function(){
-	// 	console.log('becameVisible event notified')
-	// })
-	// smoothedControls.addEventListener('becameUnVisible', function(){
-	// 	console.log('becameUnVisible event notified')
-	// })
-
-	//////////////////////////////////////////////////////////////////////////////////
-	//		add an object in the scene
-	//////////////////////////////////////////////////////////////////////////////////
-
-/* 	// var arWorldRoot = markerRoot
-	var arWorldRoot = smoothedRoot
-	var mesh = new THREE.AxisHelper()
-	// markerRoot.add(mesh)
-	arWorldRoot.add(mesh)
-	// add a torus knot
-	var geometry	= new THREE.CubeGeometry(1,1,1);
-	var material	= new THREE.MeshNormalMaterial({
-		transparent : true,
-		opacity: 0.5,
-		side: THREE.DoubleSide
-	})
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= geometry.parameters.height/2
-	// markerRoot.add( mesh );
-	arWorldRoot.add(mesh)
-	
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial(); 
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= 0.5
-	// markerRoot.add( mesh );
-	arWorldRoot.add( mesh );
-	
-	onRenderFcts.push(function(delta){
-		mesh.rotation.x += delta * Math.PI
-	}) */
-	
-	/* var mesh = new THREE.AxisHelper(),dae;
-	var loader = new THREE.ColladaLoader();
-	loader.options.convertUpAxis = true;
-	loader.load( './models/dae/monster.dae', function ( collada ) {
-		dae = collada.scene;
-		dae.traverse( function ( child ) {
-			if ( child instanceof THREE.SkinnedMesh ) {
-				var animation = new THREE.Animation( child, child.geometry.animation );
-				animation.play();
-			}
-		} );
-		dae.scale.x = dae.scale.y = dae.scale.z = 0.001;
-		dae.rotation.set( 0,Math.PI/2,Math.PI/2);
-		markerRoot.add( dae );
-		onRenderFcts.push(function(delta){
-			mesh.rotation.x += delta * Math.PI;
-			dae.updateMatrix();
-		})
-		
-	} ); */
-	
+	})		
 	
 	// model
 
@@ -236,14 +175,14 @@
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
+	mtlLoader.setPath( 'models/huayin_obj/' );
 	mtlLoader.load( 'huayin.mtl', function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/1/' );
+		objLoader.setPath( 'models/huayin_obj/' );
 		objLoader.load( 'huayin.obj', function ( object ) {
 
 			//object.position.y = 0.2;
