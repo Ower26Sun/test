@@ -24,7 +24,7 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">11</div>
+<div id="result" style="border:2px solid red; color:red;">12</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -63,10 +63,10 @@
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
-	/*
+	
 	var camera = new THREE.Camera();
-	*/
-	var camera = new THREE.PerspectiveCamera( 1, window.innerWidth / window.innerHeight, 1, 1000 );
+
+	//var camera = new THREE.PerspectiveCamera( 1, window.innerWidth / window.innerHeight, 1, 1000 );
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -153,8 +153,8 @@
 	
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
 	
-		controls.minDistance = 1;
-		controls.maxDistance = 45;		
+		//controls.minDistance = 1;
+		//controls.maxDistance = 45;		
 		controls.enableDamping = true; 
 		controls.dampingFactor = 0.25;
 		controls.screenSpacePanning = false;
@@ -244,6 +244,17 @@
 		renderer.render( scene, camera );
 	})
 	
+	window.addEventListener( 'resize', onWindowResize, false );
+
+	
+	function onWindowResize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+	}
+	
+	
+	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -251,8 +262,7 @@
 		requestAnimationFrame( animate );
 		
 		controls.update();
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
+	
 		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
