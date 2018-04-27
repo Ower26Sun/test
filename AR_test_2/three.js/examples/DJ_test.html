@@ -24,7 +24,7 @@
 		<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">6</div>
+<div id="result" style="border:2px solid red; color:red;">7</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -159,11 +159,10 @@
 	*/
 	
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
-		controls.enableDamping = true; 
+		controls.enableDamping = true;
 		controls.dampingFactor = 0.25;
 		controls.screenSpacePanning = false;
 		controls.enableZoom = true;
-		controls.enableDamping = true;
 /*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -254,6 +253,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+		
 		controls.update();
 		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
