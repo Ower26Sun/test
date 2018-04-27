@@ -19,7 +19,7 @@
 		<script src="js/Detector.js"></script>
 		<script src="js/loaders/JSONLoader.js"></script>
 		<script src="js/loaders/ObjectLoader.js"></script>
-		<script src="js/OrbitControls.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -30,7 +30,7 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	
+	var controls;
 	var mesh = new THREE.Mesh();
 	alert(2);
 	var renderer	= new THREE.WebGLRenderer({
@@ -147,8 +147,18 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-
-
+	
+	 controls = new THREE.OrbitControls( camera, renderer.domElement );
+		//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+		controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+		controls.dampingFactor = 0.25;
+		controls.screenSpacePanning = false;
+		controls.minDistance = 100;
+		controls.maxDistance = 500
+		controls.maxPolarAngle = Math.PI / 2;
+	
+	
+/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -174,17 +184,7 @@
             var touch2 = event.targetTouches[0]; //获取第一个触点
             var x2 = Number(touch2.screenX); //页面触点X2坐标
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
-			//单指触摸时		
-			/*if(event.targetTouches.length == 1){
-				a=x2-x;
-				b=y2-y;
-				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
-				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.sin( a ) * 1.1;
-				camera.position.y = Math.cos( b ) * 1.1;
-				camera.lookAt( scene.position );
-			}*/
-	    
+
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -204,16 +204,11 @@
 			//animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
-	/*
-    //touchend事件
-    document.addEventListener('touchend',function(event){
-            event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
-            var text = 'TouchEnd事件触发';
-            document.getElementById("result").innerHTML = text;
-    },false)*/
-	},false)
-	},false)
 	
+ 
+	},false)
+	},false)
+	*/
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
@@ -223,17 +218,8 @@
 			mesh = obj;
 		
 			mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
-			//mesh.rotation.set(Math.PI*2,Math.PI,Math.PI*0.81) ;
+		
 		/*
-			mesh.rotation.x = Math.PI;
-			mesh.rotation.y = Math.PI*2;
-			mesh.rotation.z = Math.PI*1.23;
-		*/
-		/*
-		mesh.rotation.x = Math.PI*2;
-		mesh.rotation.y = Math.PI*3.3;
-		mesh.rotation.z = Math.PI*2.23;
-		*/
 		var axisX = new THREE.Vector3(1,0,0);//向量axis
     		mesh.rotateOnAxis(axisX,Math.PI * 1.4 );//绕axis轴旋转π/8
 		
@@ -242,12 +228,11 @@
 		
 		var axisZ = new THREE.Vector3(0,0,1);//向量axis
     		mesh.rotateOnAxis(axisZ,Math.PI);//绕axis轴旋转π/8
-		
-		/*
+		*/
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;
-		*/
+		
 		markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
@@ -263,10 +248,11 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		
+		controls.update();
+		/*
 		var axis = new THREE.Vector3(0,1,0);//向量axis
     		mesh.rotateOnAxis(axis,Math.PI * 0.002);//绕axis轴旋转π/8
-		
+		*/
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
