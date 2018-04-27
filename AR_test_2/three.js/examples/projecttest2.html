@@ -241,8 +241,17 @@
 
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
-
-		//object.scale.x =  object.scale.y =  object.scale.z = 0.01;
+		
+		var axisX = new THREE.Vector3(1,0,0);
+    		mesh.rotateOnAxis(axisX,Math.PI);
+		
+		var axiY = new THREE.Vector3(0,1,0);
+    		mesh.rotateOnAxis(axiY,Math.PI * 1.5);
+		
+		var axisZ = new THREE.Vector3(0,0,1);
+    		mesh.rotateOnAxis(axisZ,Math.PI * 2);
+		
+		object.scale.x =  object.scale.y =  object.scale.z = 0.01;
 		markerRoot.add( object );
 	} );
 
