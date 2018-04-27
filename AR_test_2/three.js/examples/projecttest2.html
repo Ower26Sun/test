@@ -28,7 +28,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">041  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">042  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -251,9 +251,12 @@
 					action.play();
 		
 		object.scale.x =  object.scale.y =  object.scale.z = 0.0003;
+		/*
 		object.rotation.x = Math.PI * 1.5 ;
 		object.rotation.y = Math.PI * 1.5;
 		object.rotation.z = Math.PI ;
+		*/
+		object.rotation.set(Math.PI*1.5,Math.PI*1.5,Math.PI ;
 		markerRoot.add( object );
 	}, onProgress, onError) ;
 
