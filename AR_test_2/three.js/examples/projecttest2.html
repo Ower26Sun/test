@@ -186,15 +186,17 @@
 	    requestAnimationFrame( animate ); 
 	},false);
 	},false);
-	
+	/*
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
 	};
+	
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	*/
 /*
 	// model
 	var onProgress = function ( xhr ) {
@@ -256,9 +258,9 @@
 		object.rotation.y = Math.PI * 1.5;
 		object.rotation.z = Math.PI ;
 		*/
-		object.rotation.set(Math.PI*1.5,Math.PI*1.5,Math.PI ;
+		object.rotation.set(Math.PI*1.5,Math.PI*1.5,Math.PI) ;
 		markerRoot.add( object );
-	}, onProgress, onError) ;
+	} ) ;
 
 
 
