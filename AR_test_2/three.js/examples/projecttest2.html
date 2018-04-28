@@ -23,7 +23,7 @@
 <script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">049  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">050  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,9 @@
 			controls.maxDistance = 20;
 			controls.maxPolarAngle = Math.PI / 2;
 	*/
-	var controls = new THREE.TrackballControls( camera );
+	
+	
+	var controls = new THREE.TrackballControls( object );
                 //旋转速度
                 controls.rotateSpeed = 1.0;
                 //变焦速度
@@ -100,6 +102,7 @@
                 controls.staticMoving = false;
                 //动态阻尼系数 就是灵敏度
                 controls.dynamicDampingFactor = 0.3;
+		
 	// handle resize
 	window.addEventListener('resize', function(){
 		onResize()
