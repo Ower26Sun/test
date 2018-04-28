@@ -25,7 +25,7 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 <div id="container"></div>
 <script> 
-	alert(4);
+	alert(5);
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -105,8 +105,8 @@
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
 	
-	var controls = new THREE.OrbitControls( mesh, renderer.domElement );
-	
+	var controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.autoRotate = false;
 	
 	////////////////////////////////////////////////////////////////////////////////
 	//          Create a ArMarkerControls
