@@ -18,12 +18,12 @@
 <script src="js/libs/inflate.min.js"></script>
 <script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/BinaryLoader.js"></script>
-<!--<script src="js/controls/OrbitControls.js"></script> -->
+<script src="js/controls/OrbitControls.js"></script>
 
-<script src="js/controls/TrackballControls.js"></script>
+<!--<script src="js/controls/TrackballControls.js"></script> -->
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">052  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">053  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -76,17 +76,17 @@
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
-	/*
+	
 	var controls = new THREE.OrbitControls( camera, renderer.domElement );
-			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-			controls.dampingFactor = 0.25;
-			controls.screenSpacePanning = false;
-			controls.minDistance = 0.5;
-			controls.maxDistance = 20;
-			controls.maxPolarAngle = Math.PI / 2;
-	*/
+		controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+		controls.dampingFactor = 0.25;
+		controls.screenSpacePanning = false;
+		controls.minDistance = 1;
+		controls.maxDistance = 20;
+		controls.maxPolarAngle = Math.PI / 2;
 	
 	
+	/*
 	var controls = new THREE.TrackballControls( camera );
                 //旋转速度
                 controls.rotateSpeed = 1.0;
@@ -102,7 +102,7 @@
                 controls.staticMoving = false;
                 //动态阻尼系数 就是灵敏度
                 controls.dynamicDampingFactor = 0.3;
-		
+		*/
 	// handle resize
 	window.addEventListener('resize', function(){
 		onResize()
