@@ -18,10 +18,12 @@
 <script src="js/libs/inflate.min.js"></script>
 <script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/BinaryLoader.js"></script>
-<script src="js/controls/OrbitControls.js"></script>
+<!--<script src="js/controls/OrbitControls.js"></script> -->
+
+<script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">047  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">048  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +64,7 @@
 	// Create a camera
 	var camera = new THREE.Camera();
 	//var camera =  new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
-	camera.position.set( 1, 1, 1 );
+	camera.position.z = 1;
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -74,6 +76,7 @@
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
+	/*
 	var controls = new THREE.OrbitControls( camera, renderer.domElement );
 			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 			controls.dampingFactor = 0.25;
@@ -81,7 +84,22 @@
 			controls.minDistance = 0.5;
 			controls.maxDistance = 20;
 			controls.maxPolarAngle = Math.PI / 2;
-	
+	*/
+	var controls = new THREE.TrackballControls( camera );
+                //旋转速度
+                controls.rotateSpeed = 1.0;
+                //变焦速度
+                controls.zoomSpeed = 1.2;
+                //平移速度
+                controls.panSpeed = 0.8;
+                //是否不变焦
+                controls.noZoom = false;
+                //是否不平移
+                controls.noPan = true;
+                //可能是惯性 true没有惯性
+                controls.staticMoving = false;
+                //动态阻尼系数 就是灵敏度
+                controls.dynamicDampingFactor = 0.3;
 	// handle resize
 	window.addEventListener('resize', function(){
 		onResize()
