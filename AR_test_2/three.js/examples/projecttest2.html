@@ -23,7 +23,7 @@
 <script src="js/controls/TrackballControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">050  projecttest2</div>
+<div id="result" style="border:2px solid red; color:red;">051  projecttest2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -87,13 +87,13 @@
 	*/
 	
 	
-	var controls = new THREE.TrackballControls( object );
+	var controls = new THREE.TrackballControls( camera );
                 //旋转速度
                 controls.rotateSpeed = 1.0;
                 //变焦速度
                 controls.zoomSpeed = 1.2;
                 //平移速度
-                controls.panSpeed = 0.8;
+                controls.panSpeed = 0.08;
                 //是否不变焦
                 controls.noZoom = false;
                 //是否不平移
