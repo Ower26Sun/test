@@ -25,12 +25,11 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 <div id="container"></div>
 <script> 
-	alert(2);
+	alert(3);
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
-	var mesh = new THREE.Mesh();
 	var renderer = new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -51,7 +50,7 @@
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
 	var mesh = new THREE.Mesh();
-	scene.add( mesh );
+	//scene.add( mesh );
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
@@ -142,7 +141,7 @@
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
-		//markerRoot.add( mesh );
+		markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
